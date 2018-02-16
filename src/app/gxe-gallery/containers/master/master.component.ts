@@ -55,7 +55,6 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
   public totalContainerWidth: number;
   public lastPosition = 0;
   public player: AnimationPlayer;
-  private currentIndex: number;
 
   constructor(private store: Store<any>,
               private el: ElementRef,
@@ -77,11 +76,13 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
 
   @HostListener('panmove', [ '$event' ])
   public move(event: any): void {
+    if (this.player && this.player.hasStarted) return;
     this.currentPosition = this.lastPosition + event.deltaX;
   }
 
   @HostListener('panend', [ '$event' ])
   public end(event: any): void {
+    if (this.player && this.player.hasStarted) return;
     this.paginate(event);
   }
 
@@ -99,16 +100,16 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
   }
 
   public paginationAnimate(futurePosition) {
-    this.player  = this.builder.build([
+    this.player = this.builder.build([
       style({
-        transform: `translateX(${this.currentPosition}px)`
+        transform: `translateX(${this.currentPosition}px)`,
       }),
       animate(
         '350ms cubic-bezier(.35, 0, .25, 1)',
         style({
-          transform: `translateX(${futurePosition}px)`
-        })
-      )
+          transform: `translateX(${futurePosition}px)`,
+        }),
+      ),
     ]).create(this.galleryInnerContainer.nativeElement);
 
     this.player.play();
