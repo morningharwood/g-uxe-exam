@@ -46,15 +46,17 @@ const mockGalleryItems: GalleryItem[] = [
   styleUrls: [ './master.component.scss' ],
 })
 export class GalleryMasterComponent implements OnInit, AfterViewChecked {
+  @ViewChild('gxeGalleryInnerContainer')
+  private galleryInnerContainer: ElementRef;
+
   private hostSize: NativeElementSize;
   public galleryItems: GalleryItem[] = mockGalleryItems;
   public currentPosition: number;
   public totalContainerWidth: number;
   public lastPosition = 0;
   public player: AnimationPlayer;
-  @ViewChild('gxeGalleryInnerContainer')
-  private galleryInnerContainer: any;
-  private currentSelectedItem: number;
+  private currentIndex: number;
+
   constructor(private store: Store<any>,
               private el: ElementRef,
               private builder: AnimationBuilder) {
@@ -73,8 +75,7 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
     this.totalContainerWidth = this.galleryItems.length * this.hostSize.w;
   }
 
-
-  @HostListener('pan', [ '$event' ])
+  @HostListener('panmove', [ '$event' ])
   public move(event: any): void {
     this.currentPosition = this.lastPosition + event.deltaX;
   }
@@ -87,13 +88,13 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
   private paginate(event: any) {
     const offset = event.deltaX / 100;
     if (offset >= 0.25) {
-
-      const index = Math.floor(Math.abs(this.currentPosition / this.hostSize.w))
+      const index = Math.floor(Math.abs(this.currentPosition / this.hostSize.w));
       this.paginationAnimate(-(index * this.hostSize.w));
     } else if (offset <= -0.25) {
-      const index = Math.ceil((Math.abs(this.currentPosition) / (this.totalContainerWidth / this.galleryItems.length)));
-
-      this.paginationAnimate(-(Math.min(index, this.galleryItems.length -1) * this.hostSize.w));
+      const index = Math.ceil(Math.abs(this.currentPosition / this.hostSize.w));
+      this.paginationAnimate(-(Math.min(index, this.galleryItems.length - 1) * this.hostSize.w));
+    } else {
+      this.paginationAnimate(this.lastPosition);
     }
   }
 
@@ -115,8 +116,8 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
     this.player.onDone(() => {
       this.player.destroy();
       this.lastPosition = this.currentPosition = futurePosition;
+      this.player = null;
     });
-
   }
 
 }
