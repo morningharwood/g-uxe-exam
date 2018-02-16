@@ -1,11 +1,10 @@
 import {
   animate,
+  style,
   AnimationBuilder,
   AnimationPlayer,
-  style,
 } from '@angular/animations';
 import {
-  AfterViewChecked,
   Component,
   ElementRef,
   HostListener,
@@ -13,17 +12,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { EventType } from '../../../_libs/event-types';
 
-
-interface EventDelta {
-  x: number;
-  y: number;
-}
-
-interface NativeElementSize {
-  w: number;
-  h: number;
-}
 
 export interface GalleryItem {
   id: string;
@@ -40,19 +30,18 @@ const mockGalleryItems: GalleryItem[] = [
   { id: '6', title: 'item6', imgSrc: 'xx' },
 ];
 
+const TOUCH_THRESHOLD = .75;
+
 @Component({
   selector: 'gxe-gallery-master',
   templateUrl: './master.component.html',
   styleUrls: [ './master.component.scss' ],
 })
-export class GalleryMasterComponent implements OnInit, AfterViewChecked {
+export class GalleryMasterComponent implements OnInit {
   @ViewChild('gxeGalleryInnerContainer')
   private galleryInnerContainer: ElementRef;
-
-  private hostSize: NativeElementSize;
   public galleryItems: GalleryItem[] = mockGalleryItems;
   public currentPosition: number;
-  public totalContainerWidth: number;
   public lastPosition = 0;
   public player: AnimationPlayer;
 
@@ -65,43 +54,40 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
 
   }
 
-  public ngAfterViewChecked(): void {
-    this.hostSize = {
-      w: this.el.nativeElement.offsetWidth,
-      h: this.el.nativeElement.offsetHeight,
-    };
-
-    this.totalContainerWidth = this.galleryItems.length * this.hostSize.w;
-  }
-
-  @HostListener('panmove', [ '$event' ])
+  @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
-    if (this.player && this.player.hasStarted) return;
+    if (this.player && this.player.hasStarted) {
+      return;
+    }
     this.currentPosition = this.lastPosition + event.deltaX;
   }
 
-  @HostListener('panend', [ '$event' ])
+  @HostListener(EventType.PANEND, ['$event'])
   public end(event: any): void {
-    if (this.player && this.player.hasStarted) return;
+    if (this.player && this.player.hasStarted) {
+      return;
+    }
     this.paginate(event);
   }
 
   private paginate(event: any) {
     const threshold = event.deltaX / 100;
-    const offset = this.currentPosition / this.hostSize.w;
-    if (threshold >= 0.25) {
-      const index = Math.floor(Math.abs(offset));
-      this.paginationAnimate(Math.max(0, index));
-    } else if (threshold <= -0.25) {
-      const index = Math.ceil(Math.abs(offset));
-      this.paginationAnimate(Math.min(index, this.galleryItems.length - 1));
-    } else {
-      this.paginationAnimate(this.lastPosition);
+    const previous = threshold >= TOUCH_THRESHOLD;
+    const next = threshold <= -TOUCH_THRESHOLD;
+    const offset = Math.abs(this.currentPosition / this.el.nativeElement.offsetWidth);
+    let index = Math.round(offset);
+
+    if (previous) {
+      index = Math.max(0, Math.floor(offset));
+    } else if (next) {
+      index = Math.min(Math.ceil(offset), this.galleryItems.length - 1);
     }
+
+    this.paginationAnimate(index);
   }
 
-  public paginationAnimate(futurePosition) {
-    futurePosition = -(futurePosition * this.hostSize.w);
+  public paginationAnimate(futurePosition: number) {
+    futurePosition = -(futurePosition * this.el.nativeElement.offsetWidth);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,
