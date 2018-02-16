@@ -2,10 +2,11 @@ import {
   AnimationBuilder,
 } from '@angular/animations';
 import {
-  Component,
+  Component, HostBinding, HostListener,
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { GalleryItem, mockGalleryItems } from '../../mock-data';
 
 
 
@@ -16,6 +17,8 @@ import { Store } from '@ngrx/store';
   styleUrls: [ './master.component.scss' ],
 })
 export class GalleryMasterComponent implements OnInit {
+  public galleryItems: GalleryItem[] = mockGalleryItems;
+  public isActive = false;
 
   constructor(private store: Store<any>,
               private builder: AnimationBuilder) {
@@ -24,6 +27,11 @@ export class GalleryMasterComponent implements OnInit {
   public ngOnInit(): void {
 
   }
+  @HostListener('click')
+  public addClass() {
+    this.isActive = !this.isActive;
+  }
+
 
 
 }
