@@ -87,19 +87,21 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
   }
 
   private paginate(event: any) {
-    const offset = event.deltaX / 100;
-    if (offset >= 0.25) {
-      const index = Math.floor(Math.abs(this.currentPosition / this.hostSize.w));
-      this.paginationAnimate(-(index * this.hostSize.w));
-    } else if (offset <= -0.25) {
-      const index = Math.ceil(Math.abs(this.currentPosition / this.hostSize.w));
-      this.paginationAnimate(-(Math.min(index, this.galleryItems.length - 1) * this.hostSize.w));
+    const threshold = event.deltaX / 100;
+    const offset = this.currentPosition / this.hostSize.w;
+    if (threshold >= 0.25) {
+      const index = Math.floor(Math.abs(offset));
+      this.paginationAnimate(Math.max(0, index));
+    } else if (threshold <= -0.25) {
+      const index = Math.ceil(Math.abs(offset));
+      this.paginationAnimate(Math.min(index, this.galleryItems.length - 1));
     } else {
       this.paginationAnimate(this.lastPosition);
     }
   }
 
   public paginationAnimate(futurePosition) {
+    futurePosition = -(futurePosition * this.hostSize.w);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,
