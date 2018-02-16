@@ -89,12 +89,11 @@ export class GalleryMasterComponent implements OnInit, AfterViewChecked {
     if (offset >= 0.25) {
 
       const index = Math.floor(Math.abs(this.currentPosition / this.hostSize.w))
-      console.log(this.currentPosition, index * this.hostSize.w);
       this.paginationAnimate(-(index * this.hostSize.w));
     } else if (offset <= -0.25) {
       const index = Math.ceil((Math.abs(this.currentPosition) / (this.totalContainerWidth / this.galleryItems.length)));
-      console.log(this.currentPosition, -(index * this.hostSize.w));
-      this.paginationAnimate(-(index * this.hostSize.w));
+
+      this.paginationAnimate(-(Math.min(index, this.galleryItems.length -1) * this.hostSize.w));
     }
   }
 
