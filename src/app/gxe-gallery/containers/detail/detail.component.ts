@@ -43,6 +43,7 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log(this.galleryItems);
 
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'gxe-gallery-item',
+  selector: 'gxe-gallery-master-item',
   templateUrl: './gallery-item.component.html',
   styleUrls: ['./gallery-item.component.scss']
 })
