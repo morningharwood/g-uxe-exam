@@ -40,9 +40,10 @@ const TOUCH_THRESHOLD = .75;
 export class GalleryMasterComponent implements OnInit {
   @ViewChild('gxeGalleryInnerContainer')
   private galleryInnerContainer: ElementRef;
+  private lastPosition = 0;
+
   public galleryItems: GalleryItem[] = mockGalleryItems;
   public currentPosition: number;
-  public lastPosition = 0;
   public player: AnimationPlayer;
 
   constructor(private store: Store<any>,
@@ -56,21 +57,25 @@ export class GalleryMasterComponent implements OnInit {
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
-    if (this.player && this.player.hasStarted) {
+    if (this.isAnimating) {
       return;
     }
     this.currentPosition = this.lastPosition + event.deltaX;
   }
 
-  @HostListener(EventType.PANEND, ['$event'])
+  @HostListener(EventType.PANEND, [ '$event' ])
   public end(event: any): void {
-    if (this.player && this.player.hasStarted) {
+    if (this.isAnimating) {
       return;
     }
     this.paginate(event);
   }
 
-  private paginate(event: any) {
+  private get isAnimating(): boolean {
+    return !!(this.player && this.player.hasStarted);
+  }
+
+  private paginate(event: any): void {
     const threshold = event.deltaX / 100;
     const previous = threshold >= TOUCH_THRESHOLD;
     const next = threshold <= -TOUCH_THRESHOLD;
