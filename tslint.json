@@ -120,14 +120,21 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "gxe",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "gxe",
       "kebab-case"
+    ],
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "lowercase-last",
+        "named-imports-order": "lowercase-first"
+      }
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,

@@ -1,0 +1,49 @@
+@import 'variables';
+@import 'mixins';
+@import 'extends';
+
+::selection {
+  background: $red-danger;
+  color: transparentize($white, 0);
+}
+
+img::selection {
+  background: transparent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  @extend %reset-space;
+  @include size(percentage(1/1), percentage(1/1));
+
+  font-family: $serif-font;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  $size: 16px;
+  font-size: $size;
+  box-sizing: border-box;
+
+  @include bp(4) {
+    font-size: calc(16px + .4vw);
+  }
+}
+
+body {
+  font-size: percentage(1/1);
+  -webkit-tap-highlight-color: transparentize($red-danger, .1);
+}
+
+.router-wrap {
+  min-height: percentage(1/1);
+  position: relative;
+  width: percentage(1/1);
+}

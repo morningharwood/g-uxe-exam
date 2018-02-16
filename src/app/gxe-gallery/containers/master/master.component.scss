@@ -1,0 +1,29 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+:host {
+  background-color: $fun-color;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.gxe-gallery-inner-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,12 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+
+:host {
+  background-color: $blue-link;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex: 0 0 auto;
+}
+

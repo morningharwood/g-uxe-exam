@@ -1,0 +1,43 @@
+@import './modularscale';
+
+$white: #fff;
+$white-off: #f7f7f7;
+$gray-light: #ccc;
+$gray-off: #dedede;
+$gray: #888;
+$black: #555;
+$black-dark: #333;
+$red-danger: tomato;
+$blue-link: #0095dd;
+
+
+$san-serif-font: Helvetica, Arial, sans-serif;
+$serif-font: 'Times New Roman', Times, serif;
+
+$fun-font: 'Comic Sans MS', cursive !important;
+$fun-color: papayawhip !important;
+
+$display-font-family: $serif-font;
+$sans-default-family: sans-serif;
+
+
+
+$modularscale: (
+  base: 1em,
+  ratio: $golden,
+  aug: (
+    ratio: $major-third
+  ),
+  minor-second: (
+    ratio: $minor-second
+  )
+);
+
+// z-index multipliers
+$z-layer-out: -1;
+$z-layer-low: 10;
+$z-layer-med: 100;
+$z-layer-high: 1000;
+$z-layer-highest: 2147483647;
+
+
