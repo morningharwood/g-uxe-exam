@@ -6,17 +6,12 @@ import {
 } from '@angular/animations';
 import {
   Component,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
   HostListener,
   OnInit,
-  Output,
-  ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
-import { mockGalleryItems, GalleryItem } from '../../mock-data';
+import { GalleryItem } from '../../mock-data';
 
 
 @Component({
@@ -28,7 +23,11 @@ export class GalleryMasterComponent implements OnInit {
   public galleryItems: GalleryItem[];
   public isActive = false;
   private player: AnimationPlayer;
-  @ViewChild('innerContainer') private innerContainer: ElementRef;
+  private to: { x: number; y: number };
+  private from: { x: number; y: number };
+  private currentItem: any;
+  private playerStart: any;
+  private playerEnd: AnimationPlayer;
 
 
   constructor(private store: Store<any>,
@@ -67,38 +66,76 @@ export class GalleryMasterComponent implements OnInit {
 
 
   public close() {
-    this.player.reset();
+
+    const from = {
+      x: this.to.x,
+      y: this.to.y
+    };
+
+    const to = {
+      x: 0,
+      y: 0
+    };
+
+    this.itemAnimateBack(from, to, this.currentItem, 1);
   }
 
   public selectedItem($event) {
-    const to = {
+    this.from = {
+      x: $event.x,
+      y: $event.y,
+    };
+
+    this.to = {
       x: 0,
       y: (window.outerHeight - ($event.el.offsetHeight * 2)) / 2
     };
 
+    this.currentItem = $event.el;
 
-    this.itemAnimate($event.x, $event.y, $event.el, to);
+    this.itemAnimate(this.from, this.to, this.currentItem, 2);
   }
-  // 0, -101.25
 
-  public itemAnimate(x, y, el, to) {
+  public itemAnimate(from, to, el, scale) {
 
-    this.player = this.builder.build([
+    this.playerStart = this.builder.build([
       style({
-        transformOrigin: `${x}px ${y}px`,
+        transformOrigin: `${from.x}px ${from.y}px`,
       }),
       animate(
         '350ms cubic-bezier(.35, 0, .25, 1)',
         style({
-          transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(2)`,
+          transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
         }),
       ),
     ]).create(el);
 
-    this.player.play();
+    this.playerStart.play();
 
-    this.player.onDone(() => {
-      this.player.pause();
+    this.playerStart.onDone(() => {
+      this.playerStart.pause();
+    });
+  }
+
+  public itemAnimateBack(from, to, el, scale) {
+
+    this.playerEnd = this.builder.build([
+      animate(
+        '350ms cubic-bezier(.35, 0, .25, 1)',
+        style({
+          transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
+        }),
+      ),
+    ]).create(el);
+
+    this.playerEnd.play();
+
+    this.playerEnd.onDone(() => {
+      this.playerStart.destroy();
+      this.playerStart = null;
+
+      this.playerEnd.destroy();
+      this.playerEnd = null;
     });
   }
 }
