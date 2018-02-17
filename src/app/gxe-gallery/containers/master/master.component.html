@@ -1,11 +1,14 @@
-<!-- TODO(mharwood) add trackby method -->
-<div class="gxe-gallery-inner-container"
-     #gxeGalleryInnerContainer
-     [ngStyle]="{'transform': 'translateX(' + currentPosition + 'px)'}">
-  <gxe-gallery-detail
-    *ngFor="let item of galleryItems"
-    [data]="item">
 
-  </gxe-gallery-detail>
+<div class="inner-container"
+     [ngClass]="{'active': isActive}">
+  <div class="grid-item"
+       *ngFor="let item of galleryItems"
+       (click)="activate(item)"
+       >
+    <img [src]="item[1].value.url" alt="">
+    <!--<gxe-gallery-detail *ngIf="item === itemActive"></gxe-gallery-detail>-->
+  </div>
 </div>
 
+
+<!--[ngClass]="{'active': item === itemActive}"-->

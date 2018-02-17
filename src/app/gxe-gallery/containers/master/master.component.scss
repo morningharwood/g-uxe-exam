@@ -2,28 +2,53 @@
 @import '../../../../assets/css/mixins';
 
 :host {
-  background-color: $fun-color;
-  display: flex;
-  flex-wrap: nowrap;
+  //overflow: hidden;
   height: 100%;
-  overflow: hidden;
+  width: 100%;
+  display: flex;
+  background: black;
+}
+
+.inner-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $fun-color;
+  min-height: 100%;
   width: 100%;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  transition: all 350ms cubic-bezier(0.4, 0.0, 0.2, 1);
+
+  &.active {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+    transform: scale(1.5) translate3d(16.5%,16.5%,-1px);
+  }
 }
 
-.gxe-gallery-inner-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  height: 100%;
+
+
+.grid-item {
+  flex: 1 1 50%;
+  max-height: 25vh;
+  transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 0);
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+  }
+
+  &.red {
+    background: red;
+  }
+  &.active {
+    backface-visibility: hidden;
+    will-change: transform;
+    transform: scale(1.25) translate3d(13.5%, 13.5%, 1px);
+  }
 }
 
-.flex {
-  display: flex;
-  flex-wrap: nowrap;
-}
+.grid-item:nth-child(odd) {
 
-.scroll::-webkit-scrollbar {
-  display: none;
 }
