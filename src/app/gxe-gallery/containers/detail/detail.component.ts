@@ -13,6 +13,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EventType } from '../../../_libs/event-types';
@@ -34,8 +35,9 @@ const TOUCH_THRESHOLD = .75;
 export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
   @Input() public startingIndex: number;
-  @Output() public endingIndex: EventEmitter<number> = new EventEmitter();
+  @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
+  @ViewChildren('detailItem') private detailItem: ElementRef;
   private lastPosition = 0;
 
   public currentPosition = 0;

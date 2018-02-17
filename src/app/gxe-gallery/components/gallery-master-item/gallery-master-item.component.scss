@@ -8,6 +8,10 @@
   }
 }
 
+.inner-mask {
+  flex: 1 1 50%;
+  max-height: 25vh;
+}
 gxe-gallery-detail {
   position: absolute;
   top: 0;

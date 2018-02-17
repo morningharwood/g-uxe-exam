@@ -6,6 +6,7 @@ import {
   Input,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { EventType } from '../../../_libs/event-types';
 import { GalleryItem } from '../../mock-data';
@@ -23,9 +24,10 @@ export class GalleryItemComponent implements OnInit {
   @Input() public isActive: boolean;
   @Output() public selected: EventEmitter<any> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<any> = new EventEmitter();
+  @ViewChild('mask') public mask: ElementRef;
   public selectedIndex: any;
 
-  constructor(private el: ElementRef) {
+  constructor(private hostEl: ElementRef) {
   }
 
   ngOnInit() {
@@ -39,14 +41,15 @@ export class GalleryItemComponent implements OnInit {
 
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
-    const { x, y } = this.el.nativeElement.getBoundingClientRect();
+    const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
     this.selectedIndex = this.index;
     this.selected.emit(
       {
         x,
         y,
         index: this.index,
-        el: this.el.nativeElement
+        hostEl: this.hostEl.nativeElement,
+        mask: this.mask.nativeElement
       });
 
   }

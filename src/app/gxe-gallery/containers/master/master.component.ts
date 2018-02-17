@@ -77,8 +77,20 @@ export class GalleryMasterComponent implements OnInit {
 
   public setOrigin($event) {
     console.log($event, 'setOrigin');
-    const { x, y } = this.masterItems[ '_results' ][ $event ].el.nativeElement.getBoundingClientRect();
-    this.playerEndOrigin = { x, y };
+    /**
+     * currentIndex = 1 (180, 101)
+     * 0 = 0, 0
+     * 1 = (this.currentItem.hostEl.offsetWidth/2), 0
+     * 2 = 0, (this.currentItem.hostEl/2)
+     * 3 = (this.currentItem.hostEl/2), (this.currentItem.hostEl/2)
+     */
+    const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
+    console.log(this.currentItem, data, 'data before');
+    this.playerEndOrigin = {
+      x:  data.x - this.currentItem.x,
+      y:  data.y - this.currentItem.y,
+    };
+    console.log(this.playerEndOrigin, 'after');
   }
 
   public close($event) {
@@ -93,17 +105,16 @@ export class GalleryMasterComponent implements OnInit {
     };
 
     const parentTo = {
-      x: 0,
-      y: 201,
+      x: -360,
+      y: 100,
     };
-    // (window.outerHeight - ($event.el.offsetHeight * 2)) / 2
-    // console.log(this.playerEndOrigin);
 
-    this.itemAnimateBack(from, to, this.currentItem.el, 1);
 
-    // if (true) {
-    //   this.itemContainerAnimate(to, parentTo, this.masterItemContainer.nativeElement);
-    // }
+    this.itemAnimateBack(from, to, this.currentItem.mask, 1);
+    const notEmpty = Object.entries(this.playerEndOrigin).some(([key, val]) => Boolean(val));
+    if (notEmpty) {
+      this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
+    }
   }
 
   public selectedItem($event) {
@@ -114,15 +125,12 @@ export class GalleryMasterComponent implements OnInit {
 
     this.to = {
       x: 0,
-      y: (window.outerHeight - ($event.el.offsetHeight * 2)) / 2,
+      y: (window.outerHeight - ($event.hostEl.offsetHeight * 2)) / 2,
     };
 
-    this.currentItem = {
-      el: $event.el,
-      index: $event.index,
-    };
+    this.currentItem = $event;
 
-    this.itemAnimate(this.from, this.to, this.currentItem.el, 2);
+    this.itemAnimate(this.from, this.to, this.currentItem.mask, 2);
   }
 
   public itemAnimate(from, to, el, scale) {
@@ -169,12 +177,12 @@ export class GalleryMasterComponent implements OnInit {
     });
   }
 
-  private itemContainerAnimate(from, to, el) {
+  private itemHostAnimate(to, el) {
     this.playerParentEnd = this.builder.build([
       animate(
         '250ms cubic-bezier(.35, 0, .25, 1)',
         style({
-          transform: `translate3d(-50px, ${to.y}px, 0)`,
+          transform: `translate3d(${to.x}px, ${to.y}px, 0)`,
         }),
       ),
     ]).create(el);
