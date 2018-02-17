@@ -3,4 +3,5 @@
 <gxe-gallery-detail
   [galleryItems]="galleryItems"
   [startingIndex]="selectedIndex"
+  (endingIndex)="originalSelectionChanged($event)"
   *ngIf="isActive"></gxe-gallery-detail>

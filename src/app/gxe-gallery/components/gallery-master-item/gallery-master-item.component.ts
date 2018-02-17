@@ -22,6 +22,7 @@ export class GalleryItemComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
   @Input() public isActive: boolean;
   @Output() public selected: EventEmitter<any> = new EventEmitter();
+  @Output() public endingSelect: EventEmitter<any> = new EventEmitter();
   public selectedIndex: any;
 
   constructor(private el: ElementRef) {
@@ -31,11 +32,23 @@ export class GalleryItemComponent implements OnInit {
 
   }
 
+  public originalSelectionChanged($event) {
+    this.endingSelect.emit($event);
+  }
+
+
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
     const { x, y } = this.el.nativeElement.getBoundingClientRect();
     this.selectedIndex = this.index;
-    this.selected.emit({ x, y, index: this.index, el: this.el.nativeElement });
+    this.selected.emit(
+      {
+        x,
+        y,
+        index: this.index,
+        el: this.el.nativeElement
+      });
+
   }
 
 }

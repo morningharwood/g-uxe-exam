@@ -7,9 +7,11 @@ import {
 import {
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -32,6 +34,7 @@ const TOUCH_THRESHOLD = .75;
 export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
   @Input() public startingIndex: number;
+  @Output() public endingIndex: EventEmitter<number> = new EventEmitter();
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   private lastPosition = 0;
 
@@ -83,8 +86,8 @@ export class GalleryDetailComponent implements OnInit {
     this.paginationAnimate(index);
   }
 
-  public paginationAnimate(futurePosition: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
-    futurePosition = -(futurePosition * this.el.nativeElement.offsetWidth);
+  public paginationAnimate(index: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
+    const futurePosition = -(index * this.el.nativeElement.offsetWidth);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,
@@ -103,6 +106,7 @@ export class GalleryDetailComponent implements OnInit {
       this.player.destroy();
       this.lastPosition = this.currentPosition = futurePosition;
       this.player = null;
+      this.endingIndex.emit(index);
     });
   }
 

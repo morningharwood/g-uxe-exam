@@ -6,8 +6,11 @@ import {
 } from '@angular/animations';
 import {
   Component,
+  ElementRef,
   HostListener,
   OnInit,
+  ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
@@ -20,6 +23,8 @@ import { GalleryItem } from '../../mock-data';
   styleUrls: [ './master.component.scss' ],
 })
 export class GalleryMasterComponent implements OnInit {
+  @ViewChildren('masterItem') public masterItems: ElementRef[];
+  @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
   public galleryItems: GalleryItem[];
   public isActive = false;
 
@@ -28,6 +33,11 @@ export class GalleryMasterComponent implements OnInit {
   public currentItem: any;
   private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
+  private playerEndOrigin = {
+    x: 0,
+    y: 0,
+  };
+  private playerParentEnd: AnimationPlayer;
 
 
   constructor(private store: Store<any>,
@@ -46,13 +56,13 @@ export class GalleryMasterComponent implements OnInit {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': YOUR_API_KEY,
-        'Tipe-Id': YOUR_ORG_SECRET_KEY
-      }
+        'Tipe-Id': YOUR_ORG_SECRET_KEY,
+      },
     })
-    .then( (res) =>  res.json())
-    .then( (data) => {
-      this.galleryItems = data.documents.map(d => d.blocks);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        this.galleryItems = data.documents.map(d => d.blocks);
+      });
   }
 
   @HostListener('click')
@@ -65,20 +75,35 @@ export class GalleryMasterComponent implements OnInit {
     }
   }
 
+  public setOrigin($event) {
+    console.log($event, 'setOrigin');
+    const { x, y } = this.masterItems[ '_results' ][ $event ].el.nativeElement.getBoundingClientRect();
+    this.playerEndOrigin = { x, y };
+  }
 
-  public close() {
+  public close($event) {
 
     const from = {
       x: this.to.x,
-      y: this.to.y
+      y: this.to.y,
     };
-
     const to = {
       x: 0,
-      y: 0
+      y: 0,
     };
 
+    const parentTo = {
+      x: 0,
+      y: 201,
+    };
+    // (window.outerHeight - ($event.el.offsetHeight * 2)) / 2
+    // console.log(this.playerEndOrigin);
+
     this.itemAnimateBack(from, to, this.currentItem.el, 1);
+
+    // if (true) {
+    //   this.itemContainerAnimate(to, parentTo, this.masterItemContainer.nativeElement);
+    // }
   }
 
   public selectedItem($event) {
@@ -89,12 +114,12 @@ export class GalleryMasterComponent implements OnInit {
 
     this.to = {
       x: 0,
-      y: (window.outerHeight - ($event.el.offsetHeight * 2)) / 2
+      y: (window.outerHeight - ($event.el.offsetHeight * 2)) / 2,
     };
 
-    this.currentItem =  {
+    this.currentItem = {
       el: $event.el,
-      index: $event.index
+      index: $event.index,
     };
 
     this.itemAnimate(this.from, this.to, this.currentItem.el, 2);
@@ -139,7 +164,26 @@ export class GalleryMasterComponent implements OnInit {
 
       this.playerEnd.destroy();
       this.playerEnd = null;
+
       this.currentItem = null;
+    });
+  }
+
+  private itemContainerAnimate(from, to, el) {
+    this.playerParentEnd = this.builder.build([
+      animate(
+        '250ms cubic-bezier(.35, 0, .25, 1)',
+        style({
+          transform: `translate3d(-50px, ${to.y}px, 0)`,
+        }),
+      ),
+    ]).create(el);
+
+    this.playerParentEnd.play();
+
+    this.playerParentEnd.onDone(() => {
+      this.playerParentEnd.destroy();
+      this.playerParentEnd = null;
     });
   }
 }
