@@ -12,6 +12,7 @@
     *ngFor="let item of galleryItems; let i = index"
     [item]="item"
     [index]="i"
+    [isActive]="currentItem?.index === i"
     (selected)="selectedItem($event)">
   </gxe-gallery-master-item>
 </div>

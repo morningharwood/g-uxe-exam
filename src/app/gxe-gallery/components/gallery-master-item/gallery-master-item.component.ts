@@ -19,6 +19,7 @@ export class GalleryItemComponent implements OnInit {
   @Input() public item;
   @Input() public index;
   @Output() public selected: EventEmitter<any> = new EventEmitter();
+  @Input() public isActive: boolean;
 
   constructor(private el: ElementRef) {
   }

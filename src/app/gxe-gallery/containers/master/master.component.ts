@@ -25,7 +25,7 @@ export class GalleryMasterComponent implements OnInit {
 
   private to: { x: number; y: number };
   private from: { x: number; y: number };
-  private currentItem: any;
+  public currentItem: any;
   private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
 
@@ -78,7 +78,7 @@ export class GalleryMasterComponent implements OnInit {
       y: 0
     };
 
-    this.itemAnimateBack(from, to, this.currentItem, 1);
+    this.itemAnimateBack(from, to, this.currentItem.el, 1);
   }
 
   public selectedItem($event) {
@@ -92,9 +92,12 @@ export class GalleryMasterComponent implements OnInit {
       y: (window.outerHeight - ($event.el.offsetHeight * 2)) / 2
     };
 
-    this.currentItem = $event.el;
+    this.currentItem =  {
+      el: $event.el,
+      index: $event.index
+    };
 
-    this.itemAnimate(this.from, this.to, this.currentItem, 2);
+    this.itemAnimate(this.from, this.to, this.currentItem.el, 2);
   }
 
   public itemAnimate(from, to, el, scale) {
@@ -137,6 +140,7 @@ export class GalleryMasterComponent implements OnInit {
 
       this.playerEnd.destroy();
       this.playerEnd = null;
+      this.currentItem = null;
     });
   }
 }

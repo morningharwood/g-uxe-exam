@@ -28,7 +28,7 @@
   &.active {
     @include show(block);
     transition: all 250ms ease-in;
-    position: fixed;
+    position: absolute;
     top: 25px;
     right: 25px;
   }
