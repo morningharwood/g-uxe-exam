@@ -22,11 +22,11 @@ import { GalleryItem } from '../../mock-data';
 export class GalleryMasterComponent implements OnInit {
   public galleryItems: GalleryItem[];
   public isActive = false;
-  private player: AnimationPlayer;
+
   private to: { x: number; y: number };
   private from: { x: number; y: number };
   private currentItem: any;
-  private playerStart: any;
+  private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
 
 
@@ -54,6 +54,7 @@ export class GalleryMasterComponent implements OnInit {
       this.galleryItems = data.documents.map(d => d.blocks);
     });
   }
+
   @HostListener('click')
   public addClass() {
     this.isActive = !this.isActive;
