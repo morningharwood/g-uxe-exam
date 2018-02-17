@@ -8,6 +8,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -29,11 +30,10 @@ const TOUCH_THRESHOLD = .75;
   styleUrls: ['./detail.component.scss']
 })
 export class GalleryDetailComponent implements OnInit {
-  @ViewChild('gxeGalleryInnerContainer')
-  private galleryInnerContainer: ElementRef;
+  @Input() public galleryItems: GalleryItem[];
+  @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   private lastPosition = 0;
 
-  public galleryItems: GalleryItem[] = mockGalleryItems;
   public currentPosition: number;
   public player: AnimationPlayer;
 
@@ -43,7 +43,9 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(this.galleryItems);
+    setTimeout(() => {
+      console.log(this.galleryItems, 'slkdjf');
+    }, 1000);
 
   }
 

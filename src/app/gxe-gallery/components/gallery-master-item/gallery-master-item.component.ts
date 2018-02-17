@@ -8,6 +8,7 @@ import {
   Output,
 } from '@angular/core';
 import { EventType } from '../../../_libs/event-types';
+import { GalleryItem } from '../../mock-data';
 
 
 @Component({
@@ -18,8 +19,9 @@ import { EventType } from '../../../_libs/event-types';
 export class GalleryItemComponent implements OnInit {
   @Input() public item;
   @Input() public index;
-  @Output() public selected: EventEmitter<any> = new EventEmitter();
+  @Input() public galleryItems: GalleryItem[];
   @Input() public isActive: boolean;
+  @Output() public selected: EventEmitter<any> = new EventEmitter();
 
   constructor(private el: ElementRef) {
   }

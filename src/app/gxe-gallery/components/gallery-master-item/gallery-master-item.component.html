@@ -1,3 +1,5 @@
 <!-- TODO(mharwood) set alt text for accessibility -->
 <img [src]="item[1].value.url" alt="">
-<gxe-gallery-detail *ngIf="isActive"></gxe-gallery-detail>
+<gxe-gallery-detail
+  [galleryItems]="galleryItems"
+  *ngIf="isActive"></gxe-gallery-detail>

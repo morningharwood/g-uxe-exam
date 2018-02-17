@@ -122,7 +122,6 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public itemAnimateBack(from, to, el, scale) {
-
     this.playerEnd = this.builder.build([
       animate(
         '350ms cubic-bezier(.35, 0, .25, 1)',

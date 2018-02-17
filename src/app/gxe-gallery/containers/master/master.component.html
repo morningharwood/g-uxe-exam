@@ -2,15 +2,16 @@
   mat-mini-fab
   class="close-btn"
   (click)="close()"
-  [ngClass]="{'active': isActive}">
+  *ngIf="isActive">
   &times;
 </button>
-
+<div class="modal-screen" *ngIf="isActive"></div>
 <div class="inner-container">
 
   <gxe-gallery-master-item
     *ngFor="let item of galleryItems; let i = index"
     [item]="item"
+    [galleryItems]="galleryItems"
     [index]="i"
     [isActive]="currentItem?.index === i"
     (selected)="selectedItem($event)">
