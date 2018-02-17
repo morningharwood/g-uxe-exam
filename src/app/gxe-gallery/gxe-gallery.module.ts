@@ -9,6 +9,8 @@ import { GalleryDetailComponent } from './containers/detail/detail.component';
 import { GalleryMasterComponent } from './containers/master/master.component';
 import { GxeGalleryEffects } from './effects/gxe-gallery.effects';
 import * as fromGxeGallery from './reducers/gxe-gallery.reducer';
+import { WindowScrolling } from '../services/window-scroll.service';
+import { MatButtonModule } from '@angular/material';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -22,8 +24,12 @@ const DECLARATIONS_EXPORTS = [
   imports: [
     BrowserAnimationsModule,
     CommonModule,
+    MatButtonModule,
     StoreModule.forFeature('gxeGallery', fromGxeGallery.reducer),
     EffectsModule.forFeature([ GxeGalleryEffects ]),
+  ],
+  providers: [
+    WindowScrolling,
   ],
   declarations: [ ...DECLARATIONS_EXPORTS, GalleryItemComponent ],
   exports: [ ...DECLARATIONS_EXPORTS ],

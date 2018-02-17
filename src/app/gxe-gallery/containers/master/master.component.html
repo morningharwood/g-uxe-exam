@@ -1,13 +1,20 @@
+<button
+  mat-mini-fab
+  class="close-btn"
+  (click)="close()"
+  [ngClass]="{'active': isActive}">
+  &times;
+</button>
 
 <div class="inner-container"
-     [ngClass]="{'active': isActive}">
-  <div class="grid-item"
-       *ngFor="let item of galleryItems"
-       (click)="activate(item)"
-       >
-    <img [src]="item[1].value.url" alt="">
-    <!--<gxe-gallery-detail *ngIf="item === itemActive"></gxe-gallery-detail>-->
-  </div>
+     #innerContainer>
+
+  <gxe-gallery-master-item
+    *ngFor="let item of galleryItems; let i = index"
+    [item]="item"
+    [index]="i"
+    (selected)="selectedItem($event)">
+  </gxe-gallery-master-item>
 </div>
 
 
