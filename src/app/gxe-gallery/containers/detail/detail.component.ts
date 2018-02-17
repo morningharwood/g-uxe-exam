@@ -31,10 +31,11 @@ const TOUCH_THRESHOLD = .75;
 })
 export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
+  @Input() public startingIndex: number;
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   private lastPosition = 0;
 
-  public currentPosition: number;
+  public currentPosition = 0;
   public player: AnimationPlayer;
 
   constructor(private store: Store<any>,
@@ -43,10 +44,9 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    setTimeout(() => {
-      console.log(this.galleryItems, 'slkdjf');
-    }, 1000);
-
+    console.log(this.startingIndex);
+    console.log(this.currentPosition)
+    this.paginationAnimate(this.startingIndex, '0ms ease-in');
   }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
@@ -85,14 +85,14 @@ export class GalleryDetailComponent implements OnInit {
     this.paginationAnimate(index);
   }
 
-  public paginationAnimate(futurePosition: number) {
+  public paginationAnimate(futurePosition: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
     futurePosition = -(futurePosition * this.el.nativeElement.offsetWidth);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,
       }),
       animate(
-        '350ms cubic-bezier(.35, 0, .25, 1)',
+        timing,
         style({
           transform: `translateX(${futurePosition}px)`,
         }),
