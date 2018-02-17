@@ -107,7 +107,7 @@ export class GalleryMasterComponent implements OnInit {
         transformOrigin: `${from.x}px ${from.y}px`,
       }),
       animate(
-        '350ms cubic-bezier(.35, 0, .25, 1)',
+        '250ms cubic-bezier(.35, 0, .25, 1)',
         style({
           transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
         }),
@@ -124,7 +124,7 @@ export class GalleryMasterComponent implements OnInit {
   public itemAnimateBack(from, to, el, scale) {
     this.playerEnd = this.builder.build([
       animate(
-        '350ms cubic-bezier(.35, 0, .25, 1)',
+        '250ms cubic-bezier(.35, 0, .25, 1)',
         style({
           transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
         }),

@@ -44,8 +44,6 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(this.startingIndex);
-    console.log(this.currentPosition)
     this.paginationAnimate(this.startingIndex, '0ms ease-in');
   }
 
