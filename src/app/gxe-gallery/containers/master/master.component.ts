@@ -12,11 +12,13 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
+import { Vector2 } from '../../interfaces/vector2.interface';
+import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 
 
 export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';
+
 
 @Component({
   selector: 'gxe-gallery-master',
@@ -27,39 +29,35 @@ export class GalleryMasterComponent implements OnInit {
   @ViewChildren('masterItem') public masterItems: ElementRef[];
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
   @Input() public galleryItems: any[];
+  public isActive: boolean;
 
-  public isActive = false;
-  private to: { x: number; y: number };
-  private from: { x: number; y: number };
+  private to: Vector2;
   public currentItem: any;
   private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
-  private playerEndOrigin = {
-    x: 0,
-    y: 0,
-  };
+  private playerEndOrigin: Vector2;
   private playerParentEnd: AnimationPlayer;
 
 
-  constructor(private store: Store<any>,
-              private builder: AnimationBuilder,
-              private scrollService: WindowScrolling) {
+  constructor(private builder: AnimationBuilder,
+              private scrollService: WindowScrolling,
+              private swipeService: SwipeVerticalService) {
   }
 
   public ngOnInit(): void {
-
+    this.isActive = false;
+    this.playerEndOrigin = {
+      x: 0,
+      y: 0,
+    };
   }
 
-  public toggleActive() {
-    this.isActive = !this.isActive;
-    if (this.isActive) {
-      this.scrollService.disable();
-    } else {
-      this.scrollService.enable();
-    }
+  private set isActive_(val) {
+    this.isActive = val;
+    this.setBodyScroll();
   }
 
-  public setOrigin($event) {
+  public setOrigin($event: number): void {
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
     this.playerEndOrigin = {
       x: data.x - this.currentItem.x,
@@ -67,44 +65,31 @@ export class GalleryMasterComponent implements OnInit {
     };
   }
 
-  public close(swipeEvent) {
-    const from = {
-      x: this.to.x,
-      y: this.to.y,
-    };
-    const to = {
-      x: 0,
-      y: 0,
-    };
-
+  public close(swipeEvent): void {
     if (swipeEvent) {
-      swipeEvent.destroy();
+      this.swipeService.swipeOff();
     }
-    this.toggleActive();
-    this.itemAnimateBack(from, to, this.currentItem.mask, 1);
+
+    this.isActive_ = false;
+    this.itemAnimateBack({x: 0, y: 0}, this.currentItem.mask, 1);
     const notEmpty = Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
     if (notEmpty) {
       this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
     }
   }
 
-  public selectedItem($event) {
-    this.from = {
-      x: $event.x,
-      y: $event.y,
-    };
-
+  public selectedItem($event): void {
     this.to = {
       x: 0,
       y: (window.outerHeight - ($event.hostEl.offsetHeight * 2)) / 2,
     };
 
     this.currentItem = $event;
-    this.toggleActive();
-    this.itemAnimate(this.from, this.to, this.currentItem.mask, 2);
+    this.isActive_ = true;
+    this.itemAnimate($event, this.to, this.currentItem.mask, 2);
   }
 
-  public itemAnimate(from, to, el, scale) {
+  private itemAnimate(from, to, el, scale): void {
 
     this.playerStart = this.builder.build([
       style({
@@ -113,7 +98,7 @@ export class GalleryMasterComponent implements OnInit {
       animate(
         STANDARD_EASE,
         style({
-          transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
+          transform: `translate(${to.x}px, ${to.y}px) scale(${scale})`,
         }),
       ),
     ]).create(el);
@@ -125,12 +110,12 @@ export class GalleryMasterComponent implements OnInit {
     });
   }
 
-  public itemAnimateBack(from, to, el, scale) {
+  private itemAnimateBack(to, el, scale): void {
     this.playerEnd = this.builder.build([
       animate(
         STANDARD_EASE,
         style({
-          transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
+          transform: `translate(${to.x}px, ${to.y}px) scale(${scale})`,
         }),
       ),
     ]).create(el);
@@ -138,16 +123,16 @@ export class GalleryMasterComponent implements OnInit {
     this.playerEnd.play();
 
     this.playerEnd.onDone(() => {
-      this.clearAllAnimations()
+      this.clearAllAnimations();
     });
   }
 
-  private itemHostAnimate(to, el) {
+  private itemHostAnimate(to, el): void {
     this.playerParentEnd = this.builder.build([
       animate(
         STANDARD_EASE,
         style({
-          transform: `translate3d(${to.x}px, ${to.y}px, 0)`,
+          transform: `translate(${to.x}px, ${to.y}px)`,
         }),
       ),
     ]).create(el);
@@ -155,11 +140,11 @@ export class GalleryMasterComponent implements OnInit {
     this.playerParentEnd.play();
 
     this.playerParentEnd.onDone(() => {
-      this.clearAllAnimations()
+      this.clearAllAnimations();
     });
   }
 
-  private clearAllAnimations() {
+  private clearAllAnimations(): void {
     this.currentItem = null;
 
     if (this.playerStart) {
@@ -176,5 +161,9 @@ export class GalleryMasterComponent implements OnInit {
       this.playerParentEnd.destroy();
       this.playerParentEnd = null;
     }
+  }
+
+  private setBodyScroll() {
+    this.isActive ? this.scrollService.disable() : this.scrollService.enable();
   }
 }

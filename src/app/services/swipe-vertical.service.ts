@@ -10,11 +10,15 @@ export class SwipeVerticalService {
 
   public bootstrap(el): HammerManager {
     this.hammertime = new Hammer(el, {});
-    this.hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    this.swipeOn();
     return this.hammertime;
   }
 
-  public turnOffSwipe(): void {
-    this.hammertime.get('swipe').reset();
+  public swipeOn(): void {
+    this.hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+  }
+
+  public swipeOff(): void {
+    this.hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
   }
 }
