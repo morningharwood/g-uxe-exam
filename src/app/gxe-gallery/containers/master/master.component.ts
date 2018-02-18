@@ -12,9 +12,10 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { WindowScrolling } from '../../../services/window-scroll.service';
-import { Vector2 } from '../../interfaces/vector2.interface';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
+import { WindowScrolling } from '../../../services/window-scroll.service';
+import { CurrentItem } from '../../interfaces/current-item.interface';
+import { Vector2 } from '../../interfaces/vector2.interface';
 
 
 export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';
@@ -30,9 +31,9 @@ export class GalleryMasterComponent implements OnInit {
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
   @Input() public galleryItems: any[];
   public isActive: boolean;
+  public currentItem: CurrentItem;
 
   private to: Vector2;
-  public currentItem: any;
   private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
   private playerEndOrigin: Vector2;
