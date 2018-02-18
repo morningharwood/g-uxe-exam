@@ -15,6 +15,7 @@ import {
 import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 
+
 export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';
 
 @Component({
@@ -38,7 +39,6 @@ export class GalleryMasterComponent implements OnInit {
     y: 0,
   };
   private playerParentEnd: AnimationPlayer;
-
 
 
   constructor(private store: Store<any>,
@@ -138,13 +138,7 @@ export class GalleryMasterComponent implements OnInit {
     this.playerEnd.play();
 
     this.playerEnd.onDone(() => {
-      this.playerStart.destroy();
-      this.playerStart = null;
-
-      this.playerEnd.destroy();
-      this.playerEnd = null;
-
-      this.currentItem = null;
+      this.clearAllAnimations()
     });
   }
 
@@ -161,8 +155,26 @@ export class GalleryMasterComponent implements OnInit {
     this.playerParentEnd.play();
 
     this.playerParentEnd.onDone(() => {
+      this.clearAllAnimations()
+    });
+  }
+
+  private clearAllAnimations() {
+    this.currentItem = null;
+
+    if (this.playerStart) {
+      this.playerStart.destroy();
+      this.playerStart = null;
+    }
+    if (this.playerEnd) {
+      this.playerEnd.destroy();
+      this.playerEnd = null;
+    }
+
+
+    if (this.playerParentEnd) {
       this.playerParentEnd.destroy();
       this.playerParentEnd = null;
-    });
+    }
   }
 }
