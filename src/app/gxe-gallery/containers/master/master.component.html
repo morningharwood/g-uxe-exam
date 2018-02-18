@@ -22,6 +22,7 @@
     [index]="i"
     [isActive]="currentItem?.index === i"
     (endingSelect)="setOrigin($event)"
+    (close)="close()"
     (selected)="selectedItem($event)">
   </gxe-gallery-master-item>
 </div>

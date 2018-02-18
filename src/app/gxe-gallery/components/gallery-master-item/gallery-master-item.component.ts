@@ -24,6 +24,7 @@ export class GalleryItemComponent implements OnInit {
   @Input() public isActive: boolean;
   @Output() public selected: EventEmitter<any> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<any> = new EventEmitter();
+  @Output() public close: EventEmitter<any> = new EventEmitter();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
   public selectedIndex: any;
@@ -52,7 +53,11 @@ export class GalleryItemComponent implements OnInit {
         hostEl: this.hostEl.nativeElement,
         mask: this.mask.nativeElement
       });
+  }
 
+  public closeModal(): void {
+    console.log('this working?');
+    this.close.emit();
   }
 
 }

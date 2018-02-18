@@ -15,6 +15,7 @@ import {
 import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 import { GalleryItem } from '../../mock-data';
+import { EventType } from '../../../_libs/event-types';
 
 
 @Component({
@@ -65,8 +66,7 @@ export class GalleryMasterComponent implements OnInit {
       });
   }
 
-  @HostListener('click')
-  public addClass() {
+  public toggleActive() {
     this.isActive = !this.isActive;
     if (this.isActive) {
       this.scrollService.disable();
@@ -81,11 +81,9 @@ export class GalleryMasterComponent implements OnInit {
       x:  data.x - this.currentItem.x,
       y:  data.y - this.currentItem.y,
     };
-    console.log(this.playerEndOrigin, 'after');
   }
 
-  public close($event) {
-
+  public close() {
     const from = {
       x: this.to.x,
       y: this.to.y,
@@ -95,7 +93,7 @@ export class GalleryMasterComponent implements OnInit {
       y: 0,
     };
 
-
+    this.toggleActive();
     this.itemAnimateBack(from, to, this.currentItem.mask, 1);
     const notEmpty = Object.entries(this.playerEndOrigin).some(([key, val]) => Boolean(val));
     if (notEmpty) {
@@ -115,7 +113,7 @@ export class GalleryMasterComponent implements OnInit {
     };
 
     this.currentItem = $event;
-
+    this.toggleActive();
     this.itemAnimate(this.from, this.to, this.currentItem.mask, 2);
   }
 

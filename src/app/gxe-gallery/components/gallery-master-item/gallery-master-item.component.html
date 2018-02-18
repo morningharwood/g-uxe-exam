@@ -6,6 +6,7 @@
     <gxe-gallery-detail
       [galleryItems]="galleryItems"
       [startingIndex]="selectedIndex"
+      (close)="closeModal($event)"
       (endingIndex)="originalSelectionChanged($event)"
       *ngIf="isActive">
     </gxe-gallery-detail>

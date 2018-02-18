@@ -36,6 +36,7 @@ export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
   @Input() public startingIndex: number;
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
+  @Output() public close: EventEmitter<any> = new EventEmitter();
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
   private lastPosition = 0;
@@ -51,7 +52,7 @@ export class GalleryDetailComponent implements OnInit {
   public ngOnInit(): void {
     this.paginationAnimate(this.startingIndex, '0ms ease-in');
   }
-  
+
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
     if (this.isAnimating) {
