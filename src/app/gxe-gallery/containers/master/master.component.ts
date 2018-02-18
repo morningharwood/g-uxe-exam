@@ -53,6 +53,7 @@ export class GalleryMasterComponent implements OnInit {
     };
   }
 
+
   private set isActive_(val) {
     this.isActive = val;
     this.setBodyScroll();
@@ -60,6 +61,7 @@ export class GalleryMasterComponent implements OnInit {
 
   public setOrigin($event: number): void {
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
+
     this.playerEndOrigin = {
       x: data.x - this.currentItem.x,
       y: data.y - this.currentItem.y,
@@ -72,7 +74,7 @@ export class GalleryMasterComponent implements OnInit {
     }
 
     this.isActive_ = false;
-    this.itemAnimateBack({x: 0, y: 0}, this.currentItem.mask, 1);
+    this.itemAnimateBack({ x: 0, y: 0 }, this.currentItem.mask, 1);
     const notEmpty = Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
     if (notEmpty) {
       this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);

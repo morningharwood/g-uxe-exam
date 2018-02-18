@@ -1,9 +1,10 @@
 :host {
   flex: 1 1 50%;
   max-height: 25vh;
-
+  max-width: 100%;
   img {
     max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -11,6 +12,7 @@
   flex: 1 1 50%;
   max-height: 25vh;
   z-index: 999;
+  max-width: 100%;
 }
 
 gxe-gallery-detail {
@@ -18,4 +20,6 @@ gxe-gallery-detail {
   top: 0;
   left: 0;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }

@@ -10,10 +10,12 @@
   flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
 
 }
 
 img {
+  width: 100%;
   max-width: 100%;
   height: auto;
   position: absolute;

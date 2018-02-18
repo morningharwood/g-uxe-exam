@@ -5,6 +5,7 @@ import {
   AnimationPlayer,
 } from '@angular/animations';
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -18,7 +19,6 @@ import {
 import { Store } from '@ngrx/store';
 import { EventType } from '../../../_libs/event-types';
 import {
-  mockGalleryItems,
   GalleryItem,
 } from '../../mock-data';
 
@@ -35,22 +35,23 @@ const TOUCH_THRESHOLD = .75;
 export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
   @Input() public startingIndex: number;
+  @Input() public itemWidth: number;
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
   @Output() public close: EventEmitter<any> = new EventEmitter();
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
-  private lastPosition = 0;
-
-  public currentPosition = 0;
-  public player: AnimationPlayer;
-
+  public currentPosition: number;
+  private lastPosition: number;
+  private player: AnimationPlayer;
   constructor(private store: Store<any>,
               private el: ElementRef,
               private builder: AnimationBuilder) {
   }
 
   public ngOnInit(): void {
-    this.paginationAnimate(this.startingIndex, '0ms ease-in');
+    this.lastPosition = 0;
+    this.currentPosition = 0;
+    this.paginationAnimate(this.startingIndex, '0ms');
   }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
@@ -77,7 +78,7 @@ export class GalleryDetailComponent implements OnInit {
     const threshold = event.deltaX / 100;
     const previous = threshold >= TOUCH_THRESHOLD;
     const next = threshold <= -TOUCH_THRESHOLD;
-    const offset = Math.abs(this.currentPosition / this.el.nativeElement.offsetWidth);
+    const offset = Math.abs(this.currentPosition / this.itemWidth);
     let index = Math.round(offset);
 
     if (previous) {
@@ -90,7 +91,7 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public paginationAnimate(index: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
-    const futurePosition = -(index * this.el.nativeElement.offsetWidth);
+    const futurePosition = -(index * this.itemWidth);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,

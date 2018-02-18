@@ -29,11 +29,13 @@ export class GalleryItemComponent implements OnInit {
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
   public selectedIndex: any;
+  private elWidth: number;
 
   constructor(private swipeService: SwipeVerticalService) {
   }
 
   ngOnInit() {
+    this.elWidth = this.hostEl.nativeElement.getBoundingClientRect().width;
   }
 
   public originalSelectionChanged($event) {
