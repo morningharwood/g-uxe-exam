@@ -12,7 +12,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
+import { DoggoService } from '../../../services/doggo.service';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 import { GalleryItem } from '../../mock-data';
 
@@ -26,7 +26,7 @@ export class GalleryMasterComponent implements OnInit {
   @ViewChildren('masterItem') public masterItems: ElementRef[];
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
 
-  public galleryItems: GalleryItem[];
+  public galleryItems: any[];
   public isActive = false;
 
   private to: { x: number; y: number };
@@ -43,26 +43,14 @@ export class GalleryMasterComponent implements OnInit {
 
   constructor(private store: Store<any>,
               private builder: AnimationBuilder,
-              private scrollService: WindowScrolling) {
+              private scrollService: WindowScrolling,
+              private doggos: DoggoService) {
   }
 
   public ngOnInit(): void {
-    const DOCUMENT_ID = '5a878162500cc2001395c413';
-    const YOUR_ORG_SECRET_KEY = 'NWE4NGRhZDM4OTE4OTkwMDEzNjNjOWNi';
-    const YOUR_API_KEY = '3QTLJXHW9ZZWPWGGEUN7OHETO'; // Generated-API-Key-1518661038309
-
-    window.fetch('https://api.tipe.io/api/v1/folder/' + DOCUMENT_ID, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': YOUR_API_KEY,
-        'Tipe-Id': YOUR_ORG_SECRET_KEY,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        this.galleryItems = data.documents.map(d => d.blocks);
-      });
+    this.doggos.getDoggos().subscribe((doggos) => {
+      this.galleryItems = doggos['documents'].map(d => d.blocks);
+    });
   }
 
   public toggleActive() {

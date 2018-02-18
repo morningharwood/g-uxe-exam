@@ -49,7 +49,6 @@ export class GalleryItemComponent implements OnInit {
     }
 
     hammer.on('swipeup swipedown', (ev) => {
-      console.log('wtf swipe')
       this.close.emit(hammer);
     });
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
