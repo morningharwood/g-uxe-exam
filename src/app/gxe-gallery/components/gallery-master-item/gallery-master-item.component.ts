@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { EventType } from '../../../_libs/event-types';
 import { GalleryItem } from '../../mock-data';
+import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 
 
 @Component({
@@ -29,11 +30,10 @@ export class GalleryItemComponent implements OnInit {
   @ViewChild('mask') public mask: ElementRef;
   public selectedIndex: any;
 
-  constructor() {
+  constructor(private swipeService: SwipeVerticalService) {
   }
 
   ngOnInit() {
-
   }
 
   public originalSelectionChanged($event) {
@@ -43,6 +43,15 @@ export class GalleryItemComponent implements OnInit {
 
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
+    const hammer = this.swipeService.bootstrap(this.hostEl.nativeElement);
+    if (this.isActive) {
+      return;
+    }
+
+    hammer.on('swipeup swipedown', (ev) => {
+      console.log('wtf swipe')
+      this.close.emit(hammer);
+    });
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
     this.selectedIndex = this.index;
     this.selected.emit(
@@ -51,13 +60,8 @@ export class GalleryItemComponent implements OnInit {
         y,
         index: this.index,
         hostEl: this.hostEl.nativeElement,
-        mask: this.mask.nativeElement
+        mask: this.mask.nativeElement,
       });
-  }
-
-  public closeModal(): void {
-    console.log('this working?');
-    this.close.emit();
   }
 
 }

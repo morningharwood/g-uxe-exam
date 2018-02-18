@@ -7,15 +7,14 @@ import {
 import {
   Component,
   ElementRef,
-  HostListener,
   OnInit,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 import { GalleryItem } from '../../mock-data';
-import { EventType } from '../../../_libs/event-types';
 
 
 @Component({
@@ -26,6 +25,7 @@ import { EventType } from '../../../_libs/event-types';
 export class GalleryMasterComponent implements OnInit {
   @ViewChildren('masterItem') public masterItems: ElementRef[];
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
+
   public galleryItems: GalleryItem[];
   public isActive = false;
 
@@ -47,7 +47,6 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-
     const DOCUMENT_ID = '5a878162500cc2001395c413';
     const YOUR_ORG_SECRET_KEY = 'NWE4NGRhZDM4OTE4OTkwMDEzNjNjOWNi';
     const YOUR_API_KEY = '3QTLJXHW9ZZWPWGGEUN7OHETO'; // Generated-API-Key-1518661038309
@@ -78,12 +77,12 @@ export class GalleryMasterComponent implements OnInit {
   public setOrigin($event) {
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
     this.playerEndOrigin = {
-      x:  data.x - this.currentItem.x,
-      y:  data.y - this.currentItem.y,
+      x: data.x - this.currentItem.x,
+      y: data.y - this.currentItem.y,
     };
   }
 
-  public close() {
+  public close(swipeEvent) {
     const from = {
       x: this.to.x,
       y: this.to.y,
@@ -93,9 +92,12 @@ export class GalleryMasterComponent implements OnInit {
       y: 0,
     };
 
+    if (swipeEvent) {
+      swipeEvent.destroy();
+    }
     this.toggleActive();
     this.itemAnimateBack(from, to, this.currentItem.mask, 1);
-    const notEmpty = Object.entries(this.playerEndOrigin).some(([key, val]) => Boolean(val));
+    const notEmpty = Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
     if (notEmpty) {
       this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
     }

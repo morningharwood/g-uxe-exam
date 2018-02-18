@@ -13,7 +13,7 @@
 </div>
 
 <div class="inner-container">
-  <div class="modal-screen" *ngIf="isActive"></div>
+  <div class="modal-screen" *ngIf="isActive" (click)="close()"></div>
   <gxe-gallery-master-item
     *ngFor="let item of galleryItems; let i = index"
     #masterItem
@@ -22,7 +22,7 @@
     [index]="i"
     [isActive]="currentItem?.index === i"
     (endingSelect)="setOrigin($event)"
-    (close)="close()"
+    (close)="close($event)"
     (selected)="selectedItem($event)">
   </gxe-gallery-master-item>
 </div>
