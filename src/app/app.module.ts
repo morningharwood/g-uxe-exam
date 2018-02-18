@@ -7,7 +7,10 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppEffects } from './app.effects';
 import { GxeGalleryModule } from './gxe-gallery/gxe-gallery.module';
-import { metaReducers, reducers } from './reducers';
+import {
+  metaReducers,
+  reducers,
+} from './reducers';
 import { DoggoService } from './services/doggo.service';
 
 
@@ -17,13 +20,13 @@ import { DoggoService } from './services/doggo.service';
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([ AppEffects ]),
   ],
   declarations: [
     AppComponent,
 
   ],
-  providers: [DoggoService],
+  providers: [ DoggoService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

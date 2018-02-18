@@ -15,6 +15,7 @@ import {
 import { Store } from '@ngrx/store';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 
+export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';
 
 @Component({
   selector: 'gxe-gallery-master',
@@ -24,10 +25,9 @@ import { WindowScrolling } from '../../../services/window-scroll.service';
 export class GalleryMasterComponent implements OnInit {
   @ViewChildren('masterItem') public masterItems: ElementRef[];
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
-
   @Input() public galleryItems: any[];
-  public isActive = false;
 
+  public isActive = false;
   private to: { x: number; y: number };
   private from: { x: number; y: number };
   public currentItem: any;
@@ -40,9 +40,10 @@ export class GalleryMasterComponent implements OnInit {
   private playerParentEnd: AnimationPlayer;
 
 
+
   constructor(private store: Store<any>,
               private builder: AnimationBuilder,
-              private scrollService: WindowScrolling,) {
+              private scrollService: WindowScrolling) {
   }
 
   public ngOnInit(): void {
@@ -110,7 +111,7 @@ export class GalleryMasterComponent implements OnInit {
         transformOrigin: `${from.x}px ${from.y}px`,
       }),
       animate(
-        '250ms cubic-bezier(.35, 0, .25, 1)',
+        STANDARD_EASE,
         style({
           transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
         }),
@@ -127,7 +128,7 @@ export class GalleryMasterComponent implements OnInit {
   public itemAnimateBack(from, to, el, scale) {
     this.playerEnd = this.builder.build([
       animate(
-        '250ms cubic-bezier(.35, 0, .25, 1)',
+        STANDARD_EASE,
         style({
           transform: `translate3d(${to.x}px, ${to.y}px, 0) scale(${scale})`,
         }),
@@ -150,7 +151,7 @@ export class GalleryMasterComponent implements OnInit {
   private itemHostAnimate(to, el) {
     this.playerParentEnd = this.builder.build([
       animate(
-        '250ms cubic-bezier(.35, 0, .25, 1)',
+        STANDARD_EASE,
         style({
           transform: `translate3d(${to.x}px, ${to.y}px, 0)`,
         }),
