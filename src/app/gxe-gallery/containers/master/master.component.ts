@@ -76,16 +76,7 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public setOrigin($event) {
-    console.log($event, 'setOrigin');
-    /**
-     * currentIndex = 1 (180, 101)
-     * 0 = 0, 0
-     * 1 = (this.currentItem.hostEl.offsetWidth/2), 0
-     * 2 = 0, (this.currentItem.hostEl/2)
-     * 3 = (this.currentItem.hostEl/2), (this.currentItem.hostEl/2)
-     */
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
-    console.log(this.currentItem, data, 'data before');
     this.playerEndOrigin = {
       x:  data.x - this.currentItem.x,
       y:  data.y - this.currentItem.y,
@@ -102,11 +93,6 @@ export class GalleryMasterComponent implements OnInit {
     const to = {
       x: 0,
       y: 0,
-    };
-
-    const parentTo = {
-      x: -360,
-      y: 100,
     };
 
 

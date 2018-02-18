@@ -5,8 +5,15 @@
   *ngIf="isActive">
   &times;
 </button>
-<div class="modal-screen" *ngIf="isActive"></div>
+
+<div class="inner-container-dupe">
+  <div class="item-dupe" *ngFor="let item of galleryItems;" alt="">
+    <img class="dupe-image" [src]="item[1].value.url">
+  </div>
+</div>
+
 <div class="inner-container">
+  <div class="modal-screen" *ngIf="isActive"></div>
   <gxe-gallery-master-item
     *ngFor="let item of galleryItems; let i = index"
     #masterItem
@@ -19,5 +26,3 @@
   </gxe-gallery-master-item>
 </div>
 
-
-<!--[ngClass]="{'active': item === itemActive}"-->

@@ -24,10 +24,11 @@ export class GalleryItemComponent implements OnInit {
   @Input() public isActive: boolean;
   @Output() public selected: EventEmitter<any> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<any> = new EventEmitter();
+  @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
   public selectedIndex: any;
 
-  constructor(private hostEl: ElementRef) {
+  constructor() {
   }
 
   ngOnInit() {

@@ -2,7 +2,6 @@
   flex: 1 1 50%;
   max-height: 25vh;
 
-
   img {
     max-width: 100%;
   }
@@ -11,7 +10,9 @@
 .inner-mask {
   flex: 1 1 50%;
   max-height: 25vh;
+  z-index: 999;
 }
+
 gxe-gallery-detail {
   position: absolute;
   top: 0;

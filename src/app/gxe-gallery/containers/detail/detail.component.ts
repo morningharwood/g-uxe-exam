@@ -51,7 +51,7 @@ export class GalleryDetailComponent implements OnInit {
   public ngOnInit(): void {
     this.paginationAnimate(this.startingIndex, '0ms ease-in');
   }
-
+  
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
     if (this.isAnimating) {

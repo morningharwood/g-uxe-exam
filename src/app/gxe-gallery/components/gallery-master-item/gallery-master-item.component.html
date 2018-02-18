@@ -1,10 +1,13 @@
 <!-- TODO(mharwood) set alt text for accessibility -->
-<div #mask class="inner-mask">
-  <img [src]="item[1].value.url" alt="">
-  <gxe-gallery-detail
-    [galleryItems]="galleryItems"
-    [startingIndex]="selectedIndex"
-    (endingIndex)="originalSelectionChanged($event)"
-    *ngIf="isActive">
-  </gxe-gallery-detail>
+
+<div #hostEl class="inner-mask">
+  <div #mask class="inner-mask">
+    <img [src]="item[1].value.url" alt="">
+    <gxe-gallery-detail
+      [galleryItems]="galleryItems"
+      [startingIndex]="selectedIndex"
+      (endingIndex)="originalSelectionChanged($event)"
+      *ngIf="isActive">
+    </gxe-gallery-detail>
+  </div>
 </div>
