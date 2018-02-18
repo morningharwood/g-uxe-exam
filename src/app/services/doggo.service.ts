@@ -15,7 +15,6 @@ export class DoggoService {
     return this.http.get(`https://api.tipe.io/api/v1/folder/${FOLDER_ID}`, {
       headers: new HttpHeaders()
           .set('Authorization', API_KEY)
-          .set('Origin', 'gxe-gallery.firebaseapp.com')
           .set('Tipe-Id', ORG_KEY)
     });
   }
