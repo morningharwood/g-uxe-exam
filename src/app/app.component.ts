@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  public isActive = false;
+
+  public activeModal() {
+    console.log('lskdfjlsdk')
+    this.isActive = !this.isActive;
+  }
 }

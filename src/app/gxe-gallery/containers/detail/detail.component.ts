@@ -7,9 +7,13 @@ import {
 import {
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
+  Input,
   OnInit,
+  Output,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EventType } from '../../../_libs/event-types';
@@ -29,12 +33,15 @@ const TOUCH_THRESHOLD = .75;
   styleUrls: ['./detail.component.scss']
 })
 export class GalleryDetailComponent implements OnInit {
-  @ViewChild('gxeGalleryInnerContainer')
-  private galleryInnerContainer: ElementRef;
+  @Input() public galleryItems: GalleryItem[];
+  @Input() public startingIndex: number;
+  @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
+  @Output() public close: EventEmitter<any> = new EventEmitter();
+  @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
+  @ViewChildren('detailItem') private detailItem: ElementRef;
   private lastPosition = 0;
 
-  public galleryItems: GalleryItem[] = mockGalleryItems;
-  public currentPosition: number;
+  public currentPosition = 0;
   public player: AnimationPlayer;
 
   constructor(private store: Store<any>,
@@ -43,8 +50,7 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(this.galleryItems);
-
+    this.paginationAnimate(this.startingIndex, '0ms ease-in');
   }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
@@ -83,14 +89,14 @@ export class GalleryDetailComponent implements OnInit {
     this.paginationAnimate(index);
   }
 
-  public paginationAnimate(futurePosition: number) {
-    futurePosition = -(futurePosition * this.el.nativeElement.offsetWidth);
+  public paginationAnimate(index: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
+    const futurePosition = -(index * this.el.nativeElement.offsetWidth);
     this.player = this.builder.build([
       style({
         transform: `translateX(${this.currentPosition}px)`,
       }),
       animate(
-        '350ms cubic-bezier(.35, 0, .25, 1)',
+        timing,
         style({
           transform: `translateX(${futurePosition}px)`,
         }),
@@ -103,6 +109,7 @@ export class GalleryDetailComponent implements OnInit {
       this.player.destroy();
       this.lastPosition = this.currentPosition = futurePosition;
       this.player = null;
+      this.endingIndex.emit(index);
     });
   }
 
