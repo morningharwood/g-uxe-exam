@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppEffects } from './app.effects';
 import { GxeGalleryModule } from './gxe-gallery/gxe-gallery.module';
 import { metaReducers, reducers } from './reducers';
+import { DoggoService } from './services/doggo.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { metaReducers, reducers } from './reducers';
     AppComponent,
 
   ],
-  providers: [],
+  providers: [DoggoService],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

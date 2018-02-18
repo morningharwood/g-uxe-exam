@@ -35,7 +35,6 @@ const DECLARATIONS_EXPORTS = [
   providers: [
     WindowScrolling,
     SwipeVerticalService,
-    DoggoService,
   ],
   declarations: [ ...DECLARATIONS_EXPORTS, GalleryItemComponent ],
   exports: [ ...DECLARATIONS_EXPORTS ],

@@ -7,14 +7,13 @@ import {
 import {
   Component,
   ElementRef,
+  Input,
   OnInit,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DoggoService } from '../../../services/doggo.service';
 import { WindowScrolling } from '../../../services/window-scroll.service';
-import { GalleryItem } from '../../mock-data';
 
 
 @Component({
@@ -26,7 +25,7 @@ export class GalleryMasterComponent implements OnInit {
   @ViewChildren('masterItem') public masterItems: ElementRef[];
   @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
 
-  public galleryItems: any[];
+  @Input() public galleryItems: any[];
   public isActive = false;
 
   private to: { x: number; y: number };
@@ -43,14 +42,11 @@ export class GalleryMasterComponent implements OnInit {
 
   constructor(private store: Store<any>,
               private builder: AnimationBuilder,
-              private scrollService: WindowScrolling,
-              private doggos: DoggoService) {
+              private scrollService: WindowScrolling,) {
   }
 
   public ngOnInit(): void {
-    this.doggos.getDoggos().subscribe((doggos) => {
-      this.galleryItems = doggos['documents'].map(d => d.blocks);
-    });
+
   }
 
   public toggleActive() {
