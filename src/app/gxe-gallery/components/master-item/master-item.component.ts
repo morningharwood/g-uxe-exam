@@ -9,14 +9,14 @@ import {
   ViewChild,
 } from '@angular/core';
 import { EventType } from '../../../_libs/event-types';
-import { GalleryItem } from '../../mock-data';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
+import { GalleryItem } from '../../mock-data';
 
 
 @Component({
   selector: 'gxe-gallery-master-item',
-  templateUrl: './gallery-master-item.component.html',
-  styleUrls: [ './gallery-master-item.component.scss' ],
+  templateUrl: './master-item.component.html',
+  styleUrls: [ './master-item.component.scss' ],
 })
 export class GalleryItemComponent implements OnInit {
   @Input() public item;
@@ -34,11 +34,11 @@ export class GalleryItemComponent implements OnInit {
   constructor(private swipeService: SwipeVerticalService) {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.elWidth = this.hostEl.nativeElement.getBoundingClientRect().width;
   }
 
-  public originalSelectionChanged($event) {
+  public originalSelectionChanged($event): void {
     this.endingSelect.emit($event);
   }
 

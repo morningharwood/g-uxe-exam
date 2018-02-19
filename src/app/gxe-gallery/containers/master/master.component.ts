@@ -165,7 +165,7 @@ export class GalleryMasterComponent implements OnInit {
     }
   }
 
-  private setBodyScroll() {
+  private setBodyScroll(): void {
     this.isActive ? this.scrollService.disable() : this.scrollService.enable();
   }
 }
