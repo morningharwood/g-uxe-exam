@@ -28,7 +28,6 @@ export class GalleryItemComponent implements OnInit {
   @Output() public close: EventEmitter<any> = new EventEmitter();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
-  public selectedIndex: any;
   private elWidth: number;
 
   constructor(private swipeService: SwipeVerticalService) {
