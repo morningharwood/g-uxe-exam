@@ -2,6 +2,8 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { GalleryItem } from './gxe-gallery/interfaces/gallery-items.interface';
 import { DoggoService } from './services/doggo.service';
 
 @Component({
@@ -9,12 +11,11 @@ import { DoggoService } from './services/doggo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  private galleryItems: any;
-  constructor(private doggos: DoggoService) {}
+export class AppComponent implements OnInit {
+  public galleryItemsObs: Observable<Array<Array<GalleryItem>>>;
+  constructor(private doggoService: DoggoService) {}
+
   public ngOnInit(): void {
-    this.doggos.getDoggos().subscribe((doggos) => {
-      this.galleryItems = doggos['documents'].map(d => d.blocks);
-    });
+    this.galleryItemsObs = this.doggoService.get();
   }
 }

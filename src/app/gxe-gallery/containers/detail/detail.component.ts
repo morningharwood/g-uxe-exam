@@ -5,7 +5,6 @@ import {
   AnimationPlayer,
 } from '@angular/animations';
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -16,7 +15,6 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { EventType } from '../../../_libs/event-types';
 import {
   GalleryItem,
@@ -43,8 +41,7 @@ export class GalleryDetailComponent implements OnInit {
   public currentPosition: number;
   private lastPosition: number;
   private player: AnimationPlayer;
-  constructor(private store: Store<any>,
-              private el: ElementRef,
+  constructor(private el: ElementRef,
               private builder: AnimationBuilder) {
   }
 
