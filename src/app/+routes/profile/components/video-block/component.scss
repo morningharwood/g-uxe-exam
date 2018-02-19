@@ -1,0 +1,45 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/variables';
+
+:host {
+  @include position(fixed, null, 0, 0, null, $primary);
+  @include size(337px, 189px);
+  background: $white;
+  box-shadow: -10px -10px 16px rgba(0, 0, 0, .05);
+}
+
+header {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
+
+header:hover {
+  button {
+    background: $red-danger;
+    color: $white;
+  }
+
+  p {
+    border-left: 1px dotted transparent;
+  }
+}
+
+button {
+  background: transparent;
+  border: 0;
+}
+
+p {
+  border-left: 1px dotted transparentize($black, .75);
+  font-size: ms(-1);
+  padding: 0 0 0 ms(0);
+}
+
+.wrapper {
+  @include size(percentage(1/1), percentage(1/1))
+}
+
+#mh-yt-videoframe {
+  @include size(percentage(1/1), percentage(1/1))
+}

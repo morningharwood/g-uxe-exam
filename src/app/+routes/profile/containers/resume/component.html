@@ -1,0 +1,75 @@
+
+<mh-profile-fab></mh-profile-fab>
+<header class="header">
+  <h2>{{header}}</h2>
+</header>
+<section class="contact">
+  <ul>
+    <li>
+      <a href="{{me.fullDomain}}">
+        {{me.domain}}
+      </a>
+    </li>
+    <li>
+      <a href="mailto:{{me.email}}?subject=Hello Matthew">
+        {{me.email}}</a>
+    </li>
+    <li>
+      <a href="tel:{{me.phone}}">
+        {{me.phone}}
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="experience">
+  <mh-standard-block
+      [title]="'Experiences'"
+      [data]="experiences">
+  </mh-standard-block>
+</section>
+
+<section class="education">
+  <mh-standard-block
+      [title]="'Education'"
+      [data]="educations">
+  </mh-standard-block>
+  <mh-standard-block
+      [title]="'Awards'"
+      [data]="awards">
+  </mh-standard-block>
+</section>
+
+
+
+<aside class="aside">
+  <mh-standard-list
+      [data]="techniques"
+      [title]="'Technical'">
+  </mh-standard-list>
+
+  <mh-standard-list
+      [data]="interests"
+      [title]="'Interests'">
+  </mh-standard-list>
+  <mh-standard-table
+      [data]="socials"
+      [title]="'Social'">
+  </mh-standard-table>
+
+  <mh-carousel-list
+      [data]="inspiration"
+      [title]="'Watching'">
+  </mh-carousel-list>
+
+  <mh-carousel-list
+      [title]="'Listening'"
+      [data]="inspirationPodCast"
+      [delay]="2750">
+  </mh-carousel-list>
+
+  <mh-visited-list
+      [data]="visited"
+      [title]="'Recently Visited'">
+  </mh-visited-list>
+</aside>

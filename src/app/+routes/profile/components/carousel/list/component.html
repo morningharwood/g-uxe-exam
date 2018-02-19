@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <h4 *ngIf="title">{{title}}</h4>
+
+  <ul class="inline-list">
+    <mh-carousel-item
+        *ngFor="let d of data; let i = index"
+        [data]="d"
+        [index]="i"
+        [active]="active">
+    </mh-carousel-item>
+  </ul>
+</div>

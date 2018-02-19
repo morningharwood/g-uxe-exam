@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <h4>{{title}}</h4>
+  <ul class="inline-list">
+    <li *ngFor="let d of data">
+      <div class="left">
+        <img src="{{d.poster}}" alt="">
+      </div>
+      <div class="right">
+        <h5>{{d.category}}</h5>
+        <p class="title"><a href="#">{{d.title}}</a></p>
+      </div>
+    </li>
+  </ul>
+</div>

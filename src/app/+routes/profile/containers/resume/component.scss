@@ -1,0 +1,138 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/variables';
+
+
+
+// Elemental
+
+ul {
+  list-style-type: none;
+}
+
+// Typographical
+
+%standard-size {
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  line-height: ms(1);
+}
+
+%standard-space {
+  $grid-padding: 1;
+
+  @include space(p, 0 ms($grid-padding));
+
+  @include bp(4) {
+    @include space(p, ms($grid-padding));
+  }
+}
+
+p {
+  @extend %standard-size;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}
+
+a {
+  @extend %standard-size;
+
+  color: $red-danger;
+  text-decoration: none;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}
+
+h2 {
+  font-size: ms(2);
+  font-weight: 400;
+}
+
+h3 {
+  color: $red-danger;
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  font-weight: 400;
+  padding: ms(0) 0;
+
+  @include bp(4) {
+    padding: ms(-1) 0;
+  }
+}
+
+// Structural
+:host {
+  @include space(p, ms(2) 0);
+  @include space(m, 0 auto ms(2));
+  @include size(percentage(1/1), null, null, percentage(1/1));
+  @include position(relative);
+
+  box-shadow: 0 -10px 25px rgba(255, 255, 255, .1);
+
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-rows: auto;
+  grid-gap: ms(1);
+
+  @include bp(4) {
+    @include size(percentage(9/10));
+    @include space(p, ms(4) ms(1) ms(4) ms(1));
+
+    background-color: $white-off;
+    transform: translateY(90vh);
+  }
+}
+
+.header {
+  @extend %standard-space;
+
+  @include bp(4) {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+
+  }
+}
+
+.contact {
+  @extend %standard-space;
+
+  @include bp(4) {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    text-align: right;
+  }
+}
+
+.experience {
+  @extend %standard-space;
+
+  @include bp(4) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+}
+
+.education {
+  @extend %standard-space;
+
+  @include bp(4) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+}
+
+.aside {
+  @extend %standard-space;
+
+  @include bp(4) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+  }
+}
+
+img {
+  width: 100%;
+}

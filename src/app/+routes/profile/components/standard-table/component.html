@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <h4>{{title}}</h4>
+  <dl>
+    <ng-container *ngFor="let d of data">
+      <dt>
+        <p>{{d.place}}</p>
+      </dt>
+      <dd>
+        <a href="{{d.url}}" target="_blank" rel="noopener">
+          {{d.text}}
+        </a>
+      </dd>
+    </ng-container>
+  </dl>
+</div>

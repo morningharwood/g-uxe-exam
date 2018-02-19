@@ -6,6 +6,7 @@ import { GxeDemoModule } from './demo/demo.module';
 import { GxeDocumentationModule } from './documentation/documentation.module';
 import { GxeIntroModule } from './intro/intro.module';
 import { routes } from './routes.config';
+import { ProfileModule } from './profile/module';
 
 
 
@@ -16,6 +17,7 @@ import { routes } from './routes.config';
     GxeAboutModule,
     GxeDemoModule,
     routes,
+    ProfileModule,
   ],
 })
 export class GxeRouterModule { }

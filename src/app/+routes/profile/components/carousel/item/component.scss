@@ -1,0 +1,41 @@
+@import '../../../../../../assets/css/mixins';
+@import '../../../../../../assets/css/variables';
+
+li {
+  position: absolute;
+  cursor: pointer;
+
+  &:hover img {
+    opacity: .9;
+  }
+}
+
+
+.left {
+  display: block;
+  float: left;
+}
+
+img {
+  opacity: .75;
+  border-radius: 100px;
+  width: 75px;
+}
+
+.right {
+  padding-left: ms(0);
+  display: block;
+  float: left;
+}
+
+.title {
+  color: $red-danger;
+  font-style: italic;
+  padding: 0 0 ms(0);
+
+  a {
+    @include bp(4) {
+      font-size: ms(0);
+    }
+  }
+}

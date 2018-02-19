@@ -14,7 +14,6 @@ export const AllRoutes = {
   INTRO: 'intro',
   DEMO: 'demo',
   DOCUMENTATION: 'documentation',
-  ABOUT: 'about',
 };
 
 
@@ -50,16 +49,7 @@ export const config: Routes = [
         component: GxeDocumentationComponent,
       },
     ],
-  },
-  {
-    path: AllRoutes.ABOUT,
-    children: [
-      {
-        path:  AllRoutes.ROOT,
-        component: GxeAboutComponent,
-      },
-    ],
-  },
+  }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(config);
