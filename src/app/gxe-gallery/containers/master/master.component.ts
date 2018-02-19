@@ -84,9 +84,8 @@ export class GalleryMasterComponent implements OnInit {
   public selectedItem($event): void {
     this.to = {
       x: 0,
-      y: (window.outerHeight - ($event.hostEl.offsetHeight * 2)) / 2,
+      y: (window.innerHeight - ($event.hostEl.offsetHeight * 2)) / 2,
     };
-
     this.currentItem = $event;
     this.isActive_ = true;
     this.itemAnimate($event, this.to, this.currentItem.mask, 2);
@@ -105,7 +104,7 @@ export class GalleryMasterComponent implements OnInit {
         }),
       ),
     ]).create(el);
-
+    console.log(to.x, to.y);
     this.playerStart.play();
 
     this.playerStart.onDone(() => {

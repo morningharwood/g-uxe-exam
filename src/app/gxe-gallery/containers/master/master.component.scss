@@ -50,13 +50,19 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  pointer-events: none;
+  cursor: none;
 
   .item-dupe {
     flex: 1 1 50%;
     max-height: 25vh;
+    cursor: none;
+    pointer-events: none;
   }
 
   img {
+    cursor: none;
+    pointer-events: none;
     width: 100%;
   }
 }

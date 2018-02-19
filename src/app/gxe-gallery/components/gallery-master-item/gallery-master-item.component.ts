@@ -53,6 +53,7 @@ export class GalleryItemComponent implements OnInit {
     hammer.on('swipeup swipedown', (ev) => {
       this.close.emit(hammer);
     });
+
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
     this.selectedIndex = this.index;
     this.selected.emit(
