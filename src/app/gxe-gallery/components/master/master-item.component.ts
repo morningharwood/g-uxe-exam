@@ -9,8 +9,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { EventType } from '../../../enums/event-types';
+import { GalleryItem } from '../../../interfaces/gallery-items.interface';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
-import { GalleryItem } from '../../mock-data';
 
 
 @Component({
@@ -45,17 +45,18 @@ export class GalleryItemComponent implements OnInit {
 
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
-    const hammer = this.swipeService.bootstrap(this.hostEl.nativeElement);
     if (this.isActive) {
       return;
     }
 
-    hammer.on('swipeup swipedown', (ev) => {
-      this.close.emit(hammer);
+    const hammer = this.swipeService.bootstrap(this.hostEl.nativeElement);
+    const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
+
+    hammer.on(`${EventType.SWIPEUP} ${EventType.SWIPEDOWN}`,
+      () => {
+        this.close.emit(hammer);
     });
 
-    const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
-    this.selectedIndex = this.index;
     this.selected.emit(
       {
         x,

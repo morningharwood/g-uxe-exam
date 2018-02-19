@@ -3,7 +3,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { GalleryItem } from '../../mock-data';
+import { GalleryItem } from '../../../interfaces/gallery-items.interface';
 
 
 @Component({

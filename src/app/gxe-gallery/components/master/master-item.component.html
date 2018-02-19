@@ -5,7 +5,7 @@
     <img [src]="item[1].value.url" alt="">
     <gxe-gallery-detail
       [galleryItems]="galleryItems"
-      [startingIndex]="selectedIndex"
+      [startingIndex]="index"
       [itemWidth]="elWidth"
       (close)="closeModal($event)"
       (endingIndex)="originalSelectionChanged($event)"

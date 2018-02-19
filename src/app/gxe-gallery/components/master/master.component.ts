@@ -14,8 +14,8 @@ import {
 } from '@angular/core';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../../services/window-scroll.service';
-import { CurrentItem } from '../../interfaces/current-item.interface';
-import { Vector2 } from '../../interfaces/vector2.interface';
+import { CurrentItem } from '../../../interfaces/current-item.interface';
+import { Vector2 } from '../../../interfaces/vector2.interface';
 
 
 export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';

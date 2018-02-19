@@ -16,9 +16,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { EventType } from '../../../enums/event-types';
-import {
-  GalleryItem,
-} from '../../mock-data';
+import { GalleryItem } from '../../../interfaces/gallery-items.interface';
 
 
 const TOUCH_THRESHOLD = .75;

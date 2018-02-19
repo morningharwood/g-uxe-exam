@@ -3,7 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { GalleryItem } from './gxe-gallery/interfaces/gallery-items.interface';
+import { GalleryItem } from './interfaces/gallery-items.interface';
 import { DoggoService } from './services/doggo.service';
 
 @Component({

@@ -5,10 +5,10 @@ import { MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SwipeVerticalService } from '../services/swipe-vertical.service';
 import { WindowScrolling } from '../services/window-scroll.service';
-import { ItemComponent } from './containers/detail/detail-item.component';
-import { GalleryItemComponent } from './containers/master/master-item.component';
-import { GalleryDetailComponent } from './containers/detail/detail.component';
-import { GalleryMasterComponent } from './containers/master/master.component';
+import { ItemComponent } from './components/detail/detail-item.component';
+import { GalleryItemComponent } from './components/master/master-item.component';
+import { GalleryDetailComponent } from './components/detail/detail.component';
+import { GalleryMasterComponent } from './components/master/master.component';
 
 
 const DECLARATIONS_EXPORTS = [
