@@ -36,11 +36,11 @@
 }
 
 .close-btn {
-  background-color: $black;
-  color: $white;
-  position: fixed;
-  right: 25px;
-  top: 25px;
+  background-color: transparent;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  color: $black;
   z-index: 99999;
 }
 

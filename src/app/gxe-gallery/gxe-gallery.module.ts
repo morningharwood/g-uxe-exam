@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemComponent } from './components/detail/detail-item.component';
 import { GalleryDetailComponent } from './components/detail/detail.component';
@@ -28,6 +31,7 @@ const DECLARATIONS_EXPORTS = [
     MatButtonModule,
     HttpClientModule,
     MatToolbarModule,
+    MatIconModule,
   ],
   providers: [
     WindowScrolling,
