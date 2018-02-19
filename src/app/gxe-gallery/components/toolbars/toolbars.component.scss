@@ -1,0 +1,14 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+mat-toolbar {
+  width: 100%;
+  position: fixed;
+  z-index: $z-layer-highest;
+}
+
+mat-toolbar-row {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}

@@ -6,11 +6,9 @@ import {
 } from '@angular/animations';
 import {
   Component,
-  ElementRef,
   Input,
   OnInit,
   QueryList,
-  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { CurrentItem } from '../../interfaces/current-item.interface';
@@ -91,9 +89,10 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   private itemAnimate(from, to, el, scale): void {
+    const borderPadding = 0;
     this.playerStart = this.builder.build([
       style({
-        transformOrigin: `${from.x}px ${from.y}px`,
+        transformOrigin: `${from.x + borderPadding}px ${from.y + borderPadding}px`,
       }),
       animate(
         STANDARD_EASE,

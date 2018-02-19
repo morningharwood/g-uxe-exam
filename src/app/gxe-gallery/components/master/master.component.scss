@@ -2,10 +2,19 @@
 @import '../../../../assets/css/mixins';
 
 :host {
-  background: black;
+
   display: flex;
   height: 100%;
   width: 100%;
+}
+
+.spacer {
+  width: 100%;
+  padding: 56px 0 0;
+
+  @include bpM(1) {
+    padding-top: 64px;
+  }
 }
 
 .inner-container {
@@ -16,6 +25,7 @@
   width: 100%;
   z-index: 9;
 }
+
 .inner-item-container {
   display: flex;
   flex-wrap: wrap;
