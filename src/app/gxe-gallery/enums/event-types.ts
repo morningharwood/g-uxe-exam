@@ -1,5 +1,7 @@
-// Taken from closure compiler library
-// https://google.github.io/closure-library/api/goog.events.EventType.html
+/**
+ * @fileoverview Taken from closure compiler library
+ * https://google.github.io/closure-library/api/goog.events.EventType.html
+ */
 
 export enum EventType {
   // Mouse events

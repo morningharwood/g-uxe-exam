@@ -15,8 +15,8 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { EventType } from '../../../enums/event-types';
-import { GalleryItem } from '../../../interfaces/gallery-items.interface';
+import { EventType } from '../../enums/event-types';
+import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import { STANDARD_EASE } from '../../animations/ease.animations';
 
 

@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { GxeRouterModule } from './+routes/routes.module';
 import { AppComponent } from './app.component';
-import { GxeGalleryModule } from './gxe-gallery/gxe-gallery.module';
-import { DoggoService } from './services/doggo.service';
+import { DoggoModule } from './services/doggo/doggo.module';
+
 
 
 @NgModule({
   imports: [
-    GxeGalleryModule,
     BrowserModule,
+    GxeRouterModule,
+    DoggoModule.forRoot(),
+    RouterModule,
   ],
   declarations: [
     AppComponent,
-
   ],
-  providers: [ DoggoService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

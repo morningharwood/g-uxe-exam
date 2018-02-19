@@ -8,10 +8,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { EventType } from '../../../enums/event-types';
-import { CurrentItem } from '../../../interfaces/current-item.interface';
-import { GalleryItem } from '../../../interfaces/gallery-items.interface';
-import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
+import { EventType } from '../../enums/event-types';
+import { CurrentItem } from '../../interfaces/current-item.interface';
+import { GalleryItem } from '../../interfaces/gallery-items.interface';
+import { SwipeVerticalService } from '../../services/swipe-vertical.service';
 
 
 @Component({

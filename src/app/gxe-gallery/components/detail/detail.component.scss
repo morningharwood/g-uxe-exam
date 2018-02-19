@@ -13,8 +13,9 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   &::before {
-    background-image: url(../../../../assets/images/favicon-32x32.png);
+    background-image: url(../../../../assets/images/favicon.gif);
     background-repeat: no-repeat;
+    background-size: auto 100%;
     color: $red-danger;
     content: 'Hello Google!';
     font-family: $sans-default-family;
