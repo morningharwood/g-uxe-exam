@@ -9,6 +9,7 @@ import {
   ElementRef,
   Input,
   OnInit,
+  QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -17,6 +18,7 @@ import { Vector2 } from '../../../interfaces/vector2.interface';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../../services/window-scroll.service';
 import { STANDARD_EASE } from '../../animations/ease.animations';
+import { GalleryItemComponent } from './master-item.component';
 
 
 
@@ -28,8 +30,7 @@ import { STANDARD_EASE } from '../../animations/ease.animations';
   styleUrls: [ './master.component.scss' ],
 })
 export class GalleryMasterComponent implements OnInit {
-  @ViewChildren('masterItem') public masterItems: ElementRef[];
-  @ViewChild('masterItemContainer') public masterItemContainer: ElementRef;
+  @ViewChildren(GalleryItemComponent) public masterItems: QueryList<GalleryItemComponent>;
   @Input() public galleryItems: any[];
   public isActive: boolean;
   public currentItem: CurrentItem;
@@ -61,6 +62,7 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public setOrigin($event: number): void {
+
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
 
     this.playerEndOrigin = {
@@ -69,7 +71,7 @@ export class GalleryMasterComponent implements OnInit {
     };
   }
 
-  public close(swipeEvent): void {
+  public close(): void {
     this.swipeService.swipeOff();
     this.closeGalleryDetail();
 

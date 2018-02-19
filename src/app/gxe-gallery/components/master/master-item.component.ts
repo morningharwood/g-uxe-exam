@@ -45,15 +45,12 @@ export class GalleryItemComponent implements OnInit {
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
     if (this.isActive) return;
+    this.turnOnVerticalSwipe();
+    this.emitViewChildrenSelected();
+  }
 
-    const hammer = this.swipeService.bootstrap(this.hostEl.nativeElement);
+  private emitViewChildrenSelected() {
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
-
-    hammer.on(`${EventType.SWIPEUP} ${EventType.SWIPEDOWN}`,
-      () => {
-        this.close.emit(hammer);
-    });
-
     this.selected.emit(
       {
         x,
@@ -64,4 +61,10 @@ export class GalleryItemComponent implements OnInit {
       });
   }
 
+  private turnOnVerticalSwipe() {
+    this.swipeService
+      .bootstrap(this.hostEl.nativeElement)
+      .on(`${EventType.SWIPEUP} ${EventType.SWIPEDOWN}`,
+        () => this.close.emit());
+  }
 }
