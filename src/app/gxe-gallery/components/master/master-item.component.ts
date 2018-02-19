@@ -44,9 +44,7 @@ export class GalleryItemComponent implements OnInit {
 
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
-    if (this.isActive) {
-      return;
-    }
+    if (this.isActive) return;
 
     const hammer = this.swipeService.bootstrap(this.hostEl.nativeElement);
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();

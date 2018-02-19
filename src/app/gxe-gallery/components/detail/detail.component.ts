@@ -17,6 +17,8 @@ import {
 } from '@angular/core';
 import { EventType } from '../../../enums/event-types';
 import { GalleryItem } from '../../../interfaces/gallery-items.interface';
+import { STANDARD_EASE } from '../../animations/ease.animations';
+
 
 
 const TOUCH_THRESHOLD = .75;
@@ -27,15 +29,17 @@ const TOUCH_THRESHOLD = .75;
   styleUrls: ['./detail.component.scss']
 })
 export class GalleryDetailComponent implements OnInit {
-  @Input() public galleryItems: GalleryItem[];
-  @Input() public startingIndex: number;
-  @Input() public itemWidth: number;
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
+  @Input() public galleryItems: GalleryItem[];
+  @Input() public itemWidth: number;
+  @Input() public startingIndex: number;
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
+
   public currentPosition: number;
   private lastPosition: number;
   private player: AnimationPlayer;
+
   constructor(private el: ElementRef,
               private builder: AnimationBuilder) {
   }
@@ -48,17 +52,13 @@ export class GalleryDetailComponent implements OnInit {
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
-    if (this.isAnimating) {
-      return;
-    }
+    if (this.isAnimating) return;
     this.currentPosition = this.lastPosition + event.deltaX;
   }
 
   @HostListener(EventType.PANEND, [ '$event' ])
   public end(event: any): void {
-    if (this.isAnimating) {
-      return;
-    }
+    if (this.isAnimating) return;
     this.paginate(event);
   }
 
@@ -82,7 +82,7 @@ export class GalleryDetailComponent implements OnInit {
     this.paginationAnimate(index);
   }
 
-  public paginationAnimate(index: number, timing = '350ms cubic-bezier(.35, 0, .25, 1)') {
+  public paginationAnimate(index: number, timing = STANDARD_EASE) {
     const futurePosition = -(index * this.itemWidth);
     this.player = this.builder.build([
       style({

@@ -12,13 +12,14 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
-import { WindowScrolling } from '../../../services/window-scroll.service';
 import { CurrentItem } from '../../../interfaces/current-item.interface';
 import { Vector2 } from '../../../interfaces/vector2.interface';
+import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
+import { WindowScrolling } from '../../../services/window-scroll.service';
+import { STANDARD_EASE } from '../../animations/ease.animations';
 
 
-export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';
+
 
 
 @Component({
