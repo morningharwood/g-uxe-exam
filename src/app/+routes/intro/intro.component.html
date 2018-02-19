@@ -8,7 +8,7 @@
     <button mat-icon-button [routerLink]="['/demo']" >
       <mat-icon aria-label="Mobile demo link" >phone_android</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button [routerLink]="['/documentation']">
       <mat-icon class="example-icon">code</mat-icon>
     </button>
   </mat-toolbar-row>
@@ -26,9 +26,9 @@
 
 <mat-card>
   <mat-card-content>
-    <h2 class="example-h2">Tabs with text labels</h2>
+    <h2 class="example-h2">Considerations</h2>
     <mat-tab-group class="demo-tab-group">
-      <mat-tab label="Tab 1">
+      <mat-tab label="Engineering">
         <div class="demo-tab-content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
           Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
@@ -37,7 +37,7 @@
           orci enim rutrum enim, vel tempor sapien arcu a tellus.
         </div>
       </mat-tab>
-      <mat-tab label="Tab 2">
+      <mat-tab label="Design">
         <div class="demo-tab-content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
           Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.

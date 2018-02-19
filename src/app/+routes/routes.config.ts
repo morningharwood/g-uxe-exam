@@ -6,6 +6,7 @@ import {
 import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
+import { GxeAboutComponent } from './about/about.component';
 
 
 export const AllRoutes = {
@@ -13,6 +14,7 @@ export const AllRoutes = {
   INTRO: 'intro',
   DEMO: 'demo',
   DOCUMENTATION: 'documentation',
+  ABOUT: 'about',
 };
 
 
@@ -46,6 +48,15 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeDocumentationComponent,
+      },
+    ],
+  },
+  {
+    path: AllRoutes.ABOUT,
+    children: [
+      {
+        path:  AllRoutes.ROOT,
+        component: GxeAboutComponent,
       },
     ],
   },

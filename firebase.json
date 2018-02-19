@@ -6,7 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
+
     "rewrites": [
+      {
+        "source": "/documentation",
+        "destination": "/documentation/index.html"
+      },
       {
         "source": "**",
         "destination": "/index.html"
