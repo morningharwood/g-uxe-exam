@@ -35,10 +35,10 @@ export class GalleryMasterComponent implements OnInit {
   public currentItem: CurrentItem;
 
   private to: Vector2;
-  private playerStart: AnimationPlayer;
   private playerEnd: AnimationPlayer;
   private playerEndOrigin: Vector2;
   private playerParentEnd: AnimationPlayer;
+  private playerStart: AnimationPlayer;
 
 
   constructor(private builder: AnimationBuilder,
@@ -70,14 +70,11 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public close(swipeEvent): void {
-    if (swipeEvent) {
-      this.swipeService.swipeOff();
-    }
+    this.swipeService.swipeOff();
+    this.closeGalleryDetail();
 
-    this.isActive_ = false;
-    this.itemAnimateBack({ x: 0, y: 0 }, this.currentItem.mask, 1);
-    const notEmpty = Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
-    if (notEmpty) {
+
+    if (this.notEmpty()) {
       this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
     }
   }
@@ -88,12 +85,10 @@ export class GalleryMasterComponent implements OnInit {
       y: (window.innerHeight - ($event.hostEl.offsetHeight * 2)) / 2,
     };
     this.currentItem = $event;
-    this.isActive_ = true;
-    this.itemAnimate($event, this.to, this.currentItem.mask, 2);
+    this.openGalleryDetail($event);
   }
 
   private itemAnimate(from, to, el, scale): void {
-
     this.playerStart = this.builder.build([
       style({
         transformOrigin: `${from.x}px ${from.y}px`,
@@ -105,15 +100,11 @@ export class GalleryMasterComponent implements OnInit {
         }),
       ),
     ]).create(el);
-    console.log(to.x, to.y);
-    this.playerStart.play();
 
-    this.playerStart.onDone(() => {
-      this.playerStart.pause();
-    });
+    this.playerStart.play();
   }
 
-  private itemAnimateBack(to, el, scale): void {
+  private itemAnimateReverse(to, el, scale): void {
     this.playerEnd = this.builder.build([
       animate(
         STANDARD_EASE,
@@ -122,9 +113,7 @@ export class GalleryMasterComponent implements OnInit {
         }),
       ),
     ]).create(el);
-
     this.playerEnd.play();
-
     this.playerEnd.onDone(() => {
       this.clearAllAnimations();
     });
@@ -154,6 +143,7 @@ export class GalleryMasterComponent implements OnInit {
       this.playerStart.destroy();
       this.playerStart = null;
     }
+
     if (this.playerEnd) {
       this.playerEnd.destroy();
       this.playerEnd = null;
@@ -168,5 +158,19 @@ export class GalleryMasterComponent implements OnInit {
 
   private setBodyScroll(): void {
     this.isActive ? this.scrollService.disable() : this.scrollService.enable();
+  }
+
+  private closeGalleryDetail() {
+    this.isActive_ = false;
+    this.itemAnimateReverse({ x: 0, y: 0 }, this.currentItem.mask, 1);
+  }
+
+  private openGalleryDetail($event: any) {
+    this.isActive_ = true;
+    this.itemAnimate($event, this.to, this.currentItem.mask, 2);
+  }
+
+  private notEmpty() {
+    return Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
   }
 }
