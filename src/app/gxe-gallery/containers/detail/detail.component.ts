@@ -21,8 +21,6 @@ import {
 } from '../../mock-data';
 
 
-
-
 const TOUCH_THRESHOLD = .75;
 
 @Component({

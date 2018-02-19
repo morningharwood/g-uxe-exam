@@ -12,6 +12,10 @@ import { DoggoService } from './services/doggo.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  /**
+   * OnInit doggoService will fetch doggo data.
+   * Doggo data will hydrate the gallery Template from the observable.
+   */
   public galleryItemsObs: Observable<Array<Array<GalleryItem>>>;
   constructor(private doggoService: DoggoService) {}
 
