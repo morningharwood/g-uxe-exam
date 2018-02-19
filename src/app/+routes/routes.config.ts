@@ -6,7 +6,6 @@ import {
 import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
-import { GxeAboutComponent } from './about/about.component';
 
 
 export const AllRoutes = {

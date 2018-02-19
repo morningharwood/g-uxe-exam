@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { MainNavigationModule } from '../../_other/main-navigation/main-navigation.module';
 import { IntroComponent } from './intro.component';
 
 export const DECLARATIONS_EXPORTS = [ IntroComponent ];
@@ -30,6 +31,7 @@ export const DECLARATIONS_EXPORTS = [ IntroComponent ];
     MatDividerModule,
     MatListModule,
     RouterModule,
+    MainNavigationModule,
   ],
   declarations: [ ...DECLARATIONS_EXPORTS ],
   exports: [ ...DECLARATIONS_EXPORTS ],

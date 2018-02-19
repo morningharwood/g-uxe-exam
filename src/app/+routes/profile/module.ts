@@ -6,6 +6,7 @@ import { ProfileComponentsModule } from './components/module';
 import { MasterProfileContainerComponent } from './containers/master/component';
 import { ResumeContainerComponent } from './containers/resume/component';
 import * as profileRoutes from './routes';
+import { MainNavigationModule } from '../../_other/main-navigation/main-navigation.module';
 
 export const DECLARE_EXPORT = [
   ResumeContainerComponent,
@@ -20,6 +21,7 @@ export const DECLARE_EXPORT = [
     MhPipesModule,
     profileRoutes.routes,
     ProfileComponentsModule,
+    MainNavigationModule,
   ],
 })
 export class ProfileModule {
