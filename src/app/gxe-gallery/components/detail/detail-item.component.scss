@@ -1,24 +1,23 @@
 @import '../../../../assets/css/variables';
 @import '../../../../assets/css/mixins';
 
-
 :host {
+  align-items: center;
   background-color: $blue-link;
-  width: 100%;
-  height: 300px;
   display: flex;
   flex: 0 0 auto;
+  height: 300px;
   justify-content: center;
-  align-items: center;
   max-width: 100%;
+  width: 100%;
 
 }
 
 img {
-  width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   position: absolute;
   top: 0;
+  width: 100%;
   object-fit: cover;
 }

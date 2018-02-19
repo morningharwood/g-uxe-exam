@@ -12,7 +12,7 @@ import { GalleryItem } from '../../../interfaces/gallery-items.interface';
   styleUrls: ['./detail-item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  @Input() data: GalleryItem;
+  @Input() item: GalleryItem;
   constructor() { }
 
   ngOnInit() {

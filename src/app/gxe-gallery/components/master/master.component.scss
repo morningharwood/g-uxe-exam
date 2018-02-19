@@ -2,61 +2,61 @@
 @import '../../../../assets/css/mixins';
 
 :host {
+  background: black;
+  display: flex;
   height: 100%;
   width: 100%;
-  display: flex;
-  background: black;
 }
 
 .inner-container {
   display: flex;
   flex-wrap: wrap;
   min-height: 100%;
+  position: relative;
   width: 100%;
   z-index: 9;
-  position: relative;
 }
 .inner-item-container {
-  min-height: 100%;
-  position: relative;
-  z-index: 1;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 .close-btn {
-  position: fixed;
-  top: 25px;
-  right: 25px;
   background-color: $black;
   color: $white;
+  position: fixed;
+  right: 25px;
+  top: 25px;
   z-index: 99999;
 }
 
 .modal-screen {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
   background: rgba(0, 0, 0, .99);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 .inner-container-dupe {
-  min-height: 100%;
-  position: absolute;
-  z-index: 1;
-  width: 100%;
+  cursor: none;
   display: flex;
   flex-wrap: wrap;
+  min-height: 100%;
   pointer-events: none;
-  cursor: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 
   .item-dupe {
+    cursor: none;
     flex: 1 1 50%;
     max-height: 25vh;
-    cursor: none;
     pointer-events: none;
   }
 
