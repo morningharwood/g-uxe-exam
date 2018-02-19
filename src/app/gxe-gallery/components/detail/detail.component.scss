@@ -7,24 +7,24 @@
   flex-wrap: nowrap;
   height: 100%;
   max-width: 100%;
+  position: relative;
   width: 100%;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  position: relative;
 
   &::before {
-    position: absolute;
-    z-index: 0;
-    top: 40%;
-    left: 25%;
-    content: 'Hello Google!';
-    width: 100px;
-    height: 36px;
-    padding-left: 36px;
     background-image: url(../../../../assets/images/favicon-32x32.png);
     background-repeat: no-repeat;
     color: $red-danger;
+    content: 'Hello Google!';
     font-family: $sans-default-family;
+    height: 36px;
+    left: 25%;
+    padding: 0 0 0 36px;
+    position: absolute;
+    top: 40%;
+    width: 100px;
+    z-index: 0;
   }
 }
 
@@ -33,7 +33,7 @@
   flex-wrap: nowrap;
   height: 100%;
   max-width: 100%;
-  width: 100%;
   position: relative;
+  width: 100%;
   z-index: 1;
 }
