@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { DoggoService } from '../../backend-tipe/doggo/doggo.service';
+import { GalleryItem } from '../../gxe-gallery/interfaces/gallery-items.interface';
 
 @Component({
   selector: 'gxe-demo',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GxeDemoComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * OnInit doggoService will fetch doggo data.
+   * Doggo data will hydrate the gallery Template from the observable.
+   */
+  public galleryItemsObs: Observable<Array<Array<GalleryItem>>>;
 
-  ngOnInit() {
+  constructor(private doggoService: DoggoService) {}
+
+  public ngOnInit(): void {
+    this.galleryItemsObs = this.doggoService.get();
   }
 
 }

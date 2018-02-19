@@ -3,19 +3,36 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { GxeGalleryModule } from '../../gxe-gallery/gxe-gallery.module';
-import { DoggoModule } from '../../services/doggo/doggo.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 import { IntroComponent } from './intro.component';
 
-export const DECLARATIONS_EXPORTS = [IntroComponent]
+export const DECLARATIONS_EXPORTS = [ IntroComponent ];
 
 @NgModule({
   imports: [
     CommonModule,
-    GxeGalleryModule,
-    DoggoModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatCardModule,
+    MatTabsModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    RouterModule,
   ],
-  declarations: [...DECLARATIONS_EXPORTS],
-  exports: [...DECLARATIONS_EXPORTS]
+  declarations: [ ...DECLARATIONS_EXPORTS ],
+  exports: [ ...DECLARATIONS_EXPORTS ],
 })
-export class GxeIntroModule { }
+export class GxeIntroModule {
+}

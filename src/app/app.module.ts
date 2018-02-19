@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { GxeRouterModule } from './+routes/routes.module';
 import { AppComponent } from './app.component';
-import { DoggoModule } from './services/doggo/doggo.module';
+import { DoggoModule } from './backend-tipe/doggo/doggo.module';
 
 
 

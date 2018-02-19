@@ -1,0 +1,25 @@
+.doggo-demo {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+.fill-space{
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}

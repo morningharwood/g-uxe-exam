@@ -1,3 +1,51 @@
-<gxe-gallery-master
-  [galleryItems]="galleryItemsObs | async">
-</gxe-gallery-master>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button>Exercise</button>
+    <button mat-button>About me</button>
+    <span class="fill-space"></span>
+
+    <span class="example-spacer"></span>
+    <button mat-icon-button [routerLink]="['/demo']" >
+      <mat-icon aria-label="Mobile demo link" >phone_android</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon class="example-icon">code</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-list>
+  <mat-list-item>Exercise Overview</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Video Demo</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Mobile Demo</mat-list-item>
+</mat-list>
+
+
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Tabs with text labels</h2>
+    <mat-tab-group class="demo-tab-group">
+      <mat-tab label="Tab 1">
+        <div class="demo-tab-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 2">
+        <div class="demo-tab-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
