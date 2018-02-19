@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { EventType } from '../../../enums/event-types';
+import { CurrentItem } from '../../../interfaces/current-item.interface';
 import { GalleryItem } from '../../../interfaces/gallery-items.interface';
 import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
 
@@ -19,13 +20,13 @@ import { SwipeVerticalService } from '../../../services/swipe-vertical.service';
   styleUrls: [ './master-item.component.scss' ],
 })
 export class GalleryItemComponent implements OnInit {
-  @Input() public item;
-  @Input() public index;
   @Input() public galleryItems: GalleryItem[];
+  @Input() public item: GalleryItem;
+  @Input() public index: number;
   @Input() public isActive: boolean;
-  @Output() public selected: EventEmitter<any> = new EventEmitter();
-  @Output() public endingSelect: EventEmitter<any> = new EventEmitter();
-  @Output() public close: EventEmitter<any> = new EventEmitter();
+  @Output() public close: EventEmitter<HammerManager> = new EventEmitter();
+  @Output() public endingSelect: EventEmitter<number> = new EventEmitter();
+  @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
   private elWidth: number;
@@ -37,10 +38,9 @@ export class GalleryItemComponent implements OnInit {
     this.elWidth = this.hostEl.nativeElement.getBoundingClientRect().width;
   }
 
-  public originalSelectionChanged($event): void {
+  public originalSelectionChanged($event: number): void {
     this.endingSelect.emit($event);
   }
-
 
   @HostListener(EventType.CLICK)
   public selectedItem(): void {

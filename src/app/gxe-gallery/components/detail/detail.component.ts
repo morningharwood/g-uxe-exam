@@ -31,7 +31,6 @@ export class GalleryDetailComponent implements OnInit {
   @Input() public startingIndex: number;
   @Input() public itemWidth: number;
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
-  @Output() public close: EventEmitter<any> = new EventEmitter();
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
   public currentPosition: number;
