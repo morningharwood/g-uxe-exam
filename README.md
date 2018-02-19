@@ -1,6 +1,7 @@
-# GUxe
+# g(U)xe Gallery Carosel
 `npm i` or `yarn`
 `npm start`
+`npm run docs`
 
 
 

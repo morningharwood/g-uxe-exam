@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Backend CMS Service: tipe.io.
+ */
+
 import {
   HttpClient,
   HttpHeaders,
@@ -13,7 +17,8 @@ export class DoggoService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Fetch data from https://tipe.io a cms endpoint of doggos.
+   * Fetch data from doggo folder endpoint on tipe.
+   * Then map data in a more consumable shape for frontend.
    */
   public get(): Observable<Array<Array<GalleryItem>>> {
     const FOLDER_ID = '5a878162500cc2001395c413';

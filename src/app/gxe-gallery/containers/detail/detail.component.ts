@@ -15,7 +15,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { EventType } from '../../../_libs/event-types';
+import { EventType } from '../../../enums/event-types';
 import {
   GalleryItem,
 } from '../../mock-data';
