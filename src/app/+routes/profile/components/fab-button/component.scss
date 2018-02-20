@@ -1,0 +1,32 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/extends';
+@import '../../../../../assets/css/variables';
+
+
+button {
+  @extend %reset-space;
+  @include hide();
+  @include bp(4) {
+    $fab-size: 42;
+    @include position(absolute, em(-$fab-size/2), null, null, em($fab-size));
+    @include size(em($fab-size), em($fab-size));
+    @include show(block);
+
+    background-color: $red-danger;
+    border: transparent;
+    border-radius: em($fab-size);
+  }
+}
+
+button span {
+  @include bp(4) {
+    @include position(absolute, em(12), null, null, null, $tertiary);
+    @include space(m, 0 0 0 em(-3));
+
+    color: $white;
+    cursor: pointer;
+    font-size: ms(0);
+    text-align: center;
+    transform: rotate(90deg) scale(0.5, 1);
+  }
+}

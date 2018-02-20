@@ -1,0 +1,15 @@
+<gxe-main-navigation></gxe-main-navigation>
+<router-outlet></router-outlet>
+<section class="main">
+  <header class="header">
+    <h2>{{me.name}}</h2>
+    <h3>{{me.title}}</h3>
+    <p>{{me.description}}</p>
+  </header>
+  <div class="portrait">
+  </div>
+</section>
+<router-outlet name="resume"></router-outlet>
+<mh-video-block
+  [data]="selectedVideoObs | async">
+</mh-video-block>

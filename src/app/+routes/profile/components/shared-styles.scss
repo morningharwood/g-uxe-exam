@@ -1,0 +1,53 @@
+@import '../../../../assets/css/mixins';
+@import '../../../../assets/css/variables';
+
+$grid-padding: 1;
+
+%standard-size {
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  line-height: ms(1);
+}
+
+ul {
+  list-style-type: none;
+}
+
+h4 {
+  font-size: ms(1);
+  font-weight: 400;
+  padding: ms(0) 0;
+
+  @include bp(4) {
+    font-size: ms(1, $thread: aug);
+    padding: ms(-1) 0;
+  }
+}
+
+h5 {
+  @extend %standard-size;
+  padding: ms(0) 0 0;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}
+
+p {
+  @extend %standard-size;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}
+
+a {
+  @extend %standard-size;
+
+  color: $red-danger;
+  text-decoration: none;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}

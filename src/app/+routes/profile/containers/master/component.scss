@@ -1,0 +1,82 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/variables';
+
+.main {
+  display: flex;
+  align-items: center;
+  background: $white;
+  flex-direction: column;
+  height: auto;
+
+  @include bp(4) {
+    height: 100%;
+    position: fixed;
+    flex-direction: row;
+  }
+}
+
+%standard-size {
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  line-height: ms(1);
+}
+
+header {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: ms(1) ms(1) 0 ms(1);
+  width: 100%;
+  order: 1;
+
+  @include bp(4) {
+    height: 100%;
+    margin: 0 auto;
+
+    order: 0;
+    padding: 0 ms(4) ms(3);
+    width: percentage(1/2);
+  }
+}
+
+.portrait {
+  width: percentage(1/1);
+  position: relative;
+  overflow: hidden;
+  background: url("../../../../../assets/images/me4-sq.jpg") no-repeat center;
+  background-size: cover;
+  order: 0;
+  height: 50vh;
+
+  @include bp(4) {
+    height: 100%;
+    order: 1;
+    width: percentage(1/2);
+  }
+}
+
+p {
+  @extend %standard-size;
+
+  @include bp(4) {
+    font-size: ms(-1);
+  }
+}
+
+h2 {
+  font-size: ms(2);
+  font-weight: 400;
+}
+
+h3 {
+  color: $red-danger;
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  font-weight: 400;
+  padding: ms(0) 0;
+
+  @include bp(4) {
+    padding: ms(-1) 0;
+  }
+}

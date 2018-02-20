@@ -1,0 +1,40 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+mat-toolbar {
+  width: 100%;
+  position: fixed;
+  z-index: $z-layer-highest;
+}
+
+mat-toolbar-row {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.pos {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+span {
+  position: relative;
+  z-index: 1;
+}
+
+
+.bottom-bar {
+  bottom: 0;
+  background-color: $black-dark;
+
+  mat-toolbar-row {
+    justify-content: space-around;
+  }
+
+  mat-icon {
+    color: $white;
+  }
+}

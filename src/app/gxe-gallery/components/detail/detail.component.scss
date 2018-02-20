@@ -1,0 +1,40 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+:host {
+  background-color: $fun-color;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  &::before {
+    background-image: url(../../../../assets/images/favicon.gif);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    color: $red-danger;
+    content: 'Hello Google!';
+    font-family: $sans-default-family;
+    height: 36px;
+    left: 25%;
+    padding: 0 0 0 36px;
+    position: absolute;
+    top: 40%;
+    width: 100px;
+    z-index: 0;
+  }
+}
+
+.gxe-gallery-inner-container {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}

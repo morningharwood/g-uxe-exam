@@ -1,0 +1,10 @@
+<!-- TODO(mharwood) add trackby method -->
+<div class="gxe-gallery-inner-container"
+     #gxeGalleryInnerContainer
+     [ngStyle]="{'transform': 'translateX(' + currentPosition + 'px)'}">
+
+  <gxe-gallery-detail-item
+    *ngFor="let item of galleryItems"
+    [item]="item">
+  </gxe-gallery-detail-item>
+</div>

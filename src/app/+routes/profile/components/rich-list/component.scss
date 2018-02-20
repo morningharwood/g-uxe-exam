@@ -1,0 +1,49 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/variables';
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  padding: ms(0) 0 0 0;
+  cursor: pointer;
+
+  &:hover img {
+    opacity: .9;
+  }
+}
+
+.left {
+  width: percentage(1/5);
+  display: inline-block;
+
+  img {
+    opacity: .75;
+    border-radius: 100px;
+    width: 100%;
+  }
+}
+
+.right {
+  display: inline-block;
+  padding-left: ms(0);
+}
+
+h5 {
+  padding: 0
+}
+
+.title {
+  color: $red-danger;
+  font-style: italic;
+  padding: 0 0 ms(0);
+
+  a {
+    @include bp(4) {
+      font-size: ms(0);
+    }
+  }
+}

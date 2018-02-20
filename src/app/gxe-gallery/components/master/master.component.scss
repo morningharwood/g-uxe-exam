@@ -1,0 +1,78 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+:host {
+
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.spacer {
+  width: 100%;
+  padding: 56px 0 0;
+
+  @include bpM(1) {
+    padding-top: 64px;
+  }
+}
+
+.inner-container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 9;
+}
+
+.inner-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.close-btn {
+  background-color: transparent;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  color: $white-off;
+  z-index: 99999;
+}
+
+.modal-screen {
+  background: rgba(0, 0, 0, .99);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.inner-container-dupe {
+  cursor: none;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  .item-dupe {
+    cursor: none;
+    flex: 1 1 50%;
+    max-height: 25vh;
+    pointer-events: none;
+  }
+
+  img {
+    cursor: none;
+    pointer-events: none;
+    width: 100%;
+  }
+}

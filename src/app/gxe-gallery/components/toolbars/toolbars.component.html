@@ -1,0 +1,27 @@
+
+<mat-toolbar [@switchToolBar]="isModalActive">
+  <mat-toolbar-row>
+    <span>{{name || 'Image Gallery' }}</span>
+  </mat-toolbar-row>
+  <ng-content></ng-content>
+</mat-toolbar>
+
+
+<mat-toolbar
+  class="bottom-bar"
+  [@switchBottomToolBar]="isModalActive">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon>plus_one</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>comment</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

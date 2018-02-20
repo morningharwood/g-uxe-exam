@@ -1,0 +1,53 @@
+@import '../../../../../assets/css/mixins';
+@import '../../../../../assets/css/variables';
+
+.date-range {
+  font-style: italic;
+  opacity: .6;
+  padding: ms(0) 0 0;
+}
+
+.title {
+  color: $red-danger;
+  font-style: italic;
+  padding: 0 0 ms(0);
+
+  a {
+    @include bp(4) {
+      font-size: ms(0);
+    }
+  }
+}
+
+%standard-size {
+  font-family: $sans-default-family;
+  font-size: ms(0);
+  line-height: ms(1);
+}
+
+p {
+  @extend %standard-size;
+
+  @include bp(4) {
+    font-size: ms(-1);
+
+  }
+}
+
+span {
+  position: relative;
+}
+
+svg {
+  height: em(13);
+  left: 4px;
+  position: absolute;
+  top: 2px;
+  width: em(13);
+  fill: $red-danger;
+
+}
+
+.p-b-1 {
+  padding-bottom: ms(0);
+}

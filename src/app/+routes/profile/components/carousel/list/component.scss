@@ -1,0 +1,23 @@
+@import '../../../../../../assets/css/mixins';
+@import '../../../../../../assets/css/variables';
+
+:host {
+  display: block;
+  min-height: 168px;
+
+  @include bp(4) {
+    min-height: 158px;
+  }
+
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+h5 {
+  padding: 0
+}
