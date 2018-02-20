@@ -30,7 +30,6 @@ export class GalleryItemComponent implements OnInit {
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
-  @ViewChild('image') public image: ElementRef;
   private elWidth: number;
 
   constructor(private swipeService: SwipeVerticalService) {
@@ -61,7 +60,6 @@ export class GalleryItemComponent implements OnInit {
         index: this.index,
         hostEl: this.hostEl.nativeElement,
         mask: this.mask.nativeElement,
-        image: this.image.nativeElement,
       });
   }
 

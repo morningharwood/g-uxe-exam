@@ -11,14 +11,13 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import {
+  STANDARD_EASE,
+} from '../../animations/ease.animations';
 import { CurrentItem } from '../../interfaces/current-item.interface';
 import { Vector2 } from '../../interfaces/vector.interface';
 import { SwipeVerticalService } from '../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../services/window-scroll.service';
-import {
-  SEAMLESS_EASE,
-  STANDARD_EASE,
-} from '../../animations/ease.animations';
 import { GalleryItemComponent } from './master-item.component';
 
 
@@ -39,7 +38,6 @@ export class GalleryMasterComponent implements OnInit {
   private playerParentEnd: AnimationPlayer;
   private playerStart: AnimationPlayer;
   private playerPaddingStart: AnimationPlayer;
-  private playerPaddingEnd: AnimationPlayer;
 
 
   constructor(private builder: AnimationBuilder,
@@ -91,7 +89,6 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   private itemAnimate(from, to, el, scale): void {
-
     this.playerStart = this.builder.build([
       style({
         transformOrigin: `${from.x}px ${from.y}px`,

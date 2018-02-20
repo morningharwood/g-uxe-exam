@@ -13,6 +13,10 @@
   }
 }
 
+.transparent {
+  opacity: 0;
+}
+
 .outer-mask,
 .inner-mask {
   flex: 1 1 50%;
