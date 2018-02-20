@@ -68,4 +68,8 @@ export class GalleryItemComponent implements OnInit {
       .on(`${EventType.SWIPEUP} ${EventType.SWIPEDOWN}`,
         () => this.close.emit());
   }
+
+  public tapped() {
+    //
+  }
 }

@@ -7,6 +7,7 @@
       [galleryItems]="galleryItems"
       [startingIndex]="index"
       [itemWidth]="elWidth"
+      (tap)="tapped()"
       (endingIndex)="originalSelectionChanged($event)"
       *ngIf="isActive">
     </gxe-gallery-detail>

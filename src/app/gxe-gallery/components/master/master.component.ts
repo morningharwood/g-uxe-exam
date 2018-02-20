@@ -12,7 +12,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { CurrentItem } from '../../interfaces/current-item.interface';
-import { Vector2 } from '../../interfaces/vector2.interface';
+import { Vector2 } from '../../interfaces/vector.interface';
 import { SwipeVerticalService } from '../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../services/window-scroll.service';
 import { STANDARD_EASE } from '../../animations/ease.animations';

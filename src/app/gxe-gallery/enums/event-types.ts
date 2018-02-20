@@ -89,6 +89,7 @@ export enum EventType {
   LOADEDDATA = 'loadeddata',
   LOADEDMETADATA = 'loadedmetadata',
   PAUSE = 'pause',
+  TAP = 'tap',
   PANEND = 'panend',
   PANMOVE = 'panmove',
   PANUP = 'panup',

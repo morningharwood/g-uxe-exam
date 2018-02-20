@@ -30,8 +30,10 @@ const TOUCH_THRESHOLD = .75;
 })
 export class GalleryDetailComponent implements OnInit {
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
+  @Output() public tap: EventEmitter<any> = new EventEmitter();
   @Input() public galleryItems: GalleryItem[];
   @Input() public itemWidth: number;
+
   @Input() public startingIndex: number;
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
@@ -48,6 +50,10 @@ export class GalleryDetailComponent implements OnInit {
     this.lastPosition = 0;
     this.currentPosition = 0;
     this.paginationAnimate(this.startingIndex, '0ms');
+  }
+  @HostListener(EventType.TAP)
+  public tapped() {
+    this.tap.emit();
   }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
