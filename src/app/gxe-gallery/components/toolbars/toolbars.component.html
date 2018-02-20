@@ -1,6 +1,14 @@
-<mat-toolbar>
+<mat-toolbar [@switchToolBar]="isModalActive">
   <mat-toolbar-row>
-    <span>Image Gallery</span>
+    <span>{{name || 'Image Gallery' }}</span>
   </mat-toolbar-row>
   <ng-content></ng-content>
+</mat-toolbar>
+
+
+<mat-toolbar
+  class="bottom-bar"
+  [@switchBottomToolBar]="isModalActive">
+  <mat-toolbar-row>
+  </mat-toolbar-row>
 </mat-toolbar>

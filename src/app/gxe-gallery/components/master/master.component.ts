@@ -32,7 +32,7 @@ export class GalleryMasterComponent implements OnInit {
   @Input() public galleryItems: any[];
   public isActive: boolean;
   public currentItem: CurrentItem;
-
+  public currentIndex: number;
   private to: Vector2;
   private playerEnd: AnimationPlayer;
   private playerEndOrigin: Vector2;
@@ -59,10 +59,10 @@ export class GalleryMasterComponent implements OnInit {
     this.setBodyScroll();
   }
 
-  public setOrigin($event: number): void {
-
+  public setCurrentItem($event: number): void {
     const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
 
+    this.currentIndex = $event;
     this.playerEndOrigin = {
       x: data.x - this.currentItem.x,
       y: data.y - this.currentItem.y,
