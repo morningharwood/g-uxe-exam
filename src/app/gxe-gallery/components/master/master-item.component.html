@@ -2,11 +2,12 @@
 
 <div #hostEl class="outer-mask">
   <div #mask class="inner-mask">
-    <img [src]="item[1].value.url" alt="">
+    <img [ngClass]="{'transparent': isActive}" [src]="item[1].value.url" alt="">
     <gxe-gallery-detail
       [galleryItems]="galleryItems"
       [startingIndex]="index"
       [itemWidth]="elWidth"
+      [isActive]="galleryOpen"
       (tap)="tapped()"
       (endingIndex)="originalSelectionChanged($event)"
       *ngIf="isActive">

@@ -3,6 +3,7 @@
      [ngStyle]="{'transform': 'translateX(' + currentPosition + 'px)'}">
 
   <gxe-gallery-detail-item
+    [isActive]="isActive"
     *ngFor="let item of galleryItems"
     [item]="item">
   </gxe-gallery-detail-item>

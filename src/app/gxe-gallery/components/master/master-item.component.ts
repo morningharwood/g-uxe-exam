@@ -24,6 +24,7 @@ export class GalleryItemComponent implements OnInit {
   @Input() public item: GalleryItem;
   @Input() public index: number;
   @Input() public isActive: boolean;
+  @Input() public galleryOpen: boolean;
   @Output() public close: EventEmitter<HammerManager> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<number> = new EventEmitter();
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();

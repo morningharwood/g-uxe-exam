@@ -11,15 +11,14 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import {
+  STANDARD_EASE,
+} from '../../animations/ease.animations';
 import { CurrentItem } from '../../interfaces/current-item.interface';
 import { Vector2 } from '../../interfaces/vector.interface';
 import { SwipeVerticalService } from '../../services/swipe-vertical.service';
 import { WindowScrolling } from '../../services/window-scroll.service';
-import { STANDARD_EASE } from '../../animations/ease.animations';
 import { GalleryItemComponent } from './master-item.component';
-
-
-
 
 
 @Component({
@@ -38,6 +37,7 @@ export class GalleryMasterComponent implements OnInit {
   private playerEndOrigin: Vector2;
   private playerParentEnd: AnimationPlayer;
   private playerStart: AnimationPlayer;
+  private playerPaddingStart: AnimationPlayer;
 
 
   constructor(private builder: AnimationBuilder,
@@ -89,10 +89,9 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   private itemAnimate(from, to, el, scale): void {
-    const borderPadding = 0;
     this.playerStart = this.builder.build([
       style({
-        transformOrigin: `${from.x + borderPadding}px ${from.y + borderPadding}px`,
+        transformOrigin: `${from.x}px ${from.y}px`,
       }),
       animate(
         STANDARD_EASE,
@@ -110,7 +109,7 @@ export class GalleryMasterComponent implements OnInit {
       animate(
         STANDARD_EASE,
         style({
-          transform: `translate(${to.x}px, ${to.y}px) scale(${scale})`,
+          transform: `translate(${to.x}px, ${to.y}px) scale(${ scale })`,
         }),
       ),
     ]).create(el);
@@ -154,6 +153,11 @@ export class GalleryMasterComponent implements OnInit {
     if (this.playerParentEnd) {
       this.playerParentEnd.destroy();
       this.playerParentEnd = null;
+    }
+
+    if (this.playerPaddingStart) {
+      this.playerPaddingStart.destroy();
+      this.playerPaddingStart = null;
     }
   }
 

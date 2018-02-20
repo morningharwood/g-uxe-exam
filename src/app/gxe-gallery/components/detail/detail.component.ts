@@ -1,6 +1,9 @@
 import {
   animate,
+  state,
   style,
+  transition,
+  trigger,
   AnimationBuilder,
   AnimationPlayer,
 } from '@angular/animations';
@@ -10,15 +13,15 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
   OnInit,
   Output,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { STANDARD_EASE } from '../../animations/ease.animations';
 import { EventType } from '../../enums/event-types';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
-import { STANDARD_EASE } from '../../animations/ease.animations';
-
 
 
 const TOUCH_THRESHOLD = .75;
@@ -26,14 +29,14 @@ const TOUCH_THRESHOLD = .75;
 @Component({
   selector: 'gxe-gallery-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: [ './detail.component.scss' ],
 })
-export class GalleryDetailComponent implements OnInit {
+export class GalleryDetailComponent implements OnInit, OnChanges {
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
   @Output() public tap: EventEmitter<any> = new EventEmitter();
   @Input() public galleryItems: GalleryItem[];
   @Input() public itemWidth: number;
-
+  @Input() public isActive: boolean;
   @Input() public startingIndex: number;
   @ViewChild('gxeGalleryInnerContainer') private galleryInnerContainer: ElementRef;
   @ViewChildren('detailItem') private detailItem: ElementRef;
@@ -47,14 +50,20 @@ export class GalleryDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+
     this.lastPosition = 0;
     this.currentPosition = 0;
     this.paginationAnimate(this.startingIndex, '0ms');
   }
-  @HostListener(EventType.TAP)
-  public tapped() {
-    this.tap.emit();
+
+  public ngOnChanges() {
+    console.log(this.isActive);
   }
+
+  // @HostListener(EventType.TAP)
+  // public tapped() {
+  //   this.tap.emit();
+  // }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
