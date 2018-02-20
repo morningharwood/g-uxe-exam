@@ -53,7 +53,6 @@ export class GalleryItemComponent implements OnInit {
 
   private emitViewChildrenSelected() {
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
-    console.log(this.index);
     this.selected.emit(
       {
         x,

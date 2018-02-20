@@ -169,6 +169,7 @@ export class GalleryMasterComponent implements OnInit {
 
   private closeGalleryDetail() {
     this.isActive_ = false;
+    this.tapped = false;
     this.itemAnimateReverse({ x: 0, y: 0 }, this.currentItem.mask, 1);
   }
 

@@ -101,19 +101,22 @@ import {
   ],
 })
 export class ToolbarsComponent implements OnInit, OnChanges {
-  @Input() public isModalActive: string;
+  @Input() public isModalActive: boolean;
   @Input() public items: any;
   @Input() public currentIndex: number;
   @Input() public tapped: boolean;
+  @Input() public selectedChild: any;
   public name: string;
 
   constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    console.log('init?')
   }
 
   ngOnChanges() {
+    console.log(this.selectedChild, this.tapped, this.currentIndex, this.isModalActive)
     if (this.currentIndex >= 0 && this.isModalActive) {
       this.name = this.items[ this.currentIndex ][ 0 ].value;
     } else {

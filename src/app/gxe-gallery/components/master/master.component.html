@@ -1,15 +1,17 @@
-<gxe-toolbars
-  [isModalActive]="isActive"
-  [items]="galleryItems"
-  [currentIndex]="currentIndex"
-  [tapped]="tapped">
-  <button mat-icon-button
-          (click)="close()"
-          class="close-btn"
-          *ngIf="isActive">
-    <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
-  </button>
-</gxe-toolbars>
+
+  <gxe-toolbars
+    [isModalActive]="isActive"
+    [items]="galleryItems"
+    [currentIndex]="currentIndex"
+    [selectedChild]="currentItem"
+    [tapped]="tapped">
+    <button mat-icon-button
+            (click)="close()"
+            class="close-btn"
+            *ngIf="isActive">
+      <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+    </button>
+  </gxe-toolbars>
 
 <div class="spacer">
 

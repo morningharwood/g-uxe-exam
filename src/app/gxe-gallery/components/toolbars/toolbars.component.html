@@ -11,7 +11,7 @@
 <mat-toolbar
   class="bottom-bar"
   [@switchToolbarBottom]="isModalActive"
-  [@tappedToolbarBottom]="!tapped">
+  [@tappedToolbarBottom]="isModalActive && !tapped">
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon>plus_one</mat-icon>
