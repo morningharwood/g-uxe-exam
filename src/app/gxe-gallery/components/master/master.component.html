@@ -31,6 +31,7 @@
       [item]="item"
       [galleryItems]="galleryItems"
       [index]="i"
+      [galleryOpen]="isActive"
       [isActive]="currentItem?.index === i"
       (endingSelect)="setCurrentItem($event)"
       (close)="close($event)"

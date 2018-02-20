@@ -24,11 +24,13 @@ export class GalleryItemComponent implements OnInit {
   @Input() public item: GalleryItem;
   @Input() public index: number;
   @Input() public isActive: boolean;
+  @Input() public galleryOpen: boolean;
   @Output() public close: EventEmitter<HammerManager> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<number> = new EventEmitter();
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
+  @ViewChild('image') public image: ElementRef;
   private elWidth: number;
 
   constructor(private swipeService: SwipeVerticalService) {
@@ -59,6 +61,7 @@ export class GalleryItemComponent implements OnInit {
         index: this.index,
         hostEl: this.hostEl.nativeElement,
         mask: this.mask.nativeElement,
+        image: this.image.nativeElement,
       });
   }
 
