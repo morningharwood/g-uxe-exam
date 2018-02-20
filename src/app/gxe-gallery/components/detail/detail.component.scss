@@ -12,20 +12,24 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   &::before {
-    background-image: url(../../../../assets/images/favicon.gif);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    color: $red-danger;
-    content: 'Hire Me!';
-    font-family: $sans-default-family;
-    height: 36px;
-    left: 25%;
-    padding: 0 0 0 52px;
+    background: url(../../../../assets/images/favicon.gif) no-repeat top left;
+
+    background-size: 16px 16px;
+    color: $black-dark;
+    line-height: 2;
+    content: 'Hire me!';
+    font-family: "monospace";
+    font-size: 10px;
+    left: 50%;
+    transform: translate(-36px, -8px);
     position: absolute;
-    top: 40%;
-    width: 100px;
-    z-index: 0;
+    padding-left: 24px;
+    top: 50%;
+    width: 72px;
+    height: 16px;
+    z-index: 1;
   }
+
 }
 
 .gxe-gallery-inner-container {
