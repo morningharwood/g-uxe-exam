@@ -6,9 +6,11 @@ import {
 } from '@angular/animations';
 import {
   Component,
+  ElementRef,
   Input,
   OnInit,
   QueryList,
+  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import {
@@ -28,6 +30,7 @@ import { GalleryItemComponent } from './master-item.component';
 })
 export class GalleryMasterComponent implements OnInit {
   @ViewChildren(GalleryItemComponent) public masterItems: QueryList<GalleryItemComponent>;
+  @ViewChild('innerContainer') public innerContainer: ElementRef;
   @Input() public galleryItems: any[];
   public isActive: boolean;
   public currentItem: CurrentItem;
@@ -186,7 +189,13 @@ export class GalleryMasterComponent implements OnInit {
 
   private scrollToElement() {
     if (this.currentItem.index !== this.currentIndex) {
-      window.scrollTo(0, this.currentSelectedBounds.y);
+      let scrollYPosition = 0;
+      if (this.currentSelectedBounds.y <= this.innerContainer.nativeElement.getBoundingClientRect().height / 2) {
+        scrollYPosition = this.currentSelectedBounds.y - 68;
+      } else {
+        scrollYPosition = this.currentSelectedBounds.y + 68;
+      }
+      window.scrollTo(0, scrollYPosition);
     }
   }
 
