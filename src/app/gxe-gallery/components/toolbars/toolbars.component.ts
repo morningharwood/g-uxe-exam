@@ -11,7 +11,10 @@ import {
   OnChanges,
   OnInit,
 } from '@angular/core';
-import { STANDARD_EASE } from '../../animations/ease.animations';
+import {
+  SEAMLESS_EASE,
+  STANDARD_EASE,
+} from '../../animations/ease.animations';
 
 
 @Component({
@@ -47,13 +50,13 @@ import { STANDARD_EASE } from '../../animations/ease.animations';
         color: '#f7f7f7',
       })),
       transition('0 => 1', [
-        animate(STANDARD_EASE, style({
+        animate(SEAMLESS_EASE, style({
           background: '#333333',
           color: '#f7f7f7',
         })),
       ]),
       transition('1 => 0', [
-        animate(STANDARD_EASE, style({
+        animate(SEAMLESS_EASE, style({
           background: '#f7f7f7',
           color: '#333333',
         })),
