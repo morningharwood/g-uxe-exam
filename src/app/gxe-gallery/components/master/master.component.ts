@@ -39,6 +39,7 @@ export class GalleryMasterComponent implements OnInit {
   private playerParentEnd: AnimationPlayer;
   private playerStart: AnimationPlayer;
   private playerPaddingStart: AnimationPlayer;
+  private currentSelectedBounds: any;
 
 
   constructor(private builder: AnimationBuilder,
@@ -62,23 +63,19 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public setCurrentItem($event: number): void {
-    const data = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
-
+    this.currentSelectedBounds = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
     this.currentIndex = $event;
     this.playerEndOrigin = {
-      x: data.x - this.currentItem.x,
-      y: data.y - this.currentItem.y,
+      x: this.currentSelectedBounds.x - this.currentItem.x,
+      y: this.currentSelectedBounds.y - this.currentItem.y,
     };
   }
 
   public close(): void {
     this.swipeService.swipeOff();
+    this.scrollToElement();
+    this.resetGalleryState();
     this.closeGalleryDetail();
-
-
-    if (this.notEmpty()) {
-      this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
-    }
   }
 
   public selectedItem($event): void {
@@ -168,9 +165,10 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   private closeGalleryDetail() {
-    this.isActive_ = false;
-    this.tapped = false;
     this.itemAnimateReverse({ x: 0, y: 0 }, this.currentItem.mask, 1);
+    if (this.notEmpty()) {
+      this.itemHostAnimate(this.playerEndOrigin, this.currentItem.hostEl);
+    }
   }
 
   private openGalleryDetail($event: any) {
@@ -183,7 +181,17 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public toggleTap(): void {
-    console.log('tapped master');
     this.tapped = !this.tapped;
+  }
+
+  private scrollToElement() {
+    if (this.currentItem.index !== this.currentIndex) {
+      window.scrollTo(0, this.currentSelectedBounds.y);
+    }
+  }
+
+  private resetGalleryState(): void {
+    this.isActive_ = false;
+    this.tapped = false;
   }
 }
