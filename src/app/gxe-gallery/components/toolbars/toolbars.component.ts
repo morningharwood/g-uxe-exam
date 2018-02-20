@@ -22,12 +22,20 @@ import { STANDARD_EASE } from '../../animations/ease.animations';
     trigger('switchBottomToolBar', [
       state('0', style({
         bottom: '-80px',
-        color: '#333333',
       })),
       state('1', style({
-        background: '#333333',
-        color: '#f7f7f7',
+        bottom: '-1px',
       })),
+      transition('0 => 1', [
+        animate(STANDARD_EASE, style({
+          bottom: '-1px',
+        })),
+      ]),
+      transition('1 => 0', [
+        animate(STANDARD_EASE, style({
+          bottom: '-80px',
+        })),
+      ]),
     ]),
     trigger('switchToolBar', [
       state('0', style({

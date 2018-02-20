@@ -17,4 +17,13 @@ mat-toolbar-row {
 
 .bottom-bar {
   bottom: 0;
+  background-color: $black-dark;
+
+  mat-toolbar-row {
+    justify-content: space-around;
+  }
+
+  mat-icon {
+    color: $white;
+  }
 }
