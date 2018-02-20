@@ -28,6 +28,7 @@ export class GalleryItemComponent implements OnInit {
   @Output() public close: EventEmitter<HammerManager> = new EventEmitter();
   @Output() public endingSelect: EventEmitter<number> = new EventEmitter();
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
+  @Output() public childTap: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('hostEl') public hostEl: ElementRef;
   @ViewChild('mask') public mask: ElementRef;
   private elWidth: number;
@@ -70,7 +71,8 @@ export class GalleryItemComponent implements OnInit {
         () => this.close.emit());
   }
 
-  public tapped() {
-    //
+  public tapped(event) {
+    console.log('tapp outter');
+    this.childTap.emit();
   }
 }

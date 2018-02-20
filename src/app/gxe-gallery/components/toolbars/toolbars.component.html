@@ -1,5 +1,6 @@
 
-<mat-toolbar [@switchToolBar]="isModalActive">
+<mat-toolbar [@switchToolbarTop]="isModalActive"
+             [@tappedToolbarTop]="!tapped">
   <mat-toolbar-row>
     <span>{{name || 'Image Gallery' }}</span>
   </mat-toolbar-row>
@@ -9,7 +10,8 @@
 
 <mat-toolbar
   class="bottom-bar"
-  [@switchBottomToolBar]="isModalActive">
+  [@switchToolbarBottom]="isModalActive"
+  [@tappedToolbarBottom]="!tapped">
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon>plus_one</mat-icon>

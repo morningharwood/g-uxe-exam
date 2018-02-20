@@ -31,9 +31,9 @@ const TOUCH_THRESHOLD = .75;
   templateUrl: './detail.component.html',
   styleUrls: [ './detail.component.scss' ],
 })
-export class GalleryDetailComponent implements OnInit, OnChanges {
+export class GalleryDetailComponent implements OnInit {
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
-  @Output() public tap: EventEmitter<any> = new EventEmitter();
+  @Output() public tapped: EventEmitter<any> = new EventEmitter();
   @Input() public galleryItems: GalleryItem[];
   @Input() public itemWidth: number;
   @Input() public isActive: boolean;
@@ -56,14 +56,11 @@ export class GalleryDetailComponent implements OnInit, OnChanges {
     this.paginationAnimate(this.startingIndex, '0ms');
   }
 
-  public ngOnChanges() {
-    console.log(this.isActive);
+  @HostListener(EventType.CLICK, ['$event'])
+  public taptap($event) {
+    console.log('tapp inner')
+    this.tapped.emit($event);
   }
-
-  // @HostListener(EventType.TAP)
-  // public tapped() {
-  //   this.tap.emit();
-  // }
 
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {

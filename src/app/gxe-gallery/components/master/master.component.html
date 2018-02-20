@@ -1,7 +1,8 @@
 <gxe-toolbars
   [isModalActive]="isActive"
   [items]="galleryItems"
-  [currentIndex]="currentIndex">
+  [currentIndex]="currentIndex"
+  [tapped]="tapped">
   <button mat-icon-button
           (click)="close()"
           class="close-btn"
@@ -33,6 +34,7 @@
       [index]="i"
       [galleryOpen]="isActive"
       [isActive]="currentItem?.index === i"
+      (childTap)="toggleTap()"
       (endingSelect)="setCurrentItem($event)"
       (close)="close($event)"
       (selected)="selectedItem($event)">

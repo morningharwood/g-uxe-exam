@@ -8,7 +8,7 @@
       [startingIndex]="index"
       [itemWidth]="elWidth"
       [isActive]="galleryOpen"
-      (tap)="tapped()"
+      (tapped)="tapped($events)"
       (endingIndex)="originalSelectionChanged($event)"
       *ngIf="isActive">
     </gxe-gallery-detail>

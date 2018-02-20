@@ -32,6 +32,7 @@ export class GalleryMasterComponent implements OnInit {
   public isActive: boolean;
   public currentItem: CurrentItem;
   public currentIndex: number;
+  public tapped: boolean;
   private to: Vector2;
   private playerEnd: AnimationPlayer;
   private playerEndOrigin: Vector2;
@@ -46,6 +47,7 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.tapped = false;
     this.isActive = false;
     this.playerEndOrigin = {
       x: 0,
@@ -177,5 +179,10 @@ export class GalleryMasterComponent implements OnInit {
 
   private notEmpty() {
     return Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
+  }
+
+  public toggleTap(): void {
+    console.log('tapped master');
+    this.tapped = !this.tapped;
   }
 }
