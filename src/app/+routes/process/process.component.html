@@ -14,17 +14,32 @@
     </mat-expansion-panel-header>
     <div class="tab-content">
       <section>
-        <h3>Goal:</h3>
+        <h3>Primary Goal:</h3>
         <p>
           Create an extensible mobile image gallery.
         </p>
       </section>
       <section>
-        <h3>Connecting the Dots:</h3>
+        <h3>Personal Goal:</h3>
         <p>
-          The opportunity lies within not only creating a mobile image gallery
-          but also offers an ergonomic implementation.
+          Offer an ergonomic implementation.
         </p>
+      </section>
+      <section>
+        <h3>Extensible &amp; Ergonomic:</h3>
+        <p>
+          <code>gxe-gallery</code> is a Angular component
+          that can render the entire experience from a single html tag.
+          Any data that fits the interface can be <a href="https://angular.io/api/core/Input">Input()</a> into the gallery
+          through the <code>[galleryItems]="data"</code> binding.
+          The underlying services are extensible and the component itself is simple to get up and running.
+        </p>
+        <br>
+        <p>For a full breakdown: <br><br>
+          <a href="https://gxe-gallery-docs.firebaseapp.com/" mat-button color="primary" >VIEW THE DOCS</a>
+          <a href="" mat-button color="primary" >DOWNLOAD THE CODE</a>
+        </p>
+
       </section>
       <section>
         <h3>Process Diagram:</h3>
@@ -59,14 +74,7 @@
           </mat-list-item>
         </mat-list>
       </section>
-      <section>
-        <h3>How Extensible:</h3>
-        <p>
-          I have created a single component under the name gxe-gallery.
-          The gxe-gallery component takes a single <a href="https://angular.io/api/core/Input">Input()</a>
-          [galleryItems]="data" to render the entire experience.
-        </p>
-      </section>
+
 
       <section>
 
@@ -125,22 +133,20 @@
         <p>Create an Image Gallery and enhanced with motion design </p>
       </section>
       <section>
-        <h3>Connecting the Dots:</h3>
+        <h3>Problem:</h3>
         <p>
-          The opportunity is bridging the gap between designer and developer.
-          By taking an unclear mock up and turn out a thoughtful interaction with
-          buttery smooth animations.
+          Unclear mock up that lacked context and context.
         </p>
       </section>
       <section>
-        <h3>Justifications:</h3>
+        <h3>Precedence:</h3>
         <p>
           The interaction and motion design were explicitly kept simple,
-          only using Material Design and Google Photos as design precedence.
+          only using Material Design and Google Photos as the design precedence.
         </p>
       </section>
       <section>
-        <h3>Motion:</h3>
+        <h3>Why Material:</h3>
         <p>
           Material design's motion is meticulously
           <a href="https://material.io/guidelines/motion/material-motion.html#material-motion-implications-of-motion">justified</a>
@@ -204,13 +210,13 @@
         <h3>If there was more time:</h3>
         <mat-list role="list">
           <mat-list-item role="listitem">
-            Original Motion
+            More iteration for the designer
           </mat-list-item>
           <mat-list-item role="listitem">
-            Animation and functionality in Gallery Detail toolbars
+            An attempt at original Interaction & Motion Design
           </mat-list-item>
           <mat-list-item role="listitem">
-            A close interaction with vertical pan and physics
+            Animated vertical swipe interaction when closing the gallery.
           </mat-list-item>
           <mat-list-item role="listitem">
             Accessibility
