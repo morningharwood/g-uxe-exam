@@ -19,6 +19,15 @@ section {
     font-family: $sans-default-family;
   }
 }
+
+mat-expansion-panel-header {
+  background:  #F44336 !important;
+  mat-panel-title {
+
+    color: #fff;
+    font-weight: 700;
+  }
+}
 span {
   margin-right: 8px;
   mat-icon {
