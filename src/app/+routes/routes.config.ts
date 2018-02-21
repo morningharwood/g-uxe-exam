@@ -7,6 +7,7 @@ import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
 import { GxeProcessComponent } from './process/process.component';
+import { AdminGuard } from '../_other/core';
 
 
 export const AllRoutes = {
@@ -30,6 +31,7 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: IntroComponent,
+        canActivate: [ AdminGuard ],
       },
     ],
   },
@@ -39,6 +41,7 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
+        canActivate: [ AdminGuard ],
       },
     ],
   },
@@ -48,6 +51,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeDocumentationComponent,
+        canActivate: [ AdminGuard ],
       },
     ],
   },
@@ -57,6 +61,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeProcessComponent,
+        canActivate: [ AdminGuard ],
       },
     ],
   }

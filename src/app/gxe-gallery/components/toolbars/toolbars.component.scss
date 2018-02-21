@@ -2,22 +2,22 @@
 @import '../../../../assets/css/mixins';
 
 mat-toolbar {
-  width: 100%;
   position: fixed;
+  width: 100%;
   z-index: $z-layer-highest;
 }
 
 mat-toolbar-row {
-  text-align: center;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   position: relative;
+  text-align: center;
 }
 
 .pos {
+  height: 100%;
   position: absolute;
   width: 100%;
-  height: 100%;
 }
 
 span {
@@ -27,8 +27,8 @@ span {
 
 
 .bottom-bar {
-  bottom: -80px;
   background-color: $black-dark;
+  bottom: -80px;
 
   mat-toolbar-row {
     justify-content: space-around;

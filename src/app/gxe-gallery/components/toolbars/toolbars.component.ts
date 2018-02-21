@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Toolbar component controller.
+ */
+
 import {
   animate,
   state,
@@ -101,28 +105,49 @@ import {
   ],
 })
 export class ToolbarsComponent implements OnInit, OnChanges {
+  /**
+   * Whether gallery-detail modal state open.
+   */
   @Input() public isModalActive: boolean;
+
+  /**
+   * Item data used for name on top bar.
+   */
   @Input() public items: any;
+
+  /**
+   * Current selected gallery-item
+   */
   @Input() public currentIndex: number;
+
+  /**
+   * State of gallery-item being tapped.
+   */
   @Input() public tapped: boolean;
-  @Input() public selectedChild: any;
+
+  /**
+   * Current selected item name to put in top bar template.
+   */
   public name: string;
 
   constructor() {
   }
 
   public ngOnInit(): void {
-    console.log('init?')
   }
 
   ngOnChanges() {
-    console.log(this.selectedChild, this.tapped, this.currentIndex, this.isModalActive)
+    this.setName();
+  }
+
+  /**
+   * Sets name
+   */
+  private setName() {
     if (this.currentIndex >= 0 && this.isModalActive) {
       this.name = this.items[ this.currentIndex ][ 0 ].value;
     } else {
       this.name = null;
     }
   }
-
-
 }

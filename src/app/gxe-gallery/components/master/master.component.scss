@@ -9,8 +9,8 @@
 }
 
 .spacer {
-  width: 100%;
   padding: 56px 0 0;
+  width: 100%;
 
   @include bpM(1) {
     padding-top: 64px;
@@ -37,10 +37,10 @@
 
 .close-btn {
   background-color: transparent;
+  color: $white-off;
   position: absolute;
   right: 12px;
   top: 6px;
-  color: $white-off;
   z-index: 99999;
 }
 
@@ -71,10 +71,10 @@
   }
 
   img {
+    background: $white;
     cursor: none;
+    padding: 6px;
     pointer-events: none;
     width: 100%;
-    padding: 6px;
-    background: $white;
   }
 }

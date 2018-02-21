@@ -8,27 +8,28 @@
   max-width: 100%;
   position: relative;
   width: 100%;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-
+  // Easter egg wheee!
   &::before {
     background: url(../../../../assets/images/favicon.gif) no-repeat top left;
-
     background-size: 16px 16px;
     color: $black-dark;
-    line-height: 2;
     content: 'Hire me!';
     font-family: "monospace";
     font-size: 10px;
-    left: 50%;
-    transform: translate(-36px, -8px);
-    position: absolute;
-    padding-left: 24px;
-    top: 50%;
-    width: 72px;
     height: 16px;
+    left: 50%;
+    line-height: 2;
+    padding-left: 24px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-36px, -8px);
+    width: 72px;
     z-index: 1;
   }
+  -webkit-overflow-scrolling: touch;
+
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 
 }
 

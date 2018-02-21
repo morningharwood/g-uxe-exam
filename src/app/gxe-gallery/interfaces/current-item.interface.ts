@@ -1,3 +1,6 @@
+/**
+ * Payload passed from children to parent for animations.
+ */
 export interface CurrentItem {
   hostEl: HTMLElement;
   mask: HTMLElement;

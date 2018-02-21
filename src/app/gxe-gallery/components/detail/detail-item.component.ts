@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Gallery detail item controller. Main functionally rendering
+ * the Gallery image and controlling the animation of border padding.
+ */
 import {
   animate,
   style,

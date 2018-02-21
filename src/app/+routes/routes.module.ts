@@ -4,6 +4,7 @@ import {
 import { GxeDemoModule } from './demo/demo.module';
 import { GxeDocumentationModule } from './documentation/documentation.module';
 import { GxeIntroModule } from './intro/intro.module';
+import { LoginRouteModule } from './login/login.module';
 import {
   GxeProcessModule,
 } from './process/process.module';
@@ -15,6 +16,7 @@ import { routes } from './routes.config';
 @NgModule({
   imports: [
     GxeIntroModule,
+    LoginRouteModule,
     GxeDocumentationModule,
     GxeDemoModule,
     GxeProcessModule,

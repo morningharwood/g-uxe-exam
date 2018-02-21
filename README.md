@@ -1,7 +1,7 @@
 # g(U)xe Gallery Carosel
 `npm i` or `yarn`
-`npm start`
-`npm run docs`
+`npm start` - open localhost:4200
+`npm run docs` - creates docs and open from /documentation; no server reqired. 
 
 
 
