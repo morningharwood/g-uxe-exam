@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Master-item component controller. Main purpose is to
+ * facilitate the animations from master => detail
+ */
 import {
   Component,
   ElementRef,
@@ -20,30 +24,86 @@ import { SwipeVerticalService } from '../../services/swipe-vertical.service';
   styleUrls: [ './master-item.component.scss' ],
 })
 export class GalleryItemComponent implements OnInit {
+  /**
+   * Collection of gallery item data.
+   */
   @Input() public galleryItems: GalleryItem[];
+
+  /**
+   * The components primary item data.
+   */
   @Input() public item: GalleryItem;
+
+  /**
+   * The item's iteration index.
+   */
   @Input() public index: number;
+
+  /**
+   * Whether this item is active.
+   */
   @Input() public isActive: boolean;
+
+  /**
+   * Whether this gallery-detail is open
+   */
   @Input() public galleryOpen: boolean;
+
+  /**
+   * Emits close
+   */
   @Output() public close: EventEmitter<HammerManager> = new EventEmitter();
+
+  /**
+   * Emits endingSelection
+   */
   @Output() public endingSelect: EventEmitter<number> = new EventEmitter();
+
+  /**
+   * Emits starting selection
+   */
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
+
+  /**
+   * Emits a tap on master-item.
+   */
   @Output() public childTap: EventEmitter<any> = new EventEmitter<any>();
+
+  /**
+   * Query for host element for animation
+   */
   @ViewChild('hostEl') public hostEl: ElementRef;
+
+  /**
+   * Query for mask element for animation
+   */
   @ViewChild('mask') public mask: ElementRef;
+
+  /**
+   * The element's width.
+   */
   private elWidth: number;
 
   constructor(private swipeService: SwipeVerticalService) {
   }
 
+  /**
+   * Cache the elWidth on init.
+   */
   public ngOnInit(): void {
     this.elWidth = this.hostEl.nativeElement.getBoundingClientRect().width;
   }
 
+  /**
+   * Emit when pagination occurs.
+   */
   public originalSelectionChanged($event: number): void {
     this.endingSelect.emit($event);
   }
 
+  /**
+   * Onclick turn on verticel swipe emit message to parent.
+   */
   @HostListener(EventType.CLICK)
   public selectedItem(): void {
     if (this.isActive) return;
@@ -51,6 +111,9 @@ export class GalleryItemComponent implements OnInit {
     this.emitViewChildrenSelected();
   }
 
+  /**
+   * Emit payload of state change to parent.
+   */
   private emitViewChildrenSelected() {
     const { x, y } = this.hostEl.nativeElement.getBoundingClientRect();
     this.selected.emit(
@@ -63,6 +126,9 @@ export class GalleryItemComponent implements OnInit {
       });
   }
 
+  /**
+   * Turn on vertical swipe
+   */
   private turnOnVerticalSwipe() {
     this.swipeService
       .bootstrap(this.hostEl.nativeElement)
@@ -70,8 +136,10 @@ export class GalleryItemComponent implements OnInit {
         () => this.close.emit());
   }
 
+  /**
+   * Emit when tapped.
+   */
   public tapped(event) {
-    console.log('tapp outter');
     this.childTap.emit();
   }
 }
