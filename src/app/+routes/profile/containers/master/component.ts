@@ -14,6 +14,7 @@ export class MasterProfileContainerComponent {
 
   constructor(private store: Store<any>) {
     this.selectedVideoObs = store.select(selectFeature);
+    window.scrollTo(0, 0);
   }
 
 }

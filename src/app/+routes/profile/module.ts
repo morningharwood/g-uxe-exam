@@ -7,7 +7,8 @@ import { MasterProfileContainerComponent } from './containers/master/component';
 import { ResumeContainerComponent } from './containers/resume/component';
 import * as profileRoutes from './routes';
 import { MainNavigationModule } from '../../_other/main-navigation/main-navigation.module';
-
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 export const DECLARE_EXPORT = [
   ResumeContainerComponent,
   MasterProfileContainerComponent,
@@ -18,6 +19,8 @@ export const DECLARE_EXPORT = [
   exports: [...DECLARE_EXPORT],
   imports: [
     CommonModule,
+    MatCardModule,
+    MatButtonModule,
     MhPipesModule,
     profileRoutes.routes,
     ProfileComponentsModule,

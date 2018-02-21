@@ -9,6 +9,24 @@ ul {
   list-style-type: none;
 }
 
+.card-section {
+  display: flex;
+  justify-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+
+  p {
+    font-size: 13px !important;
+  }
+
+  img {
+    width: 100%;
+    margin: 0 auto;
+  }
+  @include bp(4) {
+    flex-direction: row;
+  }
+}
 // Typographical
 
 %standard-size {
@@ -82,7 +100,7 @@ h3 {
     @include space(p, ms(4) ms(1) ms(4) ms(1));
 
     background-color: $white-off;
-    transform: translateY(90vh);
+    transform: translateY(75vh);
   }
 }
 
