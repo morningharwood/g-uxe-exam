@@ -1,7 +1,11 @@
+<!-- Top layer gallery template used to horizontally pan through images.-->
+<!-- #gxeGalleryInnerContainer used for pagination animation -->
+<!-- [ngStyle] used to control panning between pagination -->
 <div class="gxe-gallery-inner-container"
      #gxeGalleryInnerContainer
      [ngStyle]="{'transform': 'translateX(' + currentPosition + 'px)'}">
 
+  <!-- top layer gallery-ITEM template; a single template used to get the isolate scope.-->
   <gxe-gallery-detail-item
     [isActive]="isActive"
     *ngFor="let item of galleryItems"

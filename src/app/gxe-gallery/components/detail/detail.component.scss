@@ -11,9 +11,9 @@
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
+  // Easter egg wheee!
   &::before {
     background: url(../../../../assets/images/favicon.gif) no-repeat top left;
-
     background-size: 16px 16px;
     color: $black-dark;
     line-height: 2;
