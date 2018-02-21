@@ -1,4 +1,8 @@
-
+<!--
+Top Tool bar.
+[@switchToolbarTop]= animate when gallery-detail state changes
+[@tappedToolbarTop]= animate when gallery-detail-item has been tapped state changes.
+-->
 <mat-toolbar [@switchToolbarTop]="isModalActive"
              [@tappedToolbarTop]="!tapped">
   <mat-toolbar-row>
@@ -7,7 +11,10 @@
   <ng-content></ng-content>
 </mat-toolbar>
 
-
+<!--
+Bottom Tool bar.
+[@switchToolbarBottom]=animate when tapped or gallery-detail is state changes
+-->
 <mat-toolbar
   class="bottom-bar"
   [@switchToolbarBottom]="isModalActive && !tapped">
