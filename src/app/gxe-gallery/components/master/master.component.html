@@ -1,3 +1,12 @@
+<!--
+  Toolbars component declaration.
+
+  [isModalActive] = is the gallery-details open.
+  [items]= galleryItems data.
+  [currentIndex] = current selected gallery-detail-item index.
+  [selectedChild] = current selected gallery-detail-item element.
+  [tapped]= state of the gallery-detail-item being tapped.
+-->
 
 <gxe-toolbars
   [isModalActive]="isActive"
@@ -5,6 +14,10 @@
   [currentIndex]="currentIndex"
   [selectedChild]="currentItem"
   [tapped]="tapped">
+  <!--
+    (click)=close gallery-detail
+    *ngIf= show close only when gallery-detail is open.
+  -->
   <button mat-icon-button
           (click)="close()"
           class="close-btn"
@@ -14,7 +27,10 @@
 </gxe-toolbars>
 
 <div class="spacer">
-
+    <!--
+      A faux background layer of master-items to give the illusion non-missing master-items being missed when
+      the galley-detail-items are paginated and gallery-detail is closed.
+    -->
   <div class="inner-container-dupe">
     <div class="item-dupe"
          *ngFor="let item of galleryItems;" alt="">
@@ -23,12 +39,25 @@
   </div>
 
   <div class="inner-container">
-
+    <!--
+      *ngIf= show modal screen when gallery-detail is open.
+      (click)= toggle tap when you click on modal screen.
+    -->
     <div class="modal-screen"
          *ngIf="isActive"
          (click)="toggleTap()">
     </div>
-
+    <!--
+      [item]= galleryItems item.
+      [galleryItems]= the original collection of galleryItems
+      [index]= current iteration index
+      [galleryOpen]= is gallery-detail open.
+      [isActive] is gallery-master-item currently active?
+      (childTap)= emit event when master-item is tapped.
+      (endingSelect)= emit when pagination is finished.
+      (close)= emit when master-item is swiped away
+      (selected)=emit when gallery-master-item starts.
+    -->
     <gxe-gallery-master-item
       *ngFor="let item of galleryItems; let i = index"
       [item]="item"
