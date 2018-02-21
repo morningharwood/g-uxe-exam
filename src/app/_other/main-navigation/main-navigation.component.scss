@@ -6,9 +6,45 @@ mat-toolbar {
   top: 0;
   z-index: $z-layer-highest;
   width: 100%;
+
+}
+.mat-toolbar-row {
+  height: 64px;
+  padding-top: 20px;
 }
 .fill-space{
   flex: 1 1 auto;
+}
+
+button {
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0;
+  margin-right: 12px;
+  opacity: .7;
+  border: 0;
+  background-color: transparent;
+  font-family: $san-serif-font;
+}
+
+.active-link {
+
+  opacity: 1;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    bottom: -14px;
+    content: '';
+    width: 100%;
+    left: 0;
+    border-bottom: 3px solid #fff176;
+  }
+}
+
+.no-margin {
+  margin: 0;
 }
 
 .spacer {

@@ -16,51 +16,97 @@
     <mat-tab-group class="demo-tab-group">
       <mat-tab label="Engineering">
         <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+          <h3>Goal:</h3>
+          <p>
+            Create an extensible mobile image gallery.
+          </p>
+          <h3>Connecting the Dots:</h3>
+          <p>
+            The opportunity lies within not only creating a mobile image gallery
+            but also offers an ergonomic implementation.
+          </p>
+
+          <h3>Process Diagram:</h3>
+          <img src="https://placeimg.com/640/480/any" alt="">
+          <h3>Why Angular:</h3>
+          <p>
+            Angular is a batteries included mobile/web framework and
+            it's my personal weapon of choice!
+          </p>
+          <p>
+            For me, Angular affords the opportunity to work quickly and efficiently
+            from its robust features like:
+          </p>
+
+          <ul>
+            <li><a href="https://cli.angular.io/">Angular CLI</a></li>
+            <li><a href="https://www.yearofmoo.com/2017/06/new-wave-of-animation-features.html">Animations</a></li>
+            <li><a href="https://material.angular.io">Material Design</a></li>
+            <li><a href="https://angular.io/guide/template-syntax">Templating</a></li>
+            <li><a href="https://angular.io/guide/router">Routing</a></li>
+          </ul>
+
+          <h3>How Extensible:</h3>
+          <p>
+            I have created a single component under the name gxe-gallery.
+            The gxe-gallery component takes a single <a href="https://angular.io/api/core/Input">Input()</a>
+            [galleryItems]="data" to render the entire experience.
+          </p>
+
+          <h3>Reflections:</h3>
+          <p>
+            As a developer, I got too excited and jumped to coding too quickly.
+            In hindsight, I should have planned and outlined more of the nuance shown in the
+            design mocks. In particular, one of the big problems was in the
+            grid layout borders. My animations math wasn't great and adding border to the equation
+            made my animation code verbose.
+          </p>
+          <p>In the future I would like to support:</p>
+          <ul>
+            <li>Desktop</li>
+            <li>Better IOS support</li>
+            <li>Tests</li>
+            <li>Pan and flick interactions</li>
+            <li>Tool bar Animations</li>
+          </ul>
+
+
         </div>
       </mat-tab>
       <mat-tab label="Design">
         <div class="demo-tab-content">
+
           <h3>Goal:</h3>
+          <p>Create an Image Gallery and enhanced with motion design </p>
+
+          <h3>Connecting the Dots:</h3>
+          <p>
+            The opportunity lies within the gap between designer and developer.
+            Take an unclear mock up; turn out a thoughtful interaction with
+            buttery smooth animations.
+          </p>
+          <h3>Justifications:</h3>
           <p>
             The interaction and motion design we're explicitly kept simple,
             only using Material Design and Google Photos as design precedence.
           </p>
-
           <h3>Motion:</h3>
           <p>
             Material design's motion is meticulously
             <a href="https://material.io/guidelines/motion/material-motion.html#material-motion-implications-of-motion">justified</a>
-            Borrowing from those justifications I tried to achieve motion in the UI that was:
+            I tried to achieve motion in the UI that was:
           </p>
-            <ul>
-              <li>Responsive</li>
-              <li>Natural</li>
-              <li>Aware</li>
-              <li>Intentional</li>
-            </ul>
-          <p>
-            By making the motion: Quick, clear, and cohesive
-          </p>
-
-
-          <p>The only curve and easing use for <i>entering</i> items:</p>
-          <pre>export const STANDARD_EASE = '250ms cubic-bezier(.35, 0, .25, 1)';</pre>
-
-
-          <p>The only curve and easing used for <i>leaving</i> items:</p>
-          <pre>export const STANDARD_LEAVE = '195ms cubic-bezier(.35, 0, .25, 1)';</pre>
-
-          <p><a href="https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations">reference</a></p>
+          <ul>
+            <li>Responsive</li>
+            <li>Natural</li>
+            <li>Aware</li>
+            <li>Intentional</li>
+          </ul>
 
           <h3>Interaction:</h3>
           <p>
             Google Photo's Interaction Design is familiar to it's users.
-            And therefore, it's how many of the interaction choices were made.
+            And therefore, I leveraged many of the interaction from it.
           </p>
 
           <h4>Open and Close:</h4>
@@ -80,6 +126,17 @@
                     allowfullscreen>
             </iframe>
           </div>
+          <h3>Reflections:</h3>
+          <p>
+            In hindsight, I wish I would have explored motion and interaction more.
+            I was nervous to explore because the brief lacked context and time constraint.
+          </p>
+          <p>In the future I would like to support:</p>
+          <ul>
+            <li>Original Motion</li>
+            <li>Animation and functionality in Gallery Detail toolbars</li>
+            <li>A close interaction with vertical pan and physics.</li>
+          </ul>
         </div>
       </mat-tab>
     </mat-tab-group>
