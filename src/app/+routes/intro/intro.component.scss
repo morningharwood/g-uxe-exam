@@ -1,3 +1,6 @@
+@import '../../../assets/css/mixins';
+@import '../../../assets/css/variables';
+
 .doggo-demo {
   position: relative;
   overflow-x: hidden;
@@ -11,7 +14,37 @@
 
   flex: 1 1 auto;
 }
+.spacer-72 {
+  margin-top: 72px;
+}
 
+article {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 16px;
+}
+
+h4 {
+  font-family: $sans-default-family;
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+  padding-bottom: 13px;
+}
+
+.primary-color {
+
+}
+
+p {
+  font-family: $sans-default-family;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #333;
+}
 .ar {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */

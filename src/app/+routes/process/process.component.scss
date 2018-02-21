@@ -1,0 +1,35 @@
+@import '../../../assets/css/mixins';
+@import '../../../assets/css/variables';
+.spacer-72 {
+  margin-top: 72px;
+}
+
+section {
+  padding: 16px 0;
+  width: 100%;
+
+  h3 {
+    color: #F44336;
+    padding: 16px;
+    font-family: $sans-default-family;
+  }
+
+  p {
+    padding: 0 16px;
+    font-family: $sans-default-family;
+  }
+}
+span {
+  margin-right: 8px;
+  mat-icon {
+    transform: translateY(7px);
+  }
+}
+
+
+
+figure {
+  img {
+    width: 100%;
+  }
+}
