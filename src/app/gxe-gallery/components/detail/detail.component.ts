@@ -17,7 +17,6 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import { STANDARD_EASE } from '../../animations/ease.animations';
 import { EventType } from '../../enums/event-types';

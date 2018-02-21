@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Main component controller. Main purpose is to
+ * facilitate the passing state between children and animations.
+ */
 import {
   animate,
   style,
@@ -6,11 +10,9 @@ import {
 } from '@angular/animations';
 import {
   Component,
-  ElementRef,
   Input,
   OnInit,
   QueryList,
-  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import {
@@ -30,19 +32,69 @@ import { GalleryItemComponent } from './master-item.component';
   styleUrls: [ './master.component.scss' ],
 })
 export class GalleryMasterComponent implements OnInit {
+  /**
+   * Query used to get the whereabouts of the currently selected Gallery item.
+   */
   @ViewChildren(GalleryItemComponent) public masterItems: QueryList<GalleryItemComponent>;
-  @ViewChild('innerContainer') public innerContainer: ElementRef;
+
+  /**
+   * Input of Gallery Items data.
+   */
   @Input() public galleryItems: any[];
+
+  /**
+   * Whether Gallery Active (open).
+   */
   public isActive: boolean;
+
+  /**
+   * Current Selected Gallery Item.
+   */
   public currentItem: CurrentItem;
+
+  /**
+   * Current Selected Gallery Index.
+   */
   public currentIndex: number;
+
+  /**
+   * Whether Gallery Item has been tapped.
+   */
   public tapped: boolean;
+
+  /**
+   * GalleryItem animation position for end state.
+   */
   private to: Vector2;
-  private playerEnd: AnimationPlayer;
+
+  /**
+   * GalleryItem animation origin point.
+   */
   private playerEndOrigin: Vector2;
+
+  /**
+   * Ending Animation Player.
+   */
+  private playerEnd: AnimationPlayer;
+
+  /**
+   * Ending Parent Animation Player.
+   */
   private playerParentEnd: AnimationPlayer;
+
+  /**
+   * Starting Animation Player.
+   */
   private playerStart: AnimationPlayer;
+
+  /**
+   * Starting padding Animation Player.
+   */
   private playerPaddingStart: AnimationPlayer;
+
+  /**
+   * Gallery host item ClientRect State
+   */
   private currentSelectedBounds: any;
 
 
@@ -51,6 +103,9 @@ export class GalleryMasterComponent implements OnInit {
               private swipeService: SwipeVerticalService) {
   }
 
+  /**
+   * Zero out state needed on Init.
+   */
   public ngOnInit(): void {
     this.tapped = false;
     this.isActive = false;
@@ -60,12 +115,17 @@ export class GalleryMasterComponent implements OnInit {
     };
   }
 
-
+  /**
+   * Setter to turn off body scroll when isActive is toggled.
+   */
   private set isActive_(val) {
     this.isActive = val;
     this.setBodyScroll();
   }
 
+  /**
+   * Sets current gallery item. Called via output event from children.
+   */
   public setCurrentItem($event: number): void {
     this.currentSelectedBounds = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
     this.currentIndex = $event;
@@ -75,13 +135,18 @@ export class GalleryMasterComponent implements OnInit {
     };
   }
 
+  /**
+   * Close Gallery overlay.
+   */
   public close(): void {
     this.swipeService.swipeOff();
-    this.scrollToElement();
     this.resetGalleryState();
     this.closeGalleryDetail();
   }
 
+  /**
+   * Queues aniamtion when Gallery item is selected from master view.
+   */
   public selectedItem($event): void {
     this.to = {
       x: 0,
@@ -91,6 +156,9 @@ export class GalleryMasterComponent implements OnInit {
     this.openGalleryDetail($event);
   }
 
+  /**
+   * Animates Item In
+   */
   private itemAnimate(from, to, el, scale): void {
     this.playerStart = this.builder.build([
       style({
@@ -107,6 +175,9 @@ export class GalleryMasterComponent implements OnInit {
     this.playerStart.play();
   }
 
+  /**
+   * Animates Item Out
+   */
   private itemAnimateReverse(to, el, scale): void {
     this.playerEnd = this.builder.build([
       animate(
@@ -122,6 +193,9 @@ export class GalleryMasterComponent implements OnInit {
     });
   }
 
+  /**
+   * Animates Host Item In.
+   */
   private itemHostAnimate(to, el): void {
     this.playerParentEnd = this.builder.build([
       animate(
@@ -139,6 +213,9 @@ export class GalleryMasterComponent implements OnInit {
     });
   }
 
+  /**
+   * Resets animations.
+   */
   private clearAllAnimations(): void {
     this.currentItem = null;
 
@@ -164,10 +241,16 @@ export class GalleryMasterComponent implements OnInit {
     }
   }
 
+  /**
+   * Toggles body scroll.
+   */
   private setBodyScroll(): void {
     this.isActive ? this.scrollService.disable() : this.scrollService.enable();
   }
 
+  /**
+   * Closes animation and closes gallery detail view.
+   */
   private closeGalleryDetail() {
     this.itemAnimateReverse({ x: 0, y: 0 }, this.currentItem.mask, 1);
     if (this.notEmpty()) {
@@ -175,31 +258,33 @@ export class GalleryMasterComponent implements OnInit {
     }
   }
 
+  /**
+   * Opening animation and closes gallery detail view.
+   */
   private openGalleryDetail($event: any) {
     this.isActive_ = true;
     this.itemAnimate($event, this.to, this.currentItem.mask, 2);
   }
 
+  /**
+   * Whether origin has been changed e.g. the detail gallery has been paginated,
+   * we will need to set the origin point of the new item's origin for smooth
+   * animations.
+   */
   private notEmpty() {
     return Object.entries(this.playerEndOrigin).some(([ key, val ]) => Boolean(val));
   }
 
+  /**
+   * Toggles state of tap.
+   */
   public toggleTap(): void {
     this.tapped = !this.tapped;
   }
 
-  private scrollToElement() {
-    if (this.currentItem.index !== this.currentIndex) {
-      let scrollYPosition = 0;
-      if (this.currentSelectedBounds.y <= this.innerContainer.nativeElement.getBoundingClientRect().height / 2) {
-        scrollYPosition = this.currentSelectedBounds.y - 68;
-      } else {
-        scrollYPosition = this.currentSelectedBounds.y + 68;
-      }
-      window.scrollTo(0, scrollYPosition);
-    }
-  }
-
+  /**
+   * Resets gallery state.
+   */
   private resetGalleryState(): void {
     this.isActive_ = false;
     this.tapped = false;
