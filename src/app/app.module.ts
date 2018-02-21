@@ -1,3 +1,6 @@
+/**
+ * App module.
+ */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -17,10 +20,10 @@ export const reducers: ActionReducerMap<any> = {
 @NgModule({
   imports: [
     BrowserModule,
-    GxeRouterModule,
-    DoggoModule.forRoot(),
+    GxeRouterModule, // this yo boi.
+    DoggoModule.forRoot(), // Backend service to fetch data
     RouterModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers), // state management for profile page.
   ],
   declarations: [
     AppComponent,
