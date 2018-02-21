@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import {
   STANDARD_EASE,
+  STANDARD_LEAVE,
 } from '../../animations/ease.animations';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
 
@@ -29,7 +30,7 @@ import { GalleryItem } from '../../interfaces/gallery-items.interface';
         })),
       ]),
       transition('1 => 0', [
-        animate(STANDARD_EASE, style({
+        animate(STANDARD_LEAVE, style({
           padding: '6px',
           background: 'transparent',
           opacity: 1,

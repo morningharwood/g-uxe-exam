@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import {
   STANDARD_EASE,
+  STANDARD_LEAVE,
 } from '../../animations/ease.animations';
 import { CurrentItem } from '../../interfaces/current-item.interface';
 import { Vector2 } from '../../interfaces/vector.interface';
@@ -109,7 +110,7 @@ export class GalleryMasterComponent implements OnInit {
   private itemAnimateReverse(to, el, scale): void {
     this.playerEnd = this.builder.build([
       animate(
-        STANDARD_EASE,
+        STANDARD_LEAVE,
         style({
           transform: `translate(${to.x}px, ${to.y}px) scale(${ scale })`,
         }),
