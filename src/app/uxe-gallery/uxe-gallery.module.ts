@@ -14,7 +14,7 @@ const DECLARATIONS_EXPORTS = [UxeGalleryMasterComponent, UxeGalleryDetailCompone
   imports: [
     CommonModule,
     StoreModule.forFeature('uxeGallery', fromUxeGallery.reducer),
-    EffectsModule.forFeature([UxeGalleryEffects])
+    EffectsModule.forFeature([UxeGalleryEffects]),
     RouterModule
   ],
   declarations: [...DECLARATIONS_EXPORTS],
