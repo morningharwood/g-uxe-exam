@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { UxeGalleryDetailComponent } from './containers/uxe-gallery-detail/uxe-gallery-detail.component';
@@ -14,6 +15,7 @@ const DECLARATIONS_EXPORTS = [UxeGalleryMasterComponent, UxeGalleryDetailCompone
     CommonModule,
     StoreModule.forFeature('uxeGallery', fromUxeGallery.reducer),
     EffectsModule.forFeature([UxeGalleryEffects])
+    RouterModule
   ],
   declarations: [...DECLARATIONS_EXPORTS],
   exports: [...DECLARATIONS_EXPORTS],
