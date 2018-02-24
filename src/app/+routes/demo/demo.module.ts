@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DoggoModule } from '../../backend-tipe/doggo/doggo.module';
 import { GxeGalleryModule } from '../../gxe-gallery/gxe-gallery.module';
+import { UxeGalleryModule } from '../../uxe-gallery/uxe-gallery.module';
 import { GxeDemoComponent } from './demo.component';
 
 
@@ -12,6 +13,7 @@ export const DECLARATIONS_EXPORTS = [GxeDemoComponent];
     CommonModule,
     GxeGalleryModule,
     DoggoModule,
+    UxeGalleryModule,
   ],
   declarations: [...DECLARATIONS_EXPORTS],
   exports: [...DECLARATIONS_EXPORTS],
