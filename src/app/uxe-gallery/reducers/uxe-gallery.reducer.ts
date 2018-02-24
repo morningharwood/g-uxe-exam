@@ -1,19 +1,36 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-
 import {
   UxeGalleryActions,
   UxeGalleryActionTypes,
 } from '../actions/uxe-gallery.actions';
+
+import { TopbarType } from '../components/topbar/topbar.interface';
 import { UxeGallery } from '../uxe-gallery.model';
 
+
+
 export interface State extends EntityState<UxeGallery> {
-  // additional entities state properties
+  selectedItem: string | null;
+  hiddenItem: string | null;
+  bottombarTemplate: boolean;
+  topbarTemplate: boolean;
+  topbarTemplateType: string;
+  modalTemplate: boolean;
+  canvasTemplate: boolean;
+  canvasImg: string | null;
 }
 
 export const adapter: EntityAdapter<UxeGallery> = createEntityAdapter<UxeGallery>();
 
 export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
+  selectedItem: null,
+  hiddenItem: null,
+  topbarTemplateType: TopbarType.WHITE,
+  topbarTemplate: false,
+  bottombarTemplate: false,
+  modalTemplate: false,
+  canvasTemplate: false,
+  canvasImg: null,
 });
 
 export function reducer(
