@@ -9,6 +9,7 @@ import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
 import { GxeProcessComponent } from './process/process.component';
+import { UxeGalleryCanvasComponent } from '../uxe-gallery/containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
 
 
 export const AllRoutes = {
@@ -57,27 +58,27 @@ export const config: Routes = [
             children: [
               {
                 path: AllRoutes.CANVAS_BRUSH,
-                component: UxeGalleryDetailComponent,
+                component: UxeGalleryCanvasComponent,
                 canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_TEXT,
-                component: UxeGalleryDetailComponent,
+                component: UxeGalleryCanvasComponent,
                 canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_MORE,
-                component: UxeGalleryDetailComponent,
+                component: UxeGalleryCanvasComponent,
                 canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_STICKERS,
-                component: UxeGalleryDetailComponent,
+                component: UxeGalleryCanvasComponent,
                 canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_SHARE,
-                component: UxeGalleryDetailComponent,
+                component: UxeGalleryCanvasComponent,
                 canActivate: [ AdminGuard ],
               },
             ]

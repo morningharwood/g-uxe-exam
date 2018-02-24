@@ -120,13 +120,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "gxe",
+      "uxe",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "gxe",
+      "uxe",
       "kebab-case"
     ],
     "ordered-imports": [
