@@ -20,6 +20,10 @@ export enum UxeGalleryActionTypes {
   ClearToolbars = '[UxeGallery] Clear Toolbars',
   SetToolbarState = '[UxeGallery] Set Toolbars State',
   SetModalState = '[UxeGallery] Set Modal State',
+  SetDetailState = '[UxeGallery] Set Detail State',
+  SetCanvasState = '[UxeGallery] Set Canvas State',
+  SetCanvasSource = '[UxeGallery] Set Canvas Source',
+  SetTopbarType = '[UxeGallery] Set Topbar Type',
 }
 
 export class LoadUxeGallerys implements Action {
@@ -104,6 +108,27 @@ export class SetModalState implements Action {
   constructor(public payload: { isActive: boolean }) {}
 }
 
+export class SetDetailState implements Action {
+  readonly type = UxeGalleryActionTypes.SetDetailState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
+export class SetCanvasState implements Action {
+  readonly type = UxeGalleryActionTypes.SetCanvasState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
+export class SetCanvasSource implements Action {
+  readonly type = UxeGalleryActionTypes.SetCanvasSource;
+  constructor(public payload: { source: string }) {}
+}
+
+export class SetTopbarType implements Action {
+  readonly type = UxeGalleryActionTypes.SetTopbarType;
+  constructor(public payload: { type: string }) {}
+}
+
+
 export type UxeGalleryActions =
  LoadUxeGallerys
  | AddUxeGallery
@@ -119,4 +144,8 @@ export type UxeGalleryActions =
  | UpdateHiddenItem
  | ClearToolbars
  | SetToolbarState
- | SetModalState;
+ | SetModalState
+ | SetDetailState
+ | SetCanvasState
+ | SetCanvasSource
+ | SetTopbarType;

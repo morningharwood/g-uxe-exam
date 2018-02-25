@@ -30,24 +30,40 @@ export class UxeGalleryMasterComponent implements OnInit {
 
   }
 
-  public selectedItem(item): void {
+  public selectedItem(item: UxeGallery): void {
     this.galleryStateService.setSelectedItem(item);
   }
 
-  public hiddenItem(item): void {
-    this.galleryStateService.setHiddenItem(item);
+  public hiddenItem(id: string): void {
+    this.galleryStateService.setHiddenItem(id);
   }
 
   public clearToolbars(): void {
     this.galleryStateService.clearToolbars();
   }
 
-  public setToolBarStateByName(propName, isActive): void {
+  public setToolBarStateByName(propName: string, isActive: boolean): void {
     this.galleryStateService
       .setToolBarStateByName(propName, isActive);
   }
 
-  public setModalState(isActive): void {
+  public setModalState(isActive: boolean): void {
     this.galleryStateService.setModalState(isActive);
+  }
+
+  public setDetailState(isActive: boolean): void {
+    this.galleryStateService.setDetailState(isActive);
+  }
+
+  public setCanvasState(isActive: boolean): void {
+    this.galleryStateService.setCanvasState(isActive);
+  }
+
+  public setCanvasSource(source: string): void {
+    this.galleryStateService.setCanvasSource(source);
+  }
+
+  public setTopbarType(type: string) {
+    this.galleryStateService.setTopbarType(type);
   }
 }

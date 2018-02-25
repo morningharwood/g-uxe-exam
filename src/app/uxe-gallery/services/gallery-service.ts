@@ -4,8 +4,12 @@ import {
 } from '@ngrx/store';
 import {
   ClearToolbars,
+  SetCanvasSource,
+  SetCanvasState,
+  SetDetailState,
   SetModalState,
   SetToolbarState,
+  SetTopbarType,
   UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
@@ -36,18 +40,23 @@ export class UxeGalleryStateService {
     this.store.dispatch(new SetToolbarState({propName: propName, isActive: isActive}));
   }
 
-
   public setModalState(isActive: boolean): void {
     this.store.dispatch(new SetModalState({isActive: isActive}));
   }
-  //
-  // public ActivateDetail(): void {
-  //   // stub
-  //   // Store.detailTemplate = active;
-  // }
-  //
-  // public ActivateCanvas(): void {
-  //   // stub
-  //   // Store.canvasTemplate = active;
-  // }
+
+  public setDetailState(isActive: boolean): void {
+    this.store.dispatch(new SetDetailState({isActive: isActive}));
+  }
+
+  public setCanvasState(isActive: boolean): void {
+    this.store.dispatch(new SetCanvasState({isActive: isActive}));
+  }
+
+  public setCanvasSource(source: string): void {
+    this.store.dispatch(new SetCanvasSource({source: source}));
+  }
+
+  public setTopbarType(type: string): void {
+    this.store.dispatch(new SetTopbarType({type: type}));
+  }
 }

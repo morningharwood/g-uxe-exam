@@ -1,5 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import {
+  SetCanvasSource,
   UxeGalleryActions,
   UxeGalleryActionTypes,
 } from '../actions/uxe-gallery.actions';
@@ -20,6 +21,7 @@ export interface State extends EntityState<UxeGallery> {
   topbarTemplate: boolean;
   topbarTemplateType: string;
   modalTemplate: boolean;
+  detailTemplate: boolean;
   canvasTemplate: boolean;
   canvasImg: string | null;
 }
@@ -41,6 +43,7 @@ export const initialState: State = adapter.getInitialState({
   topbarTemplateType: TopbarType.WHITE,
   topbarTemplate: true,
   bottombarTemplate: false,
+  detailTemplate: false,
   modalTemplate: false,
   canvasTemplate: false,
   canvasImg: null,
@@ -114,6 +117,34 @@ export function reducer(
       };
     }
 
+    case UxeGalleryActionTypes.SetDetailState: {
+      return {
+        ...state,
+        detailTemplate: action.payload.isActive,
+      };
+    }
+
+    case UxeGalleryActionTypes.SetCanvasState: {
+      return {
+        ...state,
+        canvasTemplate: action.payload.isActive,
+      };
+    }
+
+    case UxeGalleryActionTypes.SetCanvasSource: {
+      return {
+        ...state,
+        canvasImg: action.payload.source,
+      };
+    }
+
+    case UxeGalleryActionTypes.SetTopbarType: {
+      return {
+        ...state,
+        topbarTemplateType: action.payload.type,
+      };
+    }
+
     default: {
       return state;
     }
@@ -139,6 +170,7 @@ export const selectFeatureExtended = createSelector(getState, (state: State) => 
     topbarTemplateType: state.topbarTemplateType,
     modalTemplate: state.modalTemplate,
     canvasTemplate: state.canvasTemplate,
+    detailTemplate: state.detailTemplate,
     canvasImg: state.canvasImg,
   };
 });
