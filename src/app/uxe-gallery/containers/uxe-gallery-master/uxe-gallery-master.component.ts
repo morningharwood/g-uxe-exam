@@ -65,8 +65,10 @@ export class UxeGalleryMasterComponent implements OnInit {
                       imgEl: any) {
     // this.setSelectedItem(item);
     // this.setModalState(true);
-    this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl);
     const ref = this.overlayService.open();
+    this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
+
+
     // console.log(posA.x, posA.y, posB, posC);
     // Host will give you the animation end position with centerImageY
     // outerMask will give you starting position.

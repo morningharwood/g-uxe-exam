@@ -39,7 +39,7 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: IntroComponent,
-        canActivate: [ AdminGuard ],
+        // canActivate: [ AdminGuard ],
       },
     ],
   },
@@ -49,37 +49,37 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
-        canActivate: [ AdminGuard ],
+        // canActivate: [ AdminGuard ],
         children: [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
-            canActivate: [ AdminGuard ],
+            // canActivate: [ AdminGuard ],
             children: [
               {
                 path: AllRoutes.CANVAS_BRUSH,
                 component: UxeGalleryCanvasComponent,
-                canActivate: [ AdminGuard ],
+                // canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_TEXT,
                 component: UxeGalleryCanvasComponent,
-                canActivate: [ AdminGuard ],
+                // canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_MORE,
                 component: UxeGalleryCanvasComponent,
-                canActivate: [ AdminGuard ],
+                // canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_STICKERS,
                 component: UxeGalleryCanvasComponent,
-                canActivate: [ AdminGuard ],
+                // canActivate: [ AdminGuard ],
               },
               {
                 path: AllRoutes.CANVAS_SHARE,
                 component: UxeGalleryCanvasComponent,
-                canActivate: [ AdminGuard ],
+                // canActivate: [ AdminGuard ],
               },
             ]
           },
@@ -93,7 +93,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeDocumentationComponent,
-        canActivate: [ AdminGuard ],
+        // canActivate: [ AdminGuard ],
       },
     ],
   },
@@ -103,7 +103,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeProcessComponent,
-        canActivate: [ AdminGuard ],
+        // canActivate: [ AdminGuard ],
       },
     ],
   }

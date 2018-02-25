@@ -48,7 +48,8 @@ const DECLARATIONS_EXPORTS = [
     OverlayService,
     UxeGalleryStateService,
     PositionalService,
-  ]
+  ],
+  entryComponents: [ItemComponent],
 })
 export class UxeGalleryModule {
 }

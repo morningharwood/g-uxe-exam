@@ -27,6 +27,7 @@ const DEFAULT_CONFIG: GalleryOverlayConfig = {
 
 @Injectable()
 export class OverlayService {
+  public ref: ItemOverlayRef;
 
   constructor(private overlay: Overlay) {}
   open(config: GalleryOverlayConfig = {}) {
@@ -43,11 +44,11 @@ export class OverlayService {
     overlayRef.attach(filePreviewPortal);
     const ref = new ItemOverlayRef(overlayRef);
 
-    // Observable to close on backdrop click.
-    overlayRef.backdropClick().subscribe(_ => ref.close());
-
     // Instantiate remote control and return remote control.
-    return ref;
+    return {
+      overlay: overlayRef,
+      inner: ref,
+    };
   }
 
   private createOverlay(config: GalleryOverlayConfig) {
