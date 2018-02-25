@@ -6,11 +6,11 @@
            fxFlex="50%"
            fxFlexAlign="center"
            #outerMask
-           *ngFor="let item of [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8,9]; let i = index">
+           *ngFor="let item of collection; let i = index">
         <div class="inner-mask"
              #innerMask
              (click)="selectedItem(i, outerMask, innerMask, imgEl)">
-          <img #imgEl src="https://placeimg.com/640/480/any" alt="">
+          <img #imgEl [src]="item.imgSrc" alt="">
         </div>
       </div>
   </div>

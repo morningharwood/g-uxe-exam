@@ -38,7 +38,27 @@ export class UxeGalleryMasterComponent implements OnInit {
   private obsExtended: Observable<any>;
   private hostEl: any;
   @ViewChild('container') private containerEl: any;
-
+  public collection = [
+    {imgSrc: 'https://placeimg.com/440/480/any'},
+    {imgSrc: 'https://placeimg.com/540/480/any'},
+    {imgSrc: 'https://placeimg.com/630/580/any'},
+    {imgSrc: 'https://placeimg.com/341/480/any'},
+    {imgSrc: 'https://placeimg.com/543/480/any'},
+    {imgSrc: 'https://placeimg.com/637/588/any'},
+    {imgSrc: 'https://placeimg.com/349/384/any'},
+    {imgSrc: 'https://placeimg.com/244/385/any'},
+    {imgSrc: 'https://placeimg.com/630/386/any'},
+    {imgSrc: 'https://placeimg.com/640/780/any'},
+    {imgSrc: 'https://placeimg.com/650/380/any'},
+    {imgSrc: 'https://placeimg.com/641/488/any'},
+    {imgSrc: 'https://placeimg.com/653/489/any'},
+    {imgSrc: 'https://placeimg.com/445/481/any'},
+    {imgSrc: 'https://placeimg.com/943/485/any'},
+    {imgSrc: 'https://placeimg.com/542/484/any'},
+    {imgSrc: 'https://placeimg.com/746/681/any'},
+    {imgSrc: 'https://placeimg.com/548/480/any'},
+    {imgSrc: 'https://placeimg.com/441/380/any'},
+  ];
   constructor(private store: Store<State>,
               private galleryStateService: UxeGalleryStateService,
               private ngHostEl: ElementRef,

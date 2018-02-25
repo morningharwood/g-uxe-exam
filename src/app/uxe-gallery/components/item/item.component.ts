@@ -1,14 +1,13 @@
 import {
   animate,
+  keyframes,
   style,
   AnimationBuilder,
   AnimationPlayer,
-  keyframes,
 } from '@angular/animations';
 import {
   Component,
   ElementRef,
-  EventEmitter,
   OnInit,
   Renderer2,
   ViewChild,
@@ -19,8 +18,8 @@ import {
   STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
 
-import { PositionalService } from '../overlay/positional-service';
 import { UxeGalleryStateService } from '../../services/gallery-service';
+import { PositionalService } from '../overlay/positional-service';
 
 
 @Component({
@@ -63,8 +62,6 @@ export class ItemComponent implements OnInit {
   }
 
   private itemAnimate(move, el): void {
-
-    console.log(this.posService.imgEl.offsetHeight);
     this.playerStart = this.builder.build([
       style({
         transform: `translate3d(${move.from.x}px, ${move.from.y}px, 0px)`,
@@ -122,7 +119,7 @@ export class ItemComponent implements OnInit {
         STANDARD_LEAVE,
         keyframes([
           style({
-            transform: `translateY(${move}px)`,
+            transform: `translateY(${move + (this.posService.borderSize * 2)}px)`,
             opacity: 1,
             offset: .99
           }),
