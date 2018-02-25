@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import {
   Store,
 } from '@ngrx/store';
-import { UpdateSelectedItem } from '../actions/uxe-gallery.actions';
+import {
+  UpdateHiddenItem,
+  UpdateSelectedItem,
+} from '../actions/uxe-gallery.actions';
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
@@ -15,14 +18,12 @@ export class UxeGalleryStateService {
   }
 
   public setSelectedItem(item: UxeGallery): void {
-    this.store.dispatch(new UpdateSelectedItem({item: item}));
+    this.store.dispatch(new UpdateSelectedItem({item}));
   }
 
-  //
-  // public setHiddenItem(id: string): void {
-  //   // stub
-  //   // Store.hiddenItem = id
-  // }
+  public setHiddenItem(id: string): void {
+    this.store.dispatch(new UpdateHiddenItem({id}));
+  }
   //
   //
   // public setToolBarVisibility(id: string): void {

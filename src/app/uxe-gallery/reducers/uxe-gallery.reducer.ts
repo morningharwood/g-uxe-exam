@@ -85,8 +85,11 @@ export function reducer(
     }
 
     case UxeGalleryActionTypes.UpdateSelectedItem: {
-      console.log(action)
       return {...state, selectedItem: action.payload.item};
+    }
+
+    case UxeGalleryActionTypes.UpdateHiddenItem: {
+      return {...state, hiddenItem: action.payload.id};
     }
 
     default: {

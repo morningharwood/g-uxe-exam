@@ -30,7 +30,11 @@ export class UxeGalleryMasterComponent implements OnInit {
 
   }
 
-  public itemClicked(item): void {
+  public selectedItem(item): void {
     this.galleryStateService.setSelectedItem(item);
+  }
+
+  public hiddenItem(item): void {
+    this.galleryStateService.setHiddenItem(item);
   }
 }
