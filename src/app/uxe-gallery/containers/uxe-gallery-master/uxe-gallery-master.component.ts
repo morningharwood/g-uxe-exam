@@ -107,14 +107,13 @@ export class UxeGalleryMasterComponent implements OnInit {
     this.playerStart = this.builder.build([
       style({
         transform: `translate3d(${move.from.x}px, ${move.from.y}px, 0px)`,
+        zIndex: 0,
       }),
       animate(
         STANDARD_EASE,
         style({
-          position: 'fixed',
           transform: `translate3d(${move.to.x}px, ${move.to.y}px, 2px) scale(2)`,
-          flexBasis: '100%',
-          maxWidth: '100%'
+          zIndex: 1,
         }),
       ),
     ]).create(el);

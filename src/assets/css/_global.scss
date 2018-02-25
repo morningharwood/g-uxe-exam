@@ -51,3 +51,9 @@ gxe-root {
   position: relative;
   width: percentage(1/1);
 }
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
