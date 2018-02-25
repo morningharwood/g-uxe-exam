@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -7,6 +8,7 @@ import { BottombarAuxComponent } from './components/bottombar-aux/bottombar-aux.
 import { BottombarComponent } from './components/bottombar/bottombar.component';
 import { DetailItemComponent } from './components/detail-item/detail-item.component';
 import { ItemComponent } from './components/item/item.component';
+import { OverlayService } from './components/overlay/overlay-service';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { UxeGalleryCanvasComponent } from './containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
@@ -15,7 +17,7 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { PositionalService } from './components/overlay/positional-service';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -43,7 +45,9 @@ const DECLARATIONS_EXPORTS = [
   ],
   exports: [ ...DECLARATIONS_EXPORTS ],
   providers: [
-    UxeGalleryStateService
+    OverlayService,
+    UxeGalleryStateService,
+    PositionalService,
   ]
 })
 export class UxeGalleryModule {
