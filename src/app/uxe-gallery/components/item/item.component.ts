@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import {
   STANDARD_EASE,
+  STANDARD_LEAVE,
   STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
 
@@ -54,7 +55,6 @@ export class ItemComponent implements OnInit {
 
   public endAnimate() {
     const offset = (this.posService.outerMask.offsetHeight - this.innerImg.nativeElement.offsetHeight) / 2;
-    console.log(offset, 'offset');
     this.itemAnimateItemEnd(offset, this.innerImg.nativeElement);
     this.itemAnimateEnd(this.posService.move, this.renderer.selectRootElement(this.ngHostEl).nativeElement);
   }
@@ -93,8 +93,9 @@ export class ItemComponent implements OnInit {
               ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
               ${move.to.y - (this.posService.borderSize * 2)}px, 1px) scale(2)
             `,
-        height: this.posService.imgEl.offsetHeight,
+        height: this.posService.imgEl.offsetHeight + (this.posService.borderSize * 2),
         width: this.posService.outerMask.offsetWidth + (this.posService.borderSize * 2),
+        overflow: 'hidden',
       }),
       animate(
         STANDARD_LONG,
@@ -102,7 +103,7 @@ export class ItemComponent implements OnInit {
           style({
             transform: `translate3d(${move.from.x + 3}px, ${move.from.y + 3}px, 0px)`,
             width: this.posService.outerMask.offsetWidth - (this.posService.borderSize * 2),
-            height: this.posService.outerMask.offsetHeight - (this.posService.borderSize),
+            height: this.posService.outerMask.offsetHeight - (this.posService.borderSize * 2),
             overflow: 'hidden',
             offset: 1,
           }),
@@ -116,9 +117,18 @@ export class ItemComponent implements OnInit {
     this.playerInnerEnd = this.builder.build([
       animate(
         STANDARD_LONG,
-        style({
-          transform: `translateY(${move}px)`
-        })
+        keyframes([
+          style({
+            transform: `translateY(${move}px)`,
+            opacity: 1,
+            offset: .99
+          }),
+          style([{
+            opacity: 0,
+            offset: 1
+          }
+          ])
+        ])
       ),
     ]).create(el);
     this.playerInnerEnd.play();

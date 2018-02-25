@@ -8,9 +8,8 @@
 }
 
 .container {
-  background: red;
   // Sets the outer borders for edges
-  border: 3px solid pink;
+  border: 3px solid $white;
   width: 100%;
 }
 
@@ -22,7 +21,7 @@
   position: relative;
 
   // Sets the inner borders for edges
-  border: 3px solid pink;
+  border: 3px solid $white;
   perspective: 1000px;
 }
 
