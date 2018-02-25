@@ -98,7 +98,7 @@ export class ItemComponent implements OnInit {
         overflow: 'hidden',
       }),
       animate(
-        STANDARD_LONG,
+        STANDARD_LEAVE,
         keyframes([
           style({
             transform: `translate3d(${move.from.x + 3}px, ${move.from.y + 3}px, 0px)`,
@@ -116,7 +116,7 @@ export class ItemComponent implements OnInit {
   private itemAnimateItemEnd(move, el): void {
     this.playerInnerEnd = this.builder.build([
       animate(
-        STANDARD_LONG,
+        STANDARD_LEAVE,
         keyframes([
           style({
             transform: `translateY(${move}px)`,
