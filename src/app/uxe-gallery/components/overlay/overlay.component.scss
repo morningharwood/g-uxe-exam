@@ -2,7 +2,7 @@
 @import '../../../../assets/css/mixins';
 
 :host {
-  background: $black-dark;
+  background: transparentize($black-darkest, .025);
   position: fixed;
   top: 0;
   bottom: 0;
