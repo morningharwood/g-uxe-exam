@@ -1,28 +1,25 @@
 
-<div class="container">
+<div class="container" #container>
   <div fxLayout="row"
        fxLayoutWrap
        fxLayoutAlign="start center"
         >
       <div class="outer-mask"
-           fxFlex="50%"
            fxFlexAlign="center"
-           *ngFor="let item of [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8,9]">
-        <button class="inner-mask">
-          <img src="https://placeimg.com/640/480/any" alt="">
+           #outerMask
+           *ngFor="let item of [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8,9]; let i = index">
+        <div class="inner-mask"
+             #innerMask
+             (click)="selectedItem(i, outerMask, innerMask, imgEl)">
+          <img #imgEl src="https://placeimg.com/640/480/any" alt="">
+          {{i}}
           <!--<uxe-item></uxe-item>-->
-        </button>
+        </div>
       </div>
   </div>
 </div>
 
-<!--<section-->
-  <!--class="container"-->
-  <!--fxLayout-->
-  <!--fxLayoutAlign="start"-->
-  <!--fxLayoutGap="16px"-->
-  <!--&gt;-->
-<!--&lt;!&ndash;<uxe-topbar></uxe-topbar>&ndash;&gt;-->
+
 
 
 <!--</section>-->

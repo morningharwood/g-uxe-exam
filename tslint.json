@@ -126,7 +126,7 @@
     "component-selector": [
       true,
       "element",
-      "uxe",
+      "gxe",
       "kebab-case"
     ],
     "ordered-imports": [

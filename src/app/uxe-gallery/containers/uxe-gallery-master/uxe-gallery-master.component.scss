@@ -19,6 +19,9 @@
   height: 0;
   padding-top: 30.25%;
   position: relative;
+  flex-basis: 50%;
+  box-sizing: border-box;
+  max-width: 50%;
 
   // Sets the inner borders for edges
   border: 3px solid pink;
@@ -38,4 +41,8 @@
 
 img {
   object-fit: cover;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
