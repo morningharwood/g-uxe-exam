@@ -20,6 +20,7 @@ import {
 } from '../../../gxe-gallery/animations/ease.animations';
 
 import { PositionalService } from '../overlay/positional-service';
+import { UxeGalleryStateService } from '../../services/gallery-service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class ItemComponent implements OnInit {
   constructor(private builder: AnimationBuilder,
               private ngHostEl: ElementRef,
               private renderer: Renderer2,
-              private posService: PositionalService) {
+              private posService: PositionalService,
+              private galleryStateService: UxeGalleryStateService) {
   }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class ItemComponent implements OnInit {
     this.imgSrc = this.posService.imgEl.src;
 
     this.posService.ref.overlay.backdropClick().subscribe(_ => {
+      this.galleryStateService.setModalState(false);
       this.endAnimate();
       this.playerEnd.onDone(() => {
         this.posService.ref.inner.close();

@@ -15,6 +15,7 @@ export const DECLARATIONS_EXPORTS = [GxeDemoComponent];
     GxeGalleryModule,
     DoggoModule,
     UxeGalleryModule,
+
     RouterModule,
   ],
   declarations: [...DECLARATIONS_EXPORTS],

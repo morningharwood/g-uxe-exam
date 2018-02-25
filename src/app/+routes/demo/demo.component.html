@@ -1,5 +1,7 @@
 <!--<gxe-gallery-master-->
   <!--[galleryItems]="galleryItemsObs | async">-->
 <!--</gxe-gallery-master>-->
+
 <uxe-gallery-master></uxe-gallery-master>
+<uxe-overlay *ngIf="(obsExtended| async)?.modalTemplate"></uxe-overlay>
 <router-outlet></router-outlet>

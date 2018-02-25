@@ -50,7 +50,6 @@ export class UxeGalleryMasterComponent implements OnInit {
   ngOnInit() {
     this.obs = this.store.pipe(select(selectAll));
     this.obsExtended = this.store.pipe(select(selectFeatureExtended));
-    this.obsExtended.subscribe(console.log);
     this.setHostElement();
   }
 
@@ -64,7 +63,7 @@ export class UxeGalleryMasterComponent implements OnInit {
                       innerMask: any,
                       imgEl: any) {
     // this.setSelectedItem(item);
-    // this.setModalState(true);
+    this.setModalState(true);
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
 
@@ -96,9 +95,9 @@ export class UxeGalleryMasterComponent implements OnInit {
   //     .setToolBarStateByName(propName, isActive);
   // }
   //
-  // public setModalState(isActive: boolean): void {
-  //   this.galleryStateService.setModalState(isActive);
-  // }
+  public setModalState(isActive: boolean): void {
+    this.galleryStateService.setModalState(isActive);
+  }
   //
   // public setDetailState(isActive: boolean): void {
   //   this.galleryStateService.setDetailState(isActive);

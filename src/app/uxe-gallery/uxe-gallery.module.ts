@@ -10,6 +10,7 @@ import { DetailItemComponent } from './components/detail-item/detail-item.compon
 import { ItemComponent } from './components/item/item.component';
 import { OverlayService } from './components/overlay/overlay-service';
 import { OverlayComponent } from './components/overlay/overlay.component';
+import { PositionalService } from './components/overlay/positional-service';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { UxeGalleryCanvasComponent } from './containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
 import { UxeGalleryDetailComponent } from './containers/uxe-gallery-detail/uxe-gallery-detail.component';
@@ -17,12 +18,12 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
-import { PositionalService } from './components/overlay/positional-service';
 
 
 const DECLARATIONS_EXPORTS = [
   UxeGalleryMasterComponent,
   UxeGalleryDetailComponent,
+  OverlayComponent,
 ];
 
 @NgModule({
