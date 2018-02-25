@@ -13,30 +13,12 @@
   border: 3px solid pink;
   width: 100%;
 }
-//
-//.wrapper {
-//  width: 100%;
-//  position: relative;
-//}
-//
-//.outer-mask {
-//  width: 50%;
-//  height: 0;
-//  padding-top: 30.25%;
-//  float: left;
-//  overflow: hidden;
-//  position: absolute;
-//}
-//
-//.inner-mask {
-//  position: absolute;
-//}
 
 .outer-mask {
   // Aspect Ratio boxs: https://css-tricks.com/aspect-ratio-boxes/
   overflow: hidden;
-  height: 0;
-  padding-top: 30.25%;
+  height: 100px;
+
   position: relative;
 
   // Sets the inner borders for edges
@@ -58,6 +40,7 @@
 
 img {
   object-fit: cover;
+  width: 100%;
   position: absolute;
   left: 50%;
   top: 50%;
