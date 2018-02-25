@@ -1,16 +1,48 @@
-<uxe-topbar></uxe-topbar>
-<uxe-item></uxe-item>
-<uxe-overlay></uxe-overlay>
-<pre>
-  {{obsExtended | async | json}}
-</pre>
 
-<p (click)="selectedItem('2')">update selected</p>
-<p (click)="hiddenItem('2')">update hidden</p>
-<p (click)="clearToolbars()">clear toolbars</p>
-<p (click)="setToolBarStateByName('bottombarTemplate', true)">Set toolbar state</p>
-<p (click)="setModalState(true)">Set modal state</p>
-<p (click)="setDetailState(true)">Set Detail state</p>
-<p (click)="setCanvasState(true)">Set Canvas state</p>
-<p (click)="setCanvasSource('laskdjflaksdjf;alskdfj')">Set Canvas source</p>
-<p (click)="setTopbarType('black')">Set topbar type</p>
+<div class="container">
+  <div fxLayout="row"
+       fxLayoutWrap
+       fxLayoutAlign="start center"
+        >
+      <div class="outer-mask"
+           fxFlex="50%"
+           fxFlexAlign="center"
+           *ngFor="let item of [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8,9]">
+        <button class="inner-mask">
+          <img src="https://placeimg.com/640/480/any" alt="">
+          <!--<uxe-item></uxe-item>-->
+        </button>
+      </div>
+  </div>
+</div>
+
+<!--<section-->
+  <!--class="container"-->
+  <!--fxLayout-->
+  <!--fxLayoutAlign="start"-->
+  <!--fxLayoutGap="16px"-->
+  <!--&gt;-->
+<!--&lt;!&ndash;<uxe-topbar></uxe-topbar>&ndash;&gt;-->
+
+
+<!--</section>-->
+<!--<div class="container"-->
+     <!--fxLayout-->
+     <!--fxLayoutGap="16px">-->
+  <!--<uxe-item-->
+    <!--fxFlex="15%"-->
+    <!--*ngFor="let item of [0,1,2,3,4,5,6,7,8,9]"-->
+  <!--&gt;-->
+  <!--</uxe-item>-->
+<!--</div>-->
+<!--<uxe-overlay></uxe-overlay>-->
+
+<!--<p (click)="selectedItem('2')">update selected</p>-->
+<!--<p (click)="hiddenItem('2')">update hidden</p>-->
+<!--<p (click)="clearToolbars()">clear toolbars</p>-->
+<!--<p (click)="setToolBarStateByName('bottombarTemplate', true)">Set toolbar state</p>-->
+<!--<p (click)="setModalState(true)">Set modal state</p>-->
+<!--<p (click)="setDetailState(true)">Set Detail state</p>-->
+<!--<p (click)="setCanvasState(true)">Set Canvas state</p>-->
+<!--<p (click)="setCanvasSource('laskdjflaksdjf;alskdfj')">Set Canvas source</p>-->
+<!--<p (click)="setTopbarType('black')">Set topbar type</p>-->

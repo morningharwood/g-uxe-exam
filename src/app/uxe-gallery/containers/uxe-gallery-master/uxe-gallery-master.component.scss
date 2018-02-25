@@ -1,1 +1,41 @@
 
+@import '../../../../assets/css/mixins';
+@import '../../../../assets/css/variables';
+
+:host {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  background: red;
+  // Sets the outer borders for edges
+  border: 3px solid pink;
+}
+
+.outer-mask {
+  // Aspect Ratio boxs: https://css-tricks.com/aspect-ratio-boxes/
+  overflow: hidden;
+  height: 0;
+  padding-top: 30.25%;
+  position: relative;
+
+  // Sets the inner borders for edges
+  border: 3px solid pink;
+}
+
+.inner-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  object-fit: cover;
+}

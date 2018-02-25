@@ -15,6 +15,7 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -28,6 +29,7 @@ const DECLARATIONS_EXPORTS = [
     StoreModule.forFeature('uxeGallery', fromUxeGallery.reducer),
     EffectsModule.forFeature([ UxeGalleryEffects ]),
     RouterModule,
+    FlexLayoutModule,
   ],
   declarations: [
     ...DECLARATIONS_EXPORTS,
