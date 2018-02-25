@@ -12,7 +12,10 @@ export enum UxeGalleryActionTypes {
   UpdateUxeGallerys = '[UxeGallery] Update UxeGallerys',
   DeleteUxeGallery = '[UxeGallery] Delete UxeGallery',
   DeleteUxeGallerys = '[UxeGallery] Delete UxeGallerys',
-  ClearUxeGallerys = '[UxeGallery] Clear UxeGallerys'
+  ClearUxeGallerys = '[UxeGallery] Clear UxeGallerys',
+
+  // Extend state Actions
+  UpdateSelectedItem = '[UxeGallery] Update SelectedItem'
 }
 
 export class LoadUxeGallerys implements Action {
@@ -73,6 +76,12 @@ export class ClearUxeGallerys implements Action {
   readonly type = UxeGalleryActionTypes.ClearUxeGallerys;
 }
 
+export class UpdateSelectedItem implements Action {
+  readonly type = UxeGalleryActionTypes.UpdateSelectedItem;
+  constructor(public payload: { item: UxeGallery }) {}
+}
+
+
 export type UxeGalleryActions =
  LoadUxeGallerys
  | AddUxeGallery
@@ -83,4 +92,5 @@ export type UxeGalleryActions =
  | UpdateUxeGallerys
  | DeleteUxeGallery
  | DeleteUxeGallerys
- | ClearUxeGallerys;
+ | ClearUxeGallerys
+ | UpdateSelectedItem;

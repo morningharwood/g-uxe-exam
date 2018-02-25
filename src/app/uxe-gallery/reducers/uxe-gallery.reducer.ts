@@ -4,13 +4,17 @@ import {
   UxeGalleryActionTypes,
 } from '../actions/uxe-gallery.actions';
 
+import {
+  createFeatureSelector,
+  createSelector,
+} from '@ngrx/store';
 import { TopbarType } from '../components/topbar/topbar.interface';
 import { UxeGallery } from '../uxe-gallery.model';
 
 
 
 export interface State extends EntityState<UxeGallery> {
-  selectedItem: string | null;
+  selectedItem: UxeGallery | null;
   hiddenItem: string | null;
   bottombarTemplate: boolean;
   topbarTemplate: boolean;
@@ -22,7 +26,16 @@ export interface State extends EntityState<UxeGallery> {
 
 export const adapter: EntityAdapter<UxeGallery> = createEntityAdapter<UxeGallery>();
 
+
 export const initialState: State = adapter.getInitialState({
+  ids: ['0'],
+  entities: {
+    '0': {
+      imgSrc: 'url',
+      name: 'dog',
+      details: 'some dog',
+    }
+  },
   selectedItem: null,
   hiddenItem: null,
   topbarTemplateType: TopbarType.WHITE,
@@ -33,6 +46,7 @@ export const initialState: State = adapter.getInitialState({
   canvasImg: null,
 });
 
+
 export function reducer(
   state = initialState,
   action: UxeGalleryActions
@@ -41,7 +55,6 @@ export function reducer(
     case UxeGalleryActionTypes.AddUxeGallery: {
       return adapter.addOne(action.payload.uxeGallery, state);
     }
-
 
     case UxeGalleryActionTypes.AddUxeGallerys: {
       return adapter.addMany(action.payload.uxeGallerys, state);
@@ -71,15 +84,36 @@ export function reducer(
       return adapter.removeAll(state);
     }
 
+    case UxeGalleryActionTypes.UpdateSelectedItem: {
+      console.log(action)
+      return {...state, selectedItem: action.payload.item};
+    }
+
     default: {
       return state;
     }
   }
 }
 
+export const getState = createFeatureSelector<any>('uxeGallery');
+
 export const {
   selectIds,
   selectEntities,
   selectAll,
   selectTotal,
-} = adapter.getSelectors();
+} = adapter.getSelectors(getState);
+
+
+export const selectFeatureExtended = createSelector(getState, (state: State) => {
+  return  {
+    selectedItem: state.selectedItem,
+    hiddenItem: state.hiddenItem,
+    bottombarTemplate: state.bottombarTemplate,
+    topbarTemplate: state.topbarTemplate,
+    topbarTemplateType: state.topbarTemplateType,
+    modalTemplate: state.modalTemplate,
+    canvasTemplate: state.canvasTemplate,
+    canvasImg: state.canvasImg,
+  };
+});
