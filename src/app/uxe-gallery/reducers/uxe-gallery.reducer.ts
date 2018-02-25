@@ -39,7 +39,7 @@ export const initialState: State = adapter.getInitialState({
   selectedItem: null,
   hiddenItem: null,
   topbarTemplateType: TopbarType.WHITE,
-  topbarTemplate: false,
+  topbarTemplate: true,
   bottombarTemplate: false,
   modalTemplate: false,
   canvasTemplate: false,
@@ -90,6 +90,14 @@ export function reducer(
 
     case UxeGalleryActionTypes.UpdateHiddenItem: {
       return {...state, hiddenItem: action.payload.id};
+    }
+
+    case UxeGalleryActionTypes.ClearToolbars: {
+      return {
+        ...state,
+        topbarTemplate: false,
+        bottombarTemplate: false,
+      };
     }
 
     default: {

@@ -3,6 +3,7 @@ import {
   Store,
 } from '@ngrx/store';
 import {
+  ClearToolbars,
   UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
@@ -24,13 +25,18 @@ export class UxeGalleryStateService {
   public setHiddenItem(id: string): void {
     this.store.dispatch(new UpdateHiddenItem({id}));
   }
-  //
-  //
+
+  public clearToolbars(): void {
+    this.store.dispatch(new ClearToolbars());
+  }
+
   // public setToolBarVisibility(id: string): void {
-  //   // stub
-  //   // Store.bottombar = false
-  //   // Store.topbar = false
+  //   this.store.dispatch(new ClearToolBars())
+    // stub
+    // Store.bottombar = false
+    // Store.topbar = false
   // }
+
   //
   // public setTopbarType(type: any): void {
   //   // stub

@@ -17,6 +17,7 @@ export enum UxeGalleryActionTypes {
   // Extend state Actions
   UpdateSelectedItem = '[UxeGallery] Update SelectedItem',
   UpdateHiddenItem = '[UxeGallery] Update HiddenItem',
+  ClearToolbars = '[UxeGallery] Clear Toolbars',
 }
 
 export class LoadUxeGallerys implements Action {
@@ -87,6 +88,9 @@ export class UpdateHiddenItem implements Action {
   constructor(public payload: { id: string }) {}
 }
 
+export class ClearToolbars implements Action {
+  readonly type = UxeGalleryActionTypes.ClearToolbars;
+}
 
 export type UxeGalleryActions =
  LoadUxeGallerys
@@ -100,4 +104,5 @@ export type UxeGalleryActions =
  | DeleteUxeGallerys
  | ClearUxeGallerys
  | UpdateSelectedItem
- | UpdateHiddenItem;
+ | UpdateHiddenItem
+ | ClearToolbars;

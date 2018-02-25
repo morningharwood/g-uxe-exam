@@ -37,4 +37,8 @@ export class UxeGalleryMasterComponent implements OnInit {
   public hiddenItem(item): void {
     this.galleryStateService.setHiddenItem(item);
   }
+
+  public clearToolbars(): void {
+    this.galleryStateService.clearToolbars();
+  }
 }
