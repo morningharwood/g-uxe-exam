@@ -41,4 +41,13 @@ export class UxeGalleryMasterComponent implements OnInit {
   public clearToolbars(): void {
     this.galleryStateService.clearToolbars();
   }
+
+  public setToolBarStateByName(propName, isActive): void {
+    this.galleryStateService
+      .setToolBarStateByName(propName, isActive);
+  }
+
+  public setModalState(isActive): void {
+    this.galleryStateService.setModalState(isActive);
+  }
 }

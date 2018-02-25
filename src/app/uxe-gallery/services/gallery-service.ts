@@ -4,6 +4,8 @@ import {
 } from '@ngrx/store';
 import {
   ClearToolbars,
+  SetModalState,
+  SetToolbarState,
   UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
@@ -30,23 +32,14 @@ export class UxeGalleryStateService {
     this.store.dispatch(new ClearToolbars());
   }
 
-  // public setToolBarVisibility(id: string): void {
-  //   this.store.dispatch(new ClearToolBars())
-    // stub
-    // Store.bottombar = false
-    // Store.topbar = false
-  // }
+  public setToolBarStateByName(propName: string, isActive: boolean): void {
+    this.store.dispatch(new SetToolbarState({propName: propName, isActive: isActive}));
+  }
 
-  //
-  // public setTopbarType(type: any): void {
-  //   // stub
-  //   // Store.topbarType = type
-  // }
-  //
-  // public setModal(active: boolean): void {
-  //   // stub
-  //   // Store.modal = active;
-  // }
+
+  public setModalState(isActive: boolean): void {
+    this.store.dispatch(new SetModalState({isActive: isActive}));
+  }
   //
   // public ActivateDetail(): void {
   //   // stub

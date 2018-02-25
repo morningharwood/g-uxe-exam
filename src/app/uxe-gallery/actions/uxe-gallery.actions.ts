@@ -18,6 +18,8 @@ export enum UxeGalleryActionTypes {
   UpdateSelectedItem = '[UxeGallery] Update SelectedItem',
   UpdateHiddenItem = '[UxeGallery] Update HiddenItem',
   ClearToolbars = '[UxeGallery] Clear Toolbars',
+  SetToolbarState = '[UxeGallery] Set Toolbars State',
+  SetModalState = '[UxeGallery] Set Modal State',
 }
 
 export class LoadUxeGallerys implements Action {
@@ -92,6 +94,16 @@ export class ClearToolbars implements Action {
   readonly type = UxeGalleryActionTypes.ClearToolbars;
 }
 
+export class SetToolbarState implements Action {
+  readonly type = UxeGalleryActionTypes.SetToolbarState;
+  constructor(public payload: { propName: string, isActive: boolean }) {}
+}
+
+export class SetModalState implements Action {
+  readonly type = UxeGalleryActionTypes.SetModalState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
 export type UxeGalleryActions =
  LoadUxeGallerys
  | AddUxeGallery
@@ -105,4 +117,6 @@ export type UxeGalleryActions =
  | ClearUxeGallerys
  | UpdateSelectedItem
  | UpdateHiddenItem
- | ClearToolbars;
+ | ClearToolbars
+ | SetToolbarState
+ | SetModalState;

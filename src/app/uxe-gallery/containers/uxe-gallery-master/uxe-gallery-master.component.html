@@ -1,11 +1,12 @@
 <uxe-topbar></uxe-topbar>
 <uxe-item></uxe-item>
 <uxe-overlay></uxe-overlay>
-<p>
-  uxe-gallery-master works!
+<pre>
   {{obsExtended | async | json}}
-</p>
+</pre>
 
 <p (click)="selectedItem('2')">update selected</p>
 <p (click)="hiddenItem('2')">update hidden</p>
 <p (click)="clearToolbars()">clear toolbars</p>
+<p (click)="setToolBarStateByName('bottombarTemplate', true)">Set toolbar state</p>
+<p (click)="setModalState(true)">Set modal state</p>

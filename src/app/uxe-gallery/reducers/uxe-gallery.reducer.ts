@@ -100,6 +100,20 @@ export function reducer(
       };
     }
 
+    case UxeGalleryActionTypes.SetToolbarState: {
+      return {
+        ...state,
+        [action.payload.propName]: action.payload.isActive,
+      };
+    }
+
+    case UxeGalleryActionTypes.SetModalState: {
+      return {
+        ...state,
+        modalTemplate: action.payload.isActive,
+      };
+    }
+
     default: {
       return state;
     }
