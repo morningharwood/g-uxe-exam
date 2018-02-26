@@ -1,3 +1,10 @@
-<p>
-  topbar works!
-</p>
+<mat-toolbar
+  [@enterBar]="animationState.topbarTemplate"
+  [ngClass]="{
+    'white': animationState.topbarTemplateType === 'white'
+  }">
+  <mat-toolbar-row>
+    <span>{{name || 'Image Gallery' }} 2</span>
+    <ng-content></ng-content>
+  </mat-toolbar-row>
+</mat-toolbar>
