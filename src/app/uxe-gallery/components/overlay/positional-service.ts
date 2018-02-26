@@ -12,7 +12,7 @@ export class PositionalService {
   public move: any;
   public borderSize = 3;
   public ref: any;
-  private static getCenterY({ offsetHeight: parentHeight }, { offsetHeight: childHeight }): Vector2 {
+  public static getCenterY({ offsetHeight: parentHeight }, { offsetHeight: childHeight }): Vector2 {
     return {
       x: 0,
       y: (parentHeight - childHeight) / 2,

@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { UxeGallery } from '../../uxe-gallery.model';
 
+import { Router } from '@angular/router';
 import {
   select,
   Store,
@@ -21,6 +22,28 @@ import {
 } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 
+
+export const DATA = [
+  { imgSrc: 'https://placeimg.com/440/480/any' },
+  { imgSrc: 'https://placeimg.com/540/480/any' },
+  { imgSrc: 'https://placeimg.com/630/580/any' },
+  { imgSrc: 'https://placeimg.com/341/480/any' },
+  { imgSrc: 'https://placeimg.com/543/480/any' },
+  { imgSrc: 'https://placeimg.com/637/588/any' },
+  { imgSrc: 'https://placeimg.com/349/384/any' },
+  { imgSrc: 'https://placeimg.com/244/385/any' },
+  { imgSrc: 'https://placeimg.com/630/386/any' },
+  { imgSrc: 'https://placeimg.com/640/780/any' },
+  { imgSrc: 'https://placeimg.com/650/380/any' },
+  { imgSrc: 'https://placeimg.com/641/488/any' },
+  { imgSrc: 'https://placeimg.com/653/489/any' },
+  { imgSrc: 'https://placeimg.com/445/481/any' },
+  { imgSrc: 'https://placeimg.com/943/485/any' },
+  { imgSrc: 'https://placeimg.com/542/484/any' },
+  { imgSrc: 'https://placeimg.com/746/681/any' },
+  { imgSrc: 'https://placeimg.com/548/480/any' },
+  { imgSrc: 'https://placeimg.com/441/380/any' },
+];
 
 export enum AnimationState {
   START = 'start',
@@ -38,38 +61,25 @@ export class UxeGalleryMasterComponent implements OnInit {
   private obsExtended: Observable<any>;
   private hostEl: any;
   @ViewChild('container') private containerEl: any;
-  public collection = [
-    {imgSrc: 'https://placeimg.com/440/480/any'},
-    {imgSrc: 'https://placeimg.com/540/480/any'},
-    {imgSrc: 'https://placeimg.com/630/580/any'},
-    {imgSrc: 'https://placeimg.com/341/480/any'},
-    {imgSrc: 'https://placeimg.com/543/480/any'},
-    {imgSrc: 'https://placeimg.com/637/588/any'},
-    {imgSrc: 'https://placeimg.com/349/384/any'},
-    {imgSrc: 'https://placeimg.com/244/385/any'},
-    {imgSrc: 'https://placeimg.com/630/386/any'},
-    {imgSrc: 'https://placeimg.com/640/780/any'},
-    {imgSrc: 'https://placeimg.com/650/380/any'},
-    {imgSrc: 'https://placeimg.com/641/488/any'},
-    {imgSrc: 'https://placeimg.com/653/489/any'},
-    {imgSrc: 'https://placeimg.com/445/481/any'},
-    {imgSrc: 'https://placeimg.com/943/485/any'},
-    {imgSrc: 'https://placeimg.com/542/484/any'},
-    {imgSrc: 'https://placeimg.com/746/681/any'},
-    {imgSrc: 'https://placeimg.com/548/480/any'},
-    {imgSrc: 'https://placeimg.com/441/380/any'},
-  ];
+  public collection = DATA;
+
   constructor(private store: Store<State>,
               private galleryStateService: UxeGalleryStateService,
               private ngHostEl: ElementRef,
               private renderer: Renderer2,
               private overlayService: OverlayService,
-              private posService: PositionalService) {
+              private posService: PositionalService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.obs = this.store.pipe(select(selectAll));
     this.obsExtended = this.store.pipe(select(selectFeatureExtended));
+    this.obsExtended.subscribe((data) => {
+      if (data.detailTemplate === true) {
+        console.log(this.router.navigate([`demo/detail/${data.selectedItem}`]));
+      }
+    });
     this.setHostElement();
   }
 
@@ -82,29 +92,21 @@ export class UxeGalleryMasterComponent implements OnInit {
                       outerMask: any,
                       innerMask: any,
                       imgEl: any) {
-    // this.setSelectedItem(item);
+    this.setSelectedItem(item); // use this to select portal
     this.setModalState(true);
+    console.log(imgEl.getBoundingClientRect());
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
-
-
-    // console.log(posA.x, posA.y, posB, posC);
-    // Host will give you the animation end position with centerImageY
-    // outerMask will give you starting position.
-    // innerMask is the animation element
-    // imgEl will give you the height animation values
-    // Animate the image from center to topleft
-    // this.itemAnimate(move, innerMask);
-    // When animations complete redirect to detail
   }
 
-  // public setSelectedItem(item: UxeGallery): void {
-  //   this.galleryStateService.setSelectedItem(item);
-  // }
+  public setSelectedItem(item: number): void {
+    this.galleryStateService.setSelectedItem(item);
+  }
   //
-  // public hiddenItem(id: string): void {
-  //   this.galleryStateService.setHiddenItem(id);
-  // }
+  public hiddenItem(id: string): void {
+    this.galleryStateService.setHiddenItem(id);
+  }
+
   //
   // public clearToolbars(): void {
   //   this.galleryStateService.clearToolbars();
@@ -118,6 +120,7 @@ export class UxeGalleryMasterComponent implements OnInit {
   public setModalState(isActive: boolean): void {
     this.galleryStateService.setModalState(isActive);
   }
+
   //
   // public setDetailState(isActive: boolean): void {
   //   this.galleryStateService.setDetailState(isActive);

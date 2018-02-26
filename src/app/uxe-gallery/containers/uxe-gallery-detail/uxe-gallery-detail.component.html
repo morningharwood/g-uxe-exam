@@ -1,6 +1,15 @@
-<p>
-  uxe-gallery-detail works!
-</p>
-<uxe-detail-item></uxe-detail-item>
+<div class="overflow-hidden" #containerEl>
+  <div class="inner-gallery group"
+       [ngStyle]="{
+       'width': (data.length * this.hostEl.offsetWidth) + 'px',
+       'transform': 'translateX(' + currentPosition + 'px)'
+     }">
+    <uxe-detail-item
+      class="center"
+      *ngFor="let d of data"
+      [galleryItem]="d">
+    </uxe-detail-item>
+  </div>
+</div>
 <uxe-bottombar></uxe-bottombar>
 <router-outlet></router-outlet>

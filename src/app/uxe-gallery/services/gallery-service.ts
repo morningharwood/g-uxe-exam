@@ -24,7 +24,7 @@ export class UxeGalleryStateService {
   constructor(private store: Store<State>) {
   }
 
-  public setSelectedItem(item: UxeGallery): void {
+  public setSelectedItem(item: number): void {
     this.store.dispatch(new UpdateSelectedItem({item}));
   }
 

@@ -86,7 +86,7 @@ export class ClearUxeGallerys implements Action {
 
 export class UpdateSelectedItem implements Action {
   readonly type = UxeGalleryActionTypes.UpdateSelectedItem;
-  constructor(public payload: { item: UxeGallery }) {}
+  constructor(public payload: { item: number }) {}
 }
 
 export class UpdateHiddenItem implements Action {

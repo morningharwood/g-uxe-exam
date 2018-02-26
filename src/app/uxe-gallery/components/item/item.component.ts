@@ -15,12 +15,9 @@ import {
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
-  STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
-
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { PositionalService } from '../overlay/positional-service';
-
 
 @Component({
   selector: 'uxe-item',
@@ -52,7 +49,7 @@ export class ItemComponent implements OnInit {
         this.posService.ref.inner.close();
       });
     });
-
+    this.setAnimationWatchers();
   }
 
   public endAnimate() {
@@ -62,6 +59,8 @@ export class ItemComponent implements OnInit {
   }
 
   private itemAnimate(move, el): void {
+
+    console.log(this.posService.imgEl.offsetHeight);
     this.playerStart = this.builder.build([
       style({
         transform: `translate3d(${move.from.x}px, ${move.from.y}px, 0px)`,
@@ -73,11 +72,11 @@ export class ItemComponent implements OnInit {
         style({
           transform:
             `translate3d(
-              ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
-              ${move.to.y - (this.posService.borderSize * 2)}px, 1px) scale(2)
+              ${(this.posService.outerMask.offsetWidth / 2)}px,
+              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px, 1px) scale(2)
             `,
           height: this.posService.imgEl.offsetHeight,
-          width: this.posService.outerMask.offsetWidth + (this.posService.borderSize * 2),
+          width: this.posService.outerMask.offsetWidth,
         }),
       ),
     ]).create(el);
@@ -91,19 +90,18 @@ export class ItemComponent implements OnInit {
         transform:
           `translate3d(
               ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
-              ${move.to.y - (this.posService.borderSize * 2)}px, 1px) scale(2)
+              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px, 1px) scale(2)
             `,
-        height: this.posService.imgEl.offsetHeight + (this.posService.borderSize * 2),
-        width: this.posService.outerMask.offsetWidth + (this.posService.borderSize * 2),
-        overflow: 'hidden',
+        height: this.posService.imgEl.offsetHeight,
+        width: this.posService.outerMask.offsetWidth,
       }),
       animate(
         STANDARD_LEAVE,
         keyframes([
           style({
             transform: `translate3d(${move.from.x + 3}px, ${move.from.y + 3}px, 0px)`,
-            width: this.posService.outerMask.offsetWidth - (this.posService.borderSize * 2),
-            height: this.posService.outerMask.offsetHeight - (this.posService.borderSize * 2),
+            height: this.posService.outerMask.offsetHeight,
+            width: this.posService.outerMask.offsetWidth,
             overflow: 'hidden',
             offset: 1,
           }),
@@ -117,21 +115,18 @@ export class ItemComponent implements OnInit {
     this.playerInnerEnd = this.builder.build([
       animate(
         STANDARD_LEAVE,
-        keyframes([
-          style({
-            transform: `translateY(${move + (this.posService.borderSize * 2)}px)`,
-            opacity: 1,
-            offset: .99
-          }),
-          style([{
-            opacity: 0,
-            offset: 1
-          }
-          ])
-        ])
+        style({
+          transform: `translateY(${move}px)`
+        })
       ),
     ]).create(el);
     this.playerInnerEnd.play();
   }
 
+  private setAnimationWatchers() {
+    console.log('watch');
+    this.playerStart.onDone(() => {
+      this.galleryStateService.setDetailState(true);
+    });
+  }
 }
