@@ -1,6 +1,8 @@
 import {
   Component,
   ElementRef,
+  Input,
+  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
@@ -56,10 +58,10 @@ export enum AnimationState {
   styleUrls: [ './uxe-gallery-master.component.scss' ],
   animations: [],
 })
-export class UxeGalleryMasterComponent implements OnInit {
-  private obs: Observable<UxeGallery[]>;
-  private obsExtended: Observable<any>;
+export class UxeGalleryMasterComponent implements OnInit, OnChanges {
+
   private hostEl: any;
+  @Input() state: any;
   @ViewChild('container') private containerEl: any;
   public collection = DATA;
 
@@ -73,14 +75,14 @@ export class UxeGalleryMasterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obs = this.store.pipe(select(selectAll));
-    this.obsExtended = this.store.pipe(select(selectFeatureExtended));
-    this.obsExtended.subscribe((data) => {
-      if (data.detailTemplate === true) {
-        console.log(this.router.navigate([`demo/detail/${data.selectedItem}`]));
-      }
-    });
+
     this.setHostElement();
+  }
+
+  ngOnChanges() {
+    if (this.state.detailTemplate === true) {
+      this.router.navigate([`demo/detail/${this.state.selectedItem}`])
+    }
   }
 
   public setHostElement() {

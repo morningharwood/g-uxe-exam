@@ -1,4 +1,5 @@
-<uxe-topbar [animationState]="this.obsExtended | async">
+<uxe-overlay *ngIf="this.state.modalTemplate"></uxe-overlay>
+<uxe-topbar [animationState]="this.state">
   <button mat-icon-button
           class="close-btn">
     <mat-icon aria-label="close">close</mat-icon>
