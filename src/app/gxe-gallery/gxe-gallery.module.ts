@@ -29,8 +29,8 @@ const DECLARATIONS_EXPORTS = [
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
+    BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
     MatToolbarModule,

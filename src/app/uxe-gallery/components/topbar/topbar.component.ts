@@ -5,7 +5,11 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 
 @Component({
@@ -34,7 +38,7 @@ import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
   ],
 })
 export class TopbarComponent implements OnInit {
-
+  @Input() animationState: any;
   constructor() { }
 
   ngOnInit() {

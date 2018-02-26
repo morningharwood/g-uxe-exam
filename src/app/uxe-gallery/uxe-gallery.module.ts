@@ -18,6 +18,13 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatIconModule,
+} from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -33,6 +40,11 @@ const DECLARATIONS_EXPORTS = [
     EffectsModule.forFeature([ UxeGalleryEffects ]),
     RouterModule,
     FlexLayoutModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   declarations: [
     ...DECLARATIONS_EXPORTS,

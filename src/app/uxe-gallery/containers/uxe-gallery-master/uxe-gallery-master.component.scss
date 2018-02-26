@@ -36,6 +36,17 @@
   margin: 0;
 }
 
+
+.close-btn {
+  background-color: transparent;
+  color: $white-off;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  z-index: 99999;
+}
+
+
 img {
   object-fit: cover;
   width: 100%;
@@ -43,4 +54,13 @@ img {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.spacer {
+  padding: 56px 0 0;
+  width: 100%;
+
+  @include bpM(1) {
+    padding-top: 64px;
+  }
 }
