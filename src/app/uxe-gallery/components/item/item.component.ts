@@ -34,14 +34,10 @@ import { ItemAnimationsService } from './item.animations';
   styleUrls: [ './item.component.scss' ],
 })
 export class ItemComponent implements OnInit {
-  public playerStart: AnimationPlayer;
-  public playerEnd: AnimationPlayer;
+  public hostEl: any;
+  public imgEl: any;
+  @ViewChild('innerImg') public innerImg: any;
   private imgSrc: string;
-  private playerInnerEnd: AnimationPlayer;
-  @ViewChild('innerImg') private innerImg: any;
-  private obsExtended: Observable<any>;
-  private hostEl: any;
-  private imgEl: any;
 
   constructor(private builder: AnimationBuilder,
               private ngHostEl: ElementRef,
@@ -68,91 +64,5 @@ export class ItemComponent implements OnInit {
       this.innerImg.nativeElement,
       this.hostEl,
     );
-    // this.playerEnd.onDone(() => {
-    //   this.posService.ref.inner.close();
-    // });
   }
-
-  // public close() {
-  //   this.endAnimate();
-  //   this.playerEnd.onDone(() => {
-  //     this.posService.ref.inner.close();
-  //   });
-  // }
-  //
-  // public endAnimate() {
-  //   const offset = (this.posService.outerMask.offsetHeight - this.innerImg.nativeElement.offsetHeight) / 2;
-  //   this.itemAnimateItemEnd(offset, this.innerImg.nativeElement);
-  //   this.itemAnimateEnd(this.posService.move, this.renderer.selectRootElement(this.ngHostEl).nativeElement);
-  // }
-  //
-  // private itemAnimate(move, el): void {
-  //   this.playerStart = this.builder.build([
-  //     style({
-  //       transform: `translate(${move.from.x}px, ${move.from.y}px)`,
-  //       width: this.posService.outerMask.offsetWidth,
-  //       height: this.posService.outerMask.offsetHeight,
-  //     }),
-  //     animate(
-  //       STANDARD_EASE,
-  //       style({
-  //         transform:
-  //           `translate(
-  //             ${(this.posService.outerMask.offsetWidth / 2)}px,
-  //             ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
-  //           `,
-  //         height: this.posService.imgEl.offsetHeight,
-  //         width: this.posService.outerMask.offsetWidth,
-  //       }),
-  //     ),
-  //   ]).create(el);
-  //
-  //   this.playerStart.play();
-  // }
-  //
-  // private itemAnimateEnd(move, el): void {
-  //   this.playerEnd = this.builder.build([
-  //     style({
-  //       transform:
-  //         `translate(
-  //             ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
-  //             ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
-  //           `,
-  //       height: this.posService.imgEl.offsetHeight,
-  //       width: this.posService.outerMask.offsetWidth,
-  //     }),
-  //     animate(
-  //       STANDARD_LEAVE,
-  //       keyframes([
-  //         style({
-  //           transform: `translate(${move.from.x + 3}px, ${move.from.y + 3}px)`,
-  //           height: this.posService.outerMask.offsetHeight,
-  //           width: this.posService.outerMask.offsetWidth,
-  //           overflow: 'hidden',
-  //           offset: 1,
-  //         }),
-  //       ]),
-  //     ),
-  //   ]).create(el);
-  //   this.playerEnd.play();
-  // }
-  //
-  // private itemAnimateItemEnd(move, el): void {
-  //   this.playerInnerEnd = this.builder.build([
-  //     animate(
-  //       STANDARD_LEAVE,
-  //       style({
-  //         transform: `translateY(${move}px)`,
-  //       }),
-  //     ),
-  //   ]).create(el);
-  //   this.playerInnerEnd.play();
-  // }
-  //
-  // private setAnimationWatchers() {
-  //   // this.playerStart.onDone(() => {
-  //   //   this.galleryStateService.setDetailState(true);
-  //   //   this.galleryStateService.setModalState(true);
-  //   // });
-  // }
 }

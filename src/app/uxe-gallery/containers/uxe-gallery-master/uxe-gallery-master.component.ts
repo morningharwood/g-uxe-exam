@@ -92,7 +92,9 @@ export class UxeGalleryMasterComponent implements OnInit {
   public selectedItem(item: number,
                       outerMask: any,
                       innerMask: any,
-                      imgEl: any) {
+                      imgEl: any,
+                      data: any) {
+    console.log(data);
     this.galleryStateService.openDetailView(item);
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);

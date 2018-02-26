@@ -11,10 +11,11 @@ import {
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
+  STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
 import { PositionalService } from '../overlay/positional-service';
 
-
+const SUB_PIXELING = 1;
 @Injectable()
 export class ItemAnimationsService {
   private playerStart: AnimationPlayer;
@@ -22,6 +23,7 @@ export class ItemAnimationsService {
   private playerInnerEnd: AnimationPlayer;
   private hostEl: any = '';
   private imgEl: any = '';
+
   constructor(private builder: AnimationBuilder,
               private posService: PositionalService) {
 
@@ -73,19 +75,26 @@ export class ItemAnimationsService {
               ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
               ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
             `,
+        overflow: 'hidden',
         height: this.posService.imgEl.offsetHeight,
         width: this.posService.outerMask.offsetWidth,
+        opacity: 1,
       }),
       animate(
         STANDARD_LEAVE,
         keyframes([
           style({
             transform: `translate(${move.from.x + 3}px, ${move.from.y + 3}px)`,
-            height: this.posService.outerMask.offsetHeight,
-            width: this.posService.outerMask.offsetWidth,
+            height: this.posService.innerMask.offsetHeight,
+            width: this.posService.innerMask.offsetWidth,
             overflow: 'hidden',
-            offset: 1,
+            opacity: 1,
+            offset: .98,
           }),
+          style({
+            opacity: 0,
+            offset: 1
+          })
         ]),
       ),
     ]).create(el);
@@ -97,7 +106,7 @@ export class ItemAnimationsService {
       animate(
         STANDARD_LEAVE,
         style({
-          transform: `translateY(${move}px)`,
+          transform: `translate(${-SUB_PIXELING}px, ${move}px)`,
         }),
       ),
     ]).create(el);
