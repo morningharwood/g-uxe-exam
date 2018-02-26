@@ -31,7 +31,7 @@ import {
       ]),
       transition('1 => 0', [
         animate(STANDARD_EASE, style({
-          bottom: '-80',
+          bottom: '-80px',
         })),
       ]),
     ]),

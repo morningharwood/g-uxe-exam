@@ -23,6 +23,7 @@ import {
   State,
 } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
+import { ItemAnimationsService } from '../../components/item/item.animations';
 
 
 export const DATA = [
@@ -71,7 +72,7 @@ export class UxeGalleryMasterComponent implements OnInit {
               private renderer: Renderer2,
               private overlayService: OverlayService,
               private posService: PositionalService,
-              private router: Router) {
+              private animationService: ItemAnimationsService) {
   }
 
   ngOnInit() {
@@ -79,7 +80,8 @@ export class UxeGalleryMasterComponent implements OnInit {
   }
 
   public closeDetails() {
-    this.galleryStateService.setDetailState(false);
+    this.galleryStateService.closeDetailView();
+    this.animationService.endAnimate();
   }
 
   public setHostElement() {
@@ -92,7 +94,6 @@ export class UxeGalleryMasterComponent implements OnInit {
                       innerMask: any,
                       imgEl: any) {
     this.galleryStateService.openDetailView(item);
-    console.log(imgEl.getBoundingClientRect());
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
   }

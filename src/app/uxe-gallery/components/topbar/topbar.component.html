@@ -5,7 +5,7 @@
    'white': animationState.topbarTemplateType === 'white'
   }">
   <mat-toolbar-row>
-    <span>{{name || 'Image Gallery' }} 2</span>
-    <ng-content></ng-content>
+    <span>{{name || 'Image Gallery' }} <ng-content></ng-content></span>
+
   </mat-toolbar-row>
 </mat-toolbar>

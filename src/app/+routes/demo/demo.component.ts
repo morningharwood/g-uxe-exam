@@ -28,7 +28,6 @@ export class GxeDemoComponent implements OnInit {
   public ngOnInit(): void {
     this.galleryItemsObs = this.doggoService.get();
     this.obsExtended = this.store.pipe(select(selectFeatureExtended));
-    this.obsExtended.subscribe(console.log)
   }
 
 }

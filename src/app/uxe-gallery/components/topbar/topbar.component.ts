@@ -33,7 +33,7 @@ import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
       ]),
       transition('1 => 0', [
         animate(STANDARD_EASE, style({
-          top: '-80',
+          top: '-80px',
         })),
       ]),
     ]),

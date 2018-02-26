@@ -15,6 +15,7 @@ import { UxeGallery } from '../uxe-gallery.model';
 
 
 export interface State extends EntityState<UxeGallery> {
+  animationState: string;
   selectedItem: number | null;
   hiddenItem: string | null;
   bottombarTemplate: boolean;
@@ -38,6 +39,7 @@ export const initialState: State = adapter.getInitialState({
       details: 'some dog',
     }
   },
+  animationState: 'closed',
   selectedItem: null,
   hiddenItem: null,
   topbarTemplateType: TopbarType.WHITE,
@@ -144,6 +146,12 @@ export function reducer(
         topbarTemplateType: action.payload.type,
       };
     }
+    case UxeGalleryActionTypes.SetAnimationState: {
+      return {
+        ...state,
+        animationState: action.payload.type,
+      };
+    }
 
     default: {
       return state;
@@ -163,6 +171,7 @@ export const {
 
 export const selectFeatureExtended = createSelector(getState, (state: State) => {
   return  {
+    animationState: state.animationState,
     selectedItem: state.selectedItem,
     hiddenItem: state.hiddenItem,
     bottombarTemplate: state.bottombarTemplate,

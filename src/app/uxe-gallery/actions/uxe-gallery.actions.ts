@@ -24,6 +24,7 @@ export enum UxeGalleryActionTypes {
   SetCanvasState = '[UxeGallery] Set Canvas State',
   SetCanvasSource = '[UxeGallery] Set Canvas Source',
   SetTopbarType = '[UxeGallery] Set Topbar Type',
+  SetAnimationState = '[UxeGallery] Set Animation State',
 }
 
 export class LoadUxeGallerys implements Action {
@@ -128,6 +129,11 @@ export class SetTopbarType implements Action {
   constructor(public payload: { type: string }) {}
 }
 
+export class SetAnimationState implements Action {
+  readonly type = UxeGalleryActionTypes.SetAnimationState;
+  constructor(public payload: { type: string }) {}
+}
+
 
 export type UxeGalleryActions =
  LoadUxeGallerys
@@ -148,4 +154,5 @@ export type UxeGalleryActions =
  | SetDetailState
  | SetCanvasState
  | SetCanvasSource
- | SetTopbarType;
+ | SetTopbarType
+ | SetAnimationState;

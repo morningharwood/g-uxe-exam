@@ -4,6 +4,7 @@ import {
 } from '@ngrx/store';
 import {
   ClearToolbars,
+  SetAnimationState,
   SetCanvasSource,
   SetCanvasState,
   SetDetailState,
@@ -16,10 +17,13 @@ import {
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
 export class UxeGalleryStateService {
+  private data = new BehaviorSubject('');
+  public currentData = this.data.asObservable()
   constructor(private store: Store<State>) {
   }
 
@@ -59,12 +63,32 @@ export class UxeGalleryStateService {
     this.store.dispatch(new SetTopbarType({type: type}));
   }
 
+  public setAnimationState(type: string): void {
+    this.store.dispatch(new SetAnimationState({type: type}));
+  }
+
   public openDetailView(item: number) {
+    this.updateMessage('');
     this.setSelectedItem(item);
     this.setModalState(true);
     this.setDetailState(true);
     this.setTopbarType('black');
     this.setToolBarStateByName('topbarTemplate', true);
     this.setToolBarStateByName('bottombarTemplate', true);
+    this.setAnimationState('open');
+  }
+
+  public closeDetailView() {
+    this.setSelectedItem(null);
+    this.setModalState(false);
+    this.setDetailState(false);
+    this.setTopbarType('white');
+    this.setToolBarStateByName('topbarTemplate', true);
+    this.setToolBarStateByName('bottombarTemplate', false);
+    this.setAnimationState('closed');
+  }
+
+  public updateMessage(item: any) {
+    this.data.next(item);
   }
 }

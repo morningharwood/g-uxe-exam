@@ -25,6 +25,7 @@ import {
   MatIconModule,
 } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ItemAnimationsService } from './components/item/item.animations';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -61,6 +62,7 @@ const DECLARATIONS_EXPORTS = [
     OverlayService,
     UxeGalleryStateService,
     PositionalService,
+    ItemAnimationsService,
   ],
   entryComponents: [ItemComponent],
 })
