@@ -8,7 +8,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -22,6 +21,7 @@ import { EventType } from '../../../gxe-gallery/enums/event-types';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
+import { PositionalService } from '../../components/overlay/positional-service';
 
 
 const TOUCH_THRESHOLD = .75;
@@ -45,7 +45,8 @@ export class UxeGalleryDetailComponent implements OnInit {
               private store: Store<any>,
               public ngHostEl: ElementRef,
               private renderer: Renderer2,
-              private galleryService: UxeGalleryStateService) {
+              private galleryService: UxeGalleryStateService,
+              private posService: PositionalService) {
   }
 
   ngOnInit() {
@@ -72,9 +73,7 @@ export class UxeGalleryDetailComponent implements OnInit {
    */
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
-
     this.currentPosition = this.lastPosition + event.deltaX;
-    console.log(this.currentPosition);
   }
 
   /**
@@ -127,7 +126,6 @@ export class UxeGalleryDetailComponent implements OnInit {
         this.player.destroy();
         this.player = null;
       }
-
       this.lastPosition = this.currentPosition = futurePosition;
     });
   }

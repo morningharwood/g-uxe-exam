@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+} from '@angular/core';
 import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
-import { OverlayService } from './overlay-service';
 
 
 @Injectable()
@@ -12,22 +13,38 @@ export class PositionalService {
   public move: any;
   public borderSize = 3;
   public ref: any;
+  public queryParent: any;
+  public queryImgs: any;
+
   public static getCenterY({ offsetHeight: parentHeight }, { offsetHeight: childHeight }): Vector2 {
     return {
       x: 0,
       y: (parentHeight - childHeight) / 2,
     };
   }
-  public set(index, hostEl, outerMask, innerMask, imgEl, ref) {
+
+  public pluckElements(index) {
+    return {
+      outerMask: this.queryParent._results[ index ].nativeElement,
+      imgEl: this.queryImgs._results[ index ].nativeElement,
+    };
+  }
+
+  public set(index, innerMask, ref, hostEl) {
+    const { outerMask, imgEl } = this.pluckElements(index);
     this.hostEl = hostEl;
+    this.imgEl = imgEl;
+
+    console.log(
+      this.hostEl.offsetHeight,
+      this.imgEl.offsetHeight
+    );
+
     this.outerMask = outerMask;
     this.innerMask = innerMask;
-    this.imgEl = imgEl;
     this.ref = ref;
-    const host = this.hostEl.getBoundingClientRect();
     const posA = outerMask.getBoundingClientRect();
-    const posB = imgEl.getBoundingClientRect().y;
-    const posC = PositionalService.getCenterY(this.hostEl, imgEl);
+    const posC = PositionalService.getCenterY(this.hostEl, this.imgEl);
 
     this.move = {
       from: posA,
@@ -36,9 +53,5 @@ export class PositionalService {
         y: posC.y,
       },
     };
-  }
-
-  public close() {
-
   }
 }

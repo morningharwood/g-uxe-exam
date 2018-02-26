@@ -8,13 +8,12 @@ import {
 import {
   Injectable,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
-  STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
 import { PositionalService } from '../overlay/positional-service';
-import { Router } from '@angular/router';
 
 const SUB_PIXELING = 1;
 @Injectable()
@@ -32,7 +31,6 @@ export class ItemAnimationsService {
   }
 
   public endAnimate(innerImg = this.imgEl, hostEl = this.hostEl) {
-    console.log(this.hostEl);
     const offset = (this.posService.outerMask.offsetHeight - innerImg.offsetHeight) / 2;
     this.itemAnimateItemEnd(offset, innerImg);
     this.itemAnimateEnd(this.posService.move, hostEl);
@@ -116,5 +114,10 @@ export class ItemAnimationsService {
       ),
     ]).create(el);
     this.playerInnerEnd.play();
+  }
+
+  public cacheAnimateActors(el: any, imgEl: any) {
+    this.hostEl = el;
+    this.imgEl = imgEl;
   }
 }

@@ -1,29 +1,24 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   Input,
-  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { UxeGallery } from '../../uxe-gallery.model';
-
 import { Router } from '@angular/router';
 import {
-  select,
   Store,
 } from '@ngrx/store';
+import { ItemAnimationsService } from '../../components/item/item.animations';
 import { OverlayService } from '../../components/overlay/overlay-service';
 import { PositionalService } from '../../components/overlay/positional-service';
 import {
-  selectAll,
-  selectFeatureExtended,
   State,
 } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
-import { ItemAnimationsService } from '../../components/item/item.animations';
 
 
 export const DATA = [
@@ -57,13 +52,14 @@ export enum AnimationState {
   selector: 'uxe-gallery-master',
   templateUrl: './uxe-gallery-master.component.html',
   styleUrls: [ './uxe-gallery-master.component.scss' ],
-  animations: [],
 })
-export class UxeGalleryMasterComponent implements OnInit {
+export class UxeGalleryMasterComponent implements OnInit, AfterViewInit {
 
   private hostEl: any;
   @Input() state: any;
-  @ViewChild('container') private containerEl: any;
+  @ViewChildren('outerMask') private outerQuery: any;
+  @ViewChildren('imgEl') private imgQuery: any;
+
   public collection = DATA;
 
   constructor(private store: Store<State>,
@@ -78,6 +74,11 @@ export class UxeGalleryMasterComponent implements OnInit {
 
   ngOnInit() {
     this.setHostElement();
+  }
+
+  ngAfterViewInit() {
+    this.posService.queryImgs = this.imgQuery;
+    this.posService.queryParent = this.outerQuery;
   }
 
   public closeDetails() {
@@ -97,8 +98,7 @@ export class UxeGalleryMasterComponent implements OnInit {
                       imgEl: any) {
     this.galleryStateService.openDetailView(item);
     const ref = this.overlayService.open();
-    this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
-
+    this.posService.set(item, innerMask, ref, this.hostEl);
   }
 
   public setSelectedItem(item: number): void {
@@ -109,34 +109,7 @@ export class UxeGalleryMasterComponent implements OnInit {
     this.galleryStateService.setHiddenItem(id);
   }
 
-  //
-  // public clearToolbars(): void {
-  //   this.galleryStateService.clearToolbars();
-  // }
-  //
-  // public setToolBarStateByName(propName: string, isActive: boolean): void {
-  //   this.galleryStateService
-  //     .setToolBarStateByName(propName, isActive);
-  // }
-  //
   public setModalState(isActive: boolean): void {
     this.galleryStateService.setModalState(isActive);
   }
-
-  //
-  // public setDetailState(isActive: boolean): void {
-  //   this.galleryStateService.setDetailState(isActive);
-  // }
-  //
-  // public setCanvasState(isActive: boolean): void {
-  //   this.galleryStateService.setCanvasState(isActive);
-  // }
-  //
-  // public setCanvasSource(source: string): void {
-  //   this.galleryStateService.setCanvasSource(source);
-  // }
-  //
-  // public setTopbarType(type: string) {
-  //   this.galleryStateService.setTopbarType(type);
-  // }
 }

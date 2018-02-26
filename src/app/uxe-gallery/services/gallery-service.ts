@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Store,
 } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {
   ClearToolbars,
   SetAnimationState,
@@ -17,8 +19,6 @@ import {
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -88,6 +88,8 @@ export class UxeGalleryStateService {
   }
 
   public paginate(index: number) {
-    this.router.navigate([`demo/detail}`]);
+    this.router.navigate([`demo/detail`]);
   }
+
+
 }
