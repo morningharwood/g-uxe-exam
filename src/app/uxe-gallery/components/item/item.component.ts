@@ -43,13 +43,18 @@ export class ItemComponent implements OnInit {
     this.imgSrc = this.posService.imgEl.src;
 
     this.posService.ref.overlay.backdropClick().subscribe(_ => {
-      this.galleryStateService.setModalState(false);
-      this.endAnimate();
-      this.playerEnd.onDone(() => {
-        this.posService.ref.inner.close();
-      });
+      this.close();
     });
+
     this.setAnimationWatchers();
+  }
+
+  public close() {
+    this.galleryStateService.setModalState(false);
+    this.endAnimate();
+    this.playerEnd.onDone(() => {
+      this.posService.ref.inner.close();
+    });
   }
 
   public endAnimate() {

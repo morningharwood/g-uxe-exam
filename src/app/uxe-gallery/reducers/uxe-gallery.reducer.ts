@@ -15,7 +15,7 @@ import { UxeGallery } from '../uxe-gallery.model';
 
 
 export interface State extends EntityState<UxeGallery> {
-  selectedItem: UxeGallery | null;
+  selectedItem: number | null;
   hiddenItem: string | null;
   bottombarTemplate: boolean;
   topbarTemplate: boolean;

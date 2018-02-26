@@ -75,7 +75,6 @@ export class UxeGalleryMasterComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
     this.setHostElement();
   }
 
@@ -84,7 +83,10 @@ export class UxeGalleryMasterComponent implements OnInit, OnChanges {
       this.router.navigate([`demo/detail/${this.state.selectedItem}`])
     }
   }
+  public closeDetails() {
+    this.galleryStateService.setModalState(false);
 
+  }
   public setHostElement() {
     // TODO (mharwood) call this again on window.resize.
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;

@@ -44,6 +44,7 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.lastPosition = 0;
     this.currentPosition = 0;
     this.setUpBars();
+    this.galleryService.setModalState(true);
   }
 
   @HostListener(EventType.CLICK, ['$event'])
