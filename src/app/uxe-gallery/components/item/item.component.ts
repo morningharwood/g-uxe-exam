@@ -58,11 +58,4 @@ export class ItemComponent implements OnInit {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.imgEl  = this.renderer.selectRootElement(this.innerImg).nativeElement;
   }
-
-  public close() {
-    this.animationService.endAnimate(
-      this.innerImg.nativeElement,
-      this.hostEl,
-    );
-  }
 }
