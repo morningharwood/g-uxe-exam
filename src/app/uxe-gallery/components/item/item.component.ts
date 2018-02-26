@@ -12,12 +12,20 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  select,
+  Store,
+} from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
 } from '../../../gxe-gallery/animations/ease.animations';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { PositionalService } from '../overlay/positional-service';
+import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
+
 
 @Component({
   selector: 'uxe-item',
@@ -30,12 +38,15 @@ export class ItemComponent implements OnInit {
   private imgSrc: string;
   private playerInnerEnd: AnimationPlayer;
   @ViewChild('innerImg') private innerImg: any;
+  private obsExtended: Observable<any>;
 
   constructor(private builder: AnimationBuilder,
               private ngHostEl: ElementRef,
               private renderer: Renderer2,
               private posService: PositionalService,
-              private galleryStateService: UxeGalleryStateService) {
+              private galleryStateService: UxeGalleryStateService,
+              private store: Store<any>,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -64,8 +75,6 @@ export class ItemComponent implements OnInit {
   }
 
   private itemAnimate(move, el): void {
-
-    console.log(this.posService.imgEl.offsetHeight);
     this.playerStart = this.builder.build([
       style({
         transform: `translate(${move.from.x}px, ${move.from.y}px)`,
@@ -121,17 +130,17 @@ export class ItemComponent implements OnInit {
       animate(
         STANDARD_LEAVE,
         style({
-          transform: `translateY(${move}px)`
-        })
+          transform: `translateY(${move}px)`,
+        }),
       ),
     ]).create(el);
     this.playerInnerEnd.play();
   }
 
   private setAnimationWatchers() {
-    console.log('watch');
     this.playerStart.onDone(() => {
       this.galleryStateService.setDetailState(true);
+      this.galleryStateService.setModalState(true);
     });
   }
 }

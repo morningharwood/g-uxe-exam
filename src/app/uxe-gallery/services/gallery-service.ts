@@ -16,7 +16,6 @@ import {
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
-import { UxeGallery } from '../uxe-gallery.model';
 
 
 @Injectable()
@@ -58,5 +57,14 @@ export class UxeGalleryStateService {
 
   public setTopbarType(type: string): void {
     this.store.dispatch(new SetTopbarType({type: type}));
+  }
+
+  public openDetailView(item: number) {
+    this.setSelectedItem(item);
+    this.setModalState(true);
+    this.setDetailState(true);
+    this.setTopbarType('black');
+    this.setToolBarStateByName('topbarTemplate', true);
+    this.setToolBarStateByName('bottombarTemplate', true);
   }
 }

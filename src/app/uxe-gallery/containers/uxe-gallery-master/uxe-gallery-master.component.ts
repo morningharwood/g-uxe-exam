@@ -58,7 +58,7 @@ export enum AnimationState {
   styleUrls: [ './uxe-gallery-master.component.scss' ],
   animations: [],
 })
-export class UxeGalleryMasterComponent implements OnInit, OnChanges {
+export class UxeGalleryMasterComponent implements OnInit {
 
   private hostEl: any;
   @Input() state: any;
@@ -78,15 +78,10 @@ export class UxeGalleryMasterComponent implements OnInit, OnChanges {
     this.setHostElement();
   }
 
-  ngOnChanges() {
-    if (this.state.detailTemplate === true) {
-      this.router.navigate([`demo/detail/${this.state.selectedItem}`])
-    }
-  }
   public closeDetails() {
-    this.galleryStateService.setModalState(false);
-
+    this.galleryStateService.setDetailState(false);
   }
+
   public setHostElement() {
     // TODO (mharwood) call this again on window.resize.
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
@@ -96,8 +91,7 @@ export class UxeGalleryMasterComponent implements OnInit, OnChanges {
                       outerMask: any,
                       innerMask: any,
                       imgEl: any) {
-    this.setSelectedItem(item); // use this to select portal
-    this.setModalState(true);
+    this.galleryStateService.openDetailView(item);
     console.log(imgEl.getBoundingClientRect());
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);

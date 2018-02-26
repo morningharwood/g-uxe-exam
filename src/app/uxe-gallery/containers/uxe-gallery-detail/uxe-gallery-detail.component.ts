@@ -29,7 +29,6 @@ export class UxeGalleryDetailComponent implements OnInit {
   public hostEl: any;
   @ViewChild('containerEl') private container: any;
   private player: AnimationPlayer;
-
   constructor(
     private builder: AnimationBuilder,
     private store: Store<any>,
@@ -43,8 +42,8 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.lastPosition = 0;
     this.currentPosition = 0;
-    this.setUpBars();
     this.galleryService.setModalState(true);
+    this.setUpBars();
   }
 
   @HostListener(EventType.CLICK, ['$event'])
@@ -120,6 +119,6 @@ export class UxeGalleryDetailComponent implements OnInit {
   }
 
   private setUpBars() {
-    this.galleryService.setTopbarType('black');
+    this.galleryService.setTopbarType('white');
   }
 }

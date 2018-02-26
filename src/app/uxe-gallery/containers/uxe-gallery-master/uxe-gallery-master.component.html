@@ -1,10 +1,6 @@
+
 <uxe-overlay *ngIf="this.state.modalTemplate"></uxe-overlay>
-<uxe-topbar [animationState]="this.state">
-  <button mat-icon-button
-          class="close-btn">
-    <mat-icon aria-label="close">close</mat-icon>
-  </button>
-</uxe-topbar>
+
 <div class="container spacer" #container>
   <div fxLayout="row wrap"
        fxLayoutAlign="start center">
@@ -22,7 +18,17 @@
   </div>
 </div>
 
+<uxe-topbar [animationState]="this.state">
+  <button mat-icon-button
+          (click)="closeDetails()"
+          class="close-btn">
+    <mat-icon aria-label="close">close</mat-icon>
+  </button>
+</uxe-topbar>
 
+<uxe-bottombar [animationState]="this.state">
+
+</uxe-bottombar>
 <!--<p (click)="selectedItem('2')">update selected</p>-->
 <!--<p (click)="hiddenItem('2')">update hidden</p>-->
 <!--<p (click)="clearToolbars()">clear toolbars</p>-->
