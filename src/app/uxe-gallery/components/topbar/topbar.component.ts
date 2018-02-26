@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
@@ -16,6 +17,7 @@ import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
   selector: 'uxe-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('enterBar', [
       state('0', style({

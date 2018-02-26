@@ -1,7 +1,8 @@
 <mat-toolbar
   [@enterBar]="animationState.topbarTemplate"
   [ngClass]="{
-    'white': animationState.topbarTemplateType === 'white'
+   'black': animationState.topbarTemplateType === 'black',
+   'white': animationState.topbarTemplateType === 'white'
   }">
   <mat-toolbar-row>
     <span>{{name || 'Image Gallery' }} 2</span>

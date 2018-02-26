@@ -15,6 +15,7 @@ import {
 import { Store } from '@ngrx/store';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { EventType } from '../../../gxe-gallery/enums/event-types';
+import { UxeGalleryStateService } from '../../services/gallery-service';
 import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
 const TOUCH_THRESHOLD = .75;
 
@@ -28,11 +29,13 @@ export class UxeGalleryDetailComponent implements OnInit {
   public hostEl: any;
   @ViewChild('containerEl') private container: any;
   private player: AnimationPlayer;
+
   constructor(
     private builder: AnimationBuilder,
     private store: Store<any>,
     public ngHostEl: ElementRef,
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private galleryService: UxeGalleryStateService) { }
     public currentPosition: number;
     private lastPosition: number;
 
@@ -40,6 +43,7 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.lastPosition = 0;
     this.currentPosition = 0;
+    this.setUpBars();
   }
 
   @HostListener(EventType.CLICK, ['$event'])
@@ -112,5 +116,9 @@ export class UxeGalleryDetailComponent implements OnInit {
       this.player = null;
       // this.endingIndex.emit(index);
     });
+  }
+
+  private setUpBars() {
+    this.galleryService.setTopbarType('black');
   }
 }
