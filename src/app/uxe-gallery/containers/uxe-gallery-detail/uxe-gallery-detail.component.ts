@@ -8,6 +8,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -18,15 +19,17 @@ import {
 } from '@ngrx/store';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { EventType } from '../../../gxe-gallery/enums/event-types';
+import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
-import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
+
+
 const TOUCH_THRESHOLD = .75;
 
 @Component({
   selector: 'uxe-gallery-detail',
   templateUrl: './uxe-gallery-detail.component.html',
-  styleUrls: ['./uxe-gallery-detail.component.scss']
+  styleUrls: [ './uxe-gallery-detail.component.scss' ],
 })
 export class UxeGalleryDetailComponent implements OnInit {
   public data = DATA;
@@ -35,12 +38,15 @@ export class UxeGalleryDetailComponent implements OnInit {
   private player: AnimationPlayer;
   public currentPosition: number;
   private lastPosition: number;
-  constructor(
-    private builder: AnimationBuilder,
-    private store: Store<any>,
-    public ngHostEl: ElementRef,
-    private renderer: Renderer2,
-    private galleryService: UxeGalleryStateService) { }
+  private obs: any;
+
+
+  constructor(private builder: AnimationBuilder,
+              private store: Store<any>,
+              public ngHostEl: ElementRef,
+              private renderer: Renderer2,
+              private galleryService: UxeGalleryStateService) {
+  }
 
   ngOnInit() {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
@@ -49,12 +55,13 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.galleryService.setModalState(true);
     this.galleryService.setDetailState(true);
 
-    this.store.pipe(select(selectFeatureExtended)).subscribe((data) => {
+    this.obs = this.store.pipe(select(selectFeatureExtended));
+    this.obs.subscribe((data) => {
       this.paginationAnimate(data.selectedItem, '0ms');
     });
   }
 
-  @HostListener(EventType.CLICK, ['$event'])
+  @HostListener(EventType.CLICK, [ '$event' ])
   public taptap($event) {
     // this.tapped.emit($event);
   }
@@ -65,7 +72,9 @@ export class UxeGalleryDetailComponent implements OnInit {
    */
   @HostListener(EventType.PANMOVE, [ '$event' ])
   public move(event: any): void {
+
     this.currentPosition = this.lastPosition + event.deltaX;
+    console.log(this.currentPosition);
   }
 
   /**
@@ -73,7 +82,6 @@ export class UxeGalleryDetailComponent implements OnInit {
    */
   @HostListener(EventType.PANEND, [ '$event' ])
   public end(event: any): void {
-
     this.paginate(event);
   }
 
@@ -112,13 +120,15 @@ export class UxeGalleryDetailComponent implements OnInit {
         }),
       ),
     ]).create(this.container.nativeElement);
+
     this.player.play();
     this.player.onDone(() => {
+      if (this.player) {
+        this.player.destroy();
+        this.player = null;
+      }
+
       this.lastPosition = this.currentPosition = futurePosition;
     });
-  }
-
-  private setUpBars() {
-    this.galleryService.setTopbarType('white');
   }
 }

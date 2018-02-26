@@ -18,13 +18,13 @@ import {
   State,
 } from '../reducers/uxe-gallery.reducer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class UxeGalleryStateService {
   private data = new BehaviorSubject('');
-  public currentData = this.data.asObservable()
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<State>, private router: Router) {
   }
 
   public setSelectedItem(item: number): void {
@@ -68,7 +68,6 @@ export class UxeGalleryStateService {
   }
 
   public openDetailView(item: number) {
-    this.updateMessage('');
     this.setSelectedItem(item);
     this.setModalState(true);
     this.setDetailState(true);
@@ -88,7 +87,7 @@ export class UxeGalleryStateService {
     this.setAnimationState('closed');
   }
 
-  public updateMessage(item: any) {
-    this.data.next(item);
+  public paginate(index: number) {
+    this.router.navigate([`demo/detail}`]);
   }
 }

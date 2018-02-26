@@ -171,8 +171,8 @@ export class GalleryDetailComponent implements OnInit {
 
     this.player.onDone(() => {
       this.player.destroy();
-      this.lastPosition = this.currentPosition = futurePosition;
       this.player = null;
+      this.lastPosition = this.currentPosition = futurePosition;
       this.endingIndex.emit(index);
     });
   }

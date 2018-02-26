@@ -16,7 +16,7 @@ export const AllRoutes = {
   ROOT: '',
   INTRO: 'intro',
   DEMO: 'demo',
-  DETAIL: 'detail/:slug',
+  DETAIL: 'detail',
   CANVAS_BRUSH: 'brush',
   CANVAS_TEXT: 'text',
   CANVAS_MORE: 'more',

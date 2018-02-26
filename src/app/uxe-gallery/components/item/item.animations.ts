@@ -68,7 +68,7 @@ export class ItemAnimationsService {
 
     this.playerStart.play();
     this.playerStart.onDone(() => {
-      this.router.navigate([`/demo/detail/0`]);
+      this.router.navigate([`/demo/detail/`]);
     });
   }
 
