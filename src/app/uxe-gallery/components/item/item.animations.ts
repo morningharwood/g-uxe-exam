@@ -14,18 +14,20 @@ import {
   STANDARD_LONG,
 } from '../../../gxe-gallery/animations/ease.animations';
 import { PositionalService } from '../overlay/positional-service';
+import { Router } from '@angular/router';
 
 const SUB_PIXELING = 1;
 @Injectable()
 export class ItemAnimationsService {
-  private playerStart: AnimationPlayer;
-  private playerEnd: AnimationPlayer;
+  public playerStart: AnimationPlayer;
+  public playerEnd: AnimationPlayer;
   private playerInnerEnd: AnimationPlayer;
   private hostEl: any = '';
   private imgEl: any = '';
 
   constructor(private builder: AnimationBuilder,
-              private posService: PositionalService) {
+              private posService: PositionalService,
+              private router: Router) {
 
   }
 
@@ -65,6 +67,9 @@ export class ItemAnimationsService {
     ]).create(el);
 
     this.playerStart.play();
+    this.playerStart.onDone(() => {
+      this.router.navigate([`/demo/detail/0`]);
+    });
   }
 
   public itemAnimateEnd(move, el): void {
@@ -111,12 +116,5 @@ export class ItemAnimationsService {
       ),
     ]).create(el);
     this.playerInnerEnd.play();
-  }
-
-  public setAnimationWatchers() {
-    // this.playerStart.onDone(() => {
-    //   this.galleryStateService.setDetailState(true);
-    //   this.galleryStateService.setModalState(true);
-    // });
   }
 }

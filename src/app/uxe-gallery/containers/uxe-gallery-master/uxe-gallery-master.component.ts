@@ -72,7 +72,8 @@ export class UxeGalleryMasterComponent implements OnInit {
               private renderer: Renderer2,
               private overlayService: OverlayService,
               private posService: PositionalService,
-              private animationService: ItemAnimationsService) {
+              private animationService: ItemAnimationsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -80,6 +81,7 @@ export class UxeGalleryMasterComponent implements OnInit {
   }
 
   public closeDetails() {
+    this.router.navigate(['/demo']);
     this.galleryStateService.closeDetailView();
     this.animationService.endAnimate();
   }
@@ -93,10 +95,10 @@ export class UxeGalleryMasterComponent implements OnInit {
                       outerMask: any,
                       innerMask: any,
                       imgEl: any) {
-    console.log(item);
     this.galleryStateService.openDetailView(item);
     const ref = this.overlayService.open();
     this.posService.set(item, this.hostEl, outerMask, innerMask, imgEl, ref);
+
   }
 
   public setSelectedItem(item: number): void {
