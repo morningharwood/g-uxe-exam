@@ -63,7 +63,7 @@ export class ItemComponent implements OnInit {
     console.log(this.posService.imgEl.offsetHeight);
     this.playerStart = this.builder.build([
       style({
-        transform: `translate3d(${move.from.x}px, ${move.from.y}px, 0px)`,
+        transform: `translate(${move.from.x}px, ${move.from.y}px)`,
         width: this.posService.outerMask.offsetWidth,
         height: this.posService.outerMask.offsetHeight,
       }),
@@ -71,9 +71,9 @@ export class ItemComponent implements OnInit {
         STANDARD_EASE,
         style({
           transform:
-            `translate3d(
+            `translate(
               ${(this.posService.outerMask.offsetWidth / 2)}px,
-              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px, 1px) scale(2)
+              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
             `,
           height: this.posService.imgEl.offsetHeight,
           width: this.posService.outerMask.offsetWidth,
@@ -88,9 +88,9 @@ export class ItemComponent implements OnInit {
     this.playerEnd = this.builder.build([
       style({
         transform:
-          `translate3d(
+          `translate(
               ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
-              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px, 1px) scale(2)
+              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
             `,
         height: this.posService.imgEl.offsetHeight,
         width: this.posService.outerMask.offsetWidth,
@@ -99,7 +99,7 @@ export class ItemComponent implements OnInit {
         STANDARD_LEAVE,
         keyframes([
           style({
-            transform: `translate3d(${move.from.x + 3}px, ${move.from.y + 3}px, 0px)`,
+            transform: `translate(${move.from.x + 3}px, ${move.from.y + 3}px)`,
             height: this.posService.outerMask.offsetHeight,
             width: this.posService.outerMask.offsetWidth,
             overflow: 'hidden',

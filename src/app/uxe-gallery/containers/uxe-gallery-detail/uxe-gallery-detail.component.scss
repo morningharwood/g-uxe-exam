@@ -19,7 +19,7 @@
   max-width: 100%;
   position: relative;
   width: 100%;
-
+  pointer-events: none;
   // Easter egg wheee!
   //&::before {
   //  background: url(../../../../assets/images/favicon.gif) no-repeat top left;
@@ -50,6 +50,7 @@
   z-index: $z-layer-high + 2;
   justify-content: space-around;
   align-items: center;
+  pointer-events: none;
 }
 
 .center {
@@ -61,11 +62,13 @@
   justify-content: space-around;
   align-items: center;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .overflow-hidden {
   overflow-x: hidden;
   position: relative;
+  pointer-events: none;
 }
 
 
