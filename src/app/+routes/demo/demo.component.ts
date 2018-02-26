@@ -30,4 +30,8 @@ export class GxeDemoComponent implements OnInit {
     this.obsExtended = this.store.pipe(select(selectFeatureExtended));
   }
 
+  public selectedItem(i) {
+    console.log(i)
+  }
+
 }

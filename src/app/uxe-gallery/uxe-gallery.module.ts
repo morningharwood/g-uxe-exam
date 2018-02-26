@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {
+  MatButtonModule,
+  MatIconModule,
+} from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { BottombarAuxComponent } from './components/bottombar-aux/bottombar-aux.component';
 import { BottombarComponent } from './components/bottombar/bottombar.component';
 import { DetailItemComponent } from './components/detail-item/detail-item.component';
+import { ItemAnimationsService } from './components/item/item.animations';
 import { ItemComponent } from './components/item/item.component';
 import { OverlayService } from './components/overlay/overlay-service';
 import { OverlayComponent } from './components/overlay/overlay.component';
@@ -18,14 +26,6 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatIconModule,
-} from '@angular/material';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { ItemAnimationsService } from './components/item/item.animations';
 
 
 const DECLARATIONS_EXPORTS = [
