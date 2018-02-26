@@ -12,11 +12,15 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {
+  select,
+  Store,
+} from '@ngrx/store';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { EventType } from '../../../gxe-gallery/enums/event-types';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
+import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 const TOUCH_THRESHOLD = .75;
 
 @Component({
@@ -29,14 +33,14 @@ export class UxeGalleryDetailComponent implements OnInit {
   public hostEl: any;
   @ViewChild('containerEl') private container: any;
   private player: AnimationPlayer;
+  public currentPosition: number;
+  private lastPosition: number;
   constructor(
     private builder: AnimationBuilder,
     private store: Store<any>,
     public ngHostEl: ElementRef,
     private renderer: Renderer2,
     private galleryService: UxeGalleryStateService) { }
-    public currentPosition: number;
-    private lastPosition: number;
 
   ngOnInit() {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
@@ -44,11 +48,14 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.currentPosition = 0;
     this.galleryService.setModalState(true);
     this.galleryService.setDetailState(true);
+
+    this.store.pipe(select(selectFeatureExtended)).subscribe((data) => {
+      this.paginationAnimate(data.selectedItem, '0ms');
+    });
   }
 
   @HostListener(EventType.CLICK, ['$event'])
   public taptap($event) {
-    console.log('tap');
     // this.tapped.emit($event);
   }
 
@@ -78,7 +85,6 @@ export class UxeGalleryDetailComponent implements OnInit {
     const previous = threshold >= TOUCH_THRESHOLD;
     const next = threshold <= -TOUCH_THRESHOLD;
     const offset = Math.abs(this.currentPosition / this.hostEl.offsetWidth);
-    console.log(offset);
     let index = Math.round(offset);
 
     if (previous) {
@@ -94,7 +100,6 @@ export class UxeGalleryDetailComponent implements OnInit {
    * Animates the Pagination of the gallery.
    */
   public paginationAnimate(index: number, timing = STANDARD_EASE) {
-    console.log(this.hostEl.offsetWidth, this.currentPosition, index);
     const futurePosition = -(index * this.hostEl.offsetWidth);
     this.player = this.builder.build([
       style({
@@ -107,14 +112,9 @@ export class UxeGalleryDetailComponent implements OnInit {
         }),
       ),
     ]).create(this.container.nativeElement);
-
     this.player.play();
-
     this.player.onDone(() => {
-      this.player.destroy();
       this.lastPosition = this.currentPosition = futurePosition;
-      this.player = null;
-      // this.endingIndex.emit(index);
     });
   }
 
