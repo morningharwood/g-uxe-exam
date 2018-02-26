@@ -53,7 +53,7 @@ export enum AnimationState {
   templateUrl: './uxe-gallery-master.component.html',
   styleUrls: [ './uxe-gallery-master.component.scss' ],
 })
-export class UxeGalleryMasterComponent implements OnInit, AfterViewInit {
+export class UxeGalleryMasterComponent implements OnInit {
 
   private hostEl: any;
   @Input() state: any;
@@ -76,10 +76,6 @@ export class UxeGalleryMasterComponent implements OnInit, AfterViewInit {
     this.setHostElement();
   }
 
-  ngAfterViewInit() {
-    this.posService.queryImgs = this.imgQuery;
-    this.posService.queryParent = this.outerQuery;
-  }
 
   public closeDetails() {
     this.router.navigate(['/demo']);
@@ -92,13 +88,14 @@ export class UxeGalleryMasterComponent implements OnInit, AfterViewInit {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
   }
 
-  public selectedItem(item: number,
+  public selectedItem(index: number,
                       outerMask: any,
-                      innerMask: any,
-                      imgEl: any) {
-    this.galleryStateService.openDetailView(item);
+                      innerMask: any) {
+    this.cacheGallerySizes();
+    this.galleryStateService.openDetailView(index);
     const ref = this.overlayService.open();
-    this.posService.set(item, innerMask, ref, this.hostEl);
+
+    this.posService.set(index, innerMask, ref, this.hostEl);
   }
 
   public setSelectedItem(item: number): void {
@@ -111,5 +108,20 @@ export class UxeGalleryMasterComponent implements OnInit, AfterViewInit {
 
   public setModalState(isActive: boolean): void {
     this.galleryStateService.setModalState(isActive);
+  }
+
+  private cacheGallerySizes() {
+    this.posService.queryImgs = this.imgQuery._results
+      .map(i => {
+        return {
+          center: PositionalService.getCenterY(this.hostEl, i.nativeElement),
+          height: i.nativeElement.offsetHeight,
+          imgSrc: i.nativeElement.src,
+          width: i.nativeElement.width,
+        };
+      });
+
+    this.posService.queryParent = this.outerQuery._results
+      .map(i => i.nativeElement.getBoundingClientRect());
   }
 }

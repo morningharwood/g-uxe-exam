@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
+
 } from '../../../gxe-gallery/animations/ease.animations';
 import { PositionalService } from '../overlay/positional-service';
 
@@ -30,10 +31,10 @@ export class ItemAnimationsService {
 
   }
 
-  public endAnimate(innerImg = this.imgEl, hostEl = this.hostEl) {
-    const offset = (this.posService.outerMask.offsetHeight - innerImg.offsetHeight) / 2;
-    this.itemAnimateItemEnd(offset, innerImg);
-    this.itemAnimateEnd(this.posService.move, hostEl);
+  public endAnimate() {
+    const offset = (this.posService.outerMask.height - this.posService.imgEl.height) / 2;
+    this.itemAnimateItemEnd(offset, this.imgEl);
+    this.itemAnimateEnd(this.posService.move, this.hostEl);
     this.hostEl = '';
 
     this.playerEnd.onDone(() => {
@@ -42,24 +43,24 @@ export class ItemAnimationsService {
   }
 
   public itemAnimate(move, el, imgEl): void {
-    this.hostEl = el;
-    this.imgEl = imgEl;
+    this.cacheAnimateActors(el, imgEl);
+
     this.playerStart = this.builder.build([
       style({
         transform: `translate(${move.from.x}px, ${move.from.y}px)`,
-        width: this.posService.outerMask.offsetWidth,
-        height: this.posService.outerMask.offsetHeight,
+        width: this.posService.outerMask.width,
+        height: this.posService.outerMask.height,
       }),
       animate(
         STANDARD_EASE,
         style({
           transform:
             `translate(
-              ${(this.posService.outerMask.offsetWidth / 2)}px,
+              ${(this.posService.outerMask.width / 2)}px,
               ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
             `,
-          height: this.posService.imgEl.offsetHeight,
-          width: this.posService.outerMask.offsetWidth,
+          height: this.posService.imgEl.height,
+          width: this.posService.outerMask.width,
         }),
       ),
     ]).create(el);
@@ -71,16 +72,17 @@ export class ItemAnimationsService {
   }
 
   public itemAnimateEnd(move, el): void {
+
     this.playerEnd = this.builder.build([
       style({
         transform:
           `translate(
-              ${(this.posService.outerMask.offsetWidth / 2) + this.posService.borderSize}px,
+              ${(this.posService.outerMask.width / 2) + this.posService.borderSize}px,
               ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
             `,
         overflow: 'hidden',
-        height: this.posService.imgEl.offsetHeight,
-        width: this.posService.outerMask.offsetWidth,
+        height: this.posService.imgEl.height,
+        width: this.posService.outerMask.width,
         opacity: 1,
       }),
       animate(

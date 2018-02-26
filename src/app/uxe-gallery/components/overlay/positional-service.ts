@@ -2,7 +2,7 @@ import {
   Injectable,
 } from '@angular/core';
 import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
-
+import {isNull} from 'lodash';
 
 @Injectable()
 export class PositionalService {
@@ -23,35 +23,28 @@ export class PositionalService {
     };
   }
 
-  public pluckElements(index) {
-    return {
-      outerMask: this.queryParent._results[ index ].nativeElement,
-      imgEl: this.queryImgs._results[ index ].nativeElement,
+  public set(index, innerMask, ref, hostEl) {
+    this.hostEl = hostEl;
+    this.innerMask = innerMask;
+    this.ref = ref;
+    this.setMove(index);
+  }
+
+  public setMove(index) {
+    this.cacheValues(index)
+
+    this.move = {
+      from: this.outerMask,
+      to: {
+        x: index % 2 ? -(this.outerMask.width / 2) : (this.outerMask.width / 2),
+        y: this.imgEl.center.y,
+      },
     };
   }
 
-  public set(index, innerMask, ref, hostEl) {
-    const { outerMask, imgEl } = this.pluckElements(index);
-    this.hostEl = hostEl;
-    this.imgEl = imgEl;
-
-    console.log(
-      this.hostEl.offsetHeight,
-      this.imgEl.offsetHeight
-    );
-
-    this.outerMask = outerMask;
-    this.innerMask = innerMask;
-    this.ref = ref;
-    const posA = outerMask.getBoundingClientRect();
-    const posC = PositionalService.getCenterY(this.hostEl, this.imgEl);
-
-    this.move = {
-      from: posA,
-      to: {
-        x: index % 2 ? -(posA.width / 2) : (posA.width / 2),
-        y: posC.y,
-      },
-    };
+  private cacheValues(index) {
+    if (isNull(index)) return;
+    this.outerMask = this.queryParent[index];
+    this.imgEl = this.queryImgs[index];
   }
 }

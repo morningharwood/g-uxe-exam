@@ -39,6 +39,7 @@ export class UxeGalleryDetailComponent implements OnInit {
   public currentPosition: number;
   private lastPosition: number;
   private obs: any;
+  private query: any;
 
 
   constructor(private builder: AnimationBuilder,
@@ -55,10 +56,12 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.currentPosition = 0;
     this.galleryService.setModalState(true);
     this.galleryService.setDetailState(true);
-
+    this.query = this.posService.queryParent;
     this.obs = this.store.pipe(select(selectFeatureExtended));
     this.obs.subscribe((data) => {
-      this.paginationAnimate(data.selectedItem, '0ms');
+      if ( data.selectedItem !== 0 ) {
+        this.paginationAnimate(data.selectedItem, '0ms');
+      }
     });
   }
 
@@ -127,6 +130,7 @@ export class UxeGalleryDetailComponent implements OnInit {
         this.player = null;
       }
       this.lastPosition = this.currentPosition = futurePosition;
+      this.posService.setMove(index);
     });
   }
 }
