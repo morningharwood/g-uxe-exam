@@ -21,15 +21,16 @@ export class ItemAnimationsService {
   private playerEnd: AnimationPlayer;
   private playerInnerEnd: AnimationPlayer;
   private hostEl: any = '';
+  private imgEl: any = '';
   constructor(private builder: AnimationBuilder,
               private posService: PositionalService) {
 
   }
 
-  public endAnimate(innerImg = '', hostEl = this.hostEl) {
+  public endAnimate(innerImg = this.imgEl, hostEl = this.hostEl) {
     console.log(this.hostEl);
-    // const offset = (this.posService.outerMask.offsetHeight - innerImg.offsetHeight) / 2;
-    // this.itemAnimateItemEnd(offset, innerImg);
+    const offset = (this.posService.outerMask.offsetHeight - innerImg.offsetHeight) / 2;
+    this.itemAnimateItemEnd(offset, innerImg);
     this.itemAnimateEnd(this.posService.move, hostEl);
     this.hostEl = '';
 
@@ -38,8 +39,9 @@ export class ItemAnimationsService {
     });
   }
 
-  public itemAnimate(move, el): void {
+  public itemAnimate(move, el, imgEl): void {
     this.hostEl = el;
+    this.imgEl = imgEl;
     this.playerStart = this.builder.build([
       style({
         transform: `translate(${move.from.x}px, ${move.from.y}px)`,

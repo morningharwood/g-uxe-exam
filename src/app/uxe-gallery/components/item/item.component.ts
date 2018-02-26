@@ -41,6 +41,7 @@ export class ItemComponent implements OnInit {
   @ViewChild('innerImg') private innerImg: any;
   private obsExtended: Observable<any>;
   private hostEl: any;
+  private imgEl: any;
 
   constructor(private builder: AnimationBuilder,
               private ngHostEl: ElementRef,
@@ -51,13 +52,15 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setHostElement();
+    this.setNativeElement();
     this.imgSrc = this.posService.imgEl.src;
-    this.animationService.itemAnimate(this.posService.move, this.hostEl);
+    this.animationService.itemAnimate(this.posService.move, this.hostEl, this.imgEl);
   }
-  private setHostElement() {
+
+  private setNativeElement() {
     // TODO (mharwood) call this again on window.resize.
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
+    this.imgEl  = this.renderer.selectRootElement(this.innerImg).nativeElement;
   }
 
   public close() {
