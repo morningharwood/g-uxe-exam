@@ -20,6 +20,7 @@ import { ItemAnimationsService } from '../components/item/item.animations';
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
+import { PositionalService } from '../components/overlay/positional-service';
 
 
 @Injectable()
@@ -27,7 +28,8 @@ export class UxeGalleryStateService {
   private data = new BehaviorSubject('');
   constructor(private store: Store<State>,
               private router: Router,
-              private animationService: ItemAnimationsService,) {
+              private animationService: ItemAnimationsService,
+              private posService: PositionalService) {
   }
 
   public setSelectedItem(item: number): void {
