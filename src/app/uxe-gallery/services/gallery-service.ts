@@ -99,8 +99,8 @@ export class UxeGalleryStateService {
     this.setToolBarStateByName('bottombarTemplate', toggler);
   }
 
-  public paginate(index: number) {
-    this.router.navigate([`demo/detail`]);
+  public home() {
+    this.router.navigate([`demo`]);
   }
 
 

@@ -25,6 +25,7 @@ import { UxeGalleryStateService } from '../../services/gallery-service';
 import { ActivatedRoute } from '@angular/router';
 
 
+import {isNil} from 'lodash';
 
 const TOUCH_THRESHOLD = .75;
 
@@ -62,12 +63,6 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.lastPosition = 0;
     this.currentPosition = 0;
-    this.galleryService.setModalState(true);
-    this.galleryService.setDetailState(true);
-    this.galleryService.setTopbarType('black');
-    this.galleryService.setToolBarStateByName('topbarTemplate', true);
-    this.galleryService.setToolBarStateByName('bottombarTemplate', true);
-    this.galleryService.setAnimationState('open');
     this.query = this.posService.queryParent;
     this.obs = this.store.pipe(select(selectFeatureExtended));
     this.obs.subscribe((data) => {

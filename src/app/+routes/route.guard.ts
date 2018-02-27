@@ -11,7 +11,10 @@ import {
 } from '@ngrx/store';
 import { isNil } from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import {
+  filter,
+  switchMap,
   take,
   tap,
 } from 'rxjs/operators';
@@ -26,18 +29,24 @@ export class CanActivateGallery implements CanActivate {
   constructor(private store: Store<State>, private router: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    this.store.pipe(
+  private hasDetails() {
+    return this.store.pipe(
       select(selectFeatureExtended),
       tap((data: any) => {
-        console.log(data.selectedItem);
+        console.log('wtff', data.selectedItem);
         if (isNil(data.selectedItem)) {
           this.router.navigate([ 'demo' ]);
         }
       }),
-      take(1),
+      take(1));
+  }
+
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.hasDetails().pipe(
+      switchMap(() => {
+        return of(true);
+      }),
     );
-    return true;
   }
 }

@@ -27,15 +27,15 @@ import { routes } from './routes.config';
     routes,
     ProfileModule,
   ],
-  providers: [
-    CanActivateGallery
-  ]
 })
 export class GxeRouterModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: GxeRouterModule,
-      providers: [ CanActivatePassword ]
+      providers: [
+        CanActivatePassword,
+        CanActivateGallery
+      ]
     };
   }
 }

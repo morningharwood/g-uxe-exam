@@ -53,12 +53,11 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
-        canActivate: [ CanActivatePassword ],
         children: [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
-            canActivate: [CanActivateGallery, CanActivateGallery],
+            canActivate: [CanActivateGallery],
             resolve: {
               doggos: DoggoResolve
             },
