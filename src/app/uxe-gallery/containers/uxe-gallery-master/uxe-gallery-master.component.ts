@@ -67,9 +67,7 @@ export class UxeGalleryMasterComponent implements OnInit {
               private ngHostEl: ElementRef,
               private renderer: Renderer2,
               private overlayService: OverlayService,
-              private posService: PositionalService,
-              private animationService: ItemAnimationsService,
-              private router: Router) {
+              private posService: PositionalService) {
   }
 
   ngOnInit() {
@@ -78,9 +76,7 @@ export class UxeGalleryMasterComponent implements OnInit {
 
 
   public closeDetails() {
-    this.router.navigate(['/demo']);
     this.galleryStateService.closeDetailView();
-    this.animationService.endAnimate();
   }
 
   public setHostElement() {

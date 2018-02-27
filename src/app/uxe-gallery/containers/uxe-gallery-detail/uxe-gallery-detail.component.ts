@@ -22,6 +22,9 @@ import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
 import { PositionalService } from '../../components/overlay/positional-service';
+import { SwipeVerticalService } from '../../../gxe-gallery/services/swipe-vertical.service';
+import { ItemAnimationsService } from '../../components/item/item.animations';
+import { Router } from '@angular/router';
 
 
 const TOUCH_THRESHOLD = .75;
@@ -47,7 +50,8 @@ export class UxeGalleryDetailComponent implements OnInit {
               public ngHostEl: ElementRef,
               private renderer: Renderer2,
               private galleryService: UxeGalleryStateService,
-              private posService: PositionalService) {
+              private posService: PositionalService,
+              private swipeService: SwipeVerticalService) {
   }
 
   ngOnInit() {
@@ -63,6 +67,7 @@ export class UxeGalleryDetailComponent implements OnInit {
         this.paginationAnimate(data.selectedItem, '0ms');
       }
     });
+    this.turnOnVerticalSwipe();
   }
 
   @HostListener(EventType.CLICK, [ '$event' ])
@@ -85,6 +90,18 @@ export class UxeGalleryDetailComponent implements OnInit {
   @HostListener(EventType.PANEND, [ '$event' ])
   public end(event: any): void {
     this.paginate(event);
+  }
+
+  /**
+   * Turn on vertical swipe
+   */
+  private turnOnVerticalSwipe() {
+    this.swipeService
+      .bootstrap(this.hostEl)
+      .on(`${EventType.SWIPEUP} ${EventType.SWIPEDOWN}`,
+        () => {
+          this.galleryService.closeDetailView();
+        });
   }
 
   /**

@@ -16,6 +16,7 @@ import {
   UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
+import { ItemAnimationsService } from '../components/item/item.animations';
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
@@ -24,7 +25,9 @@ import {
 @Injectable()
 export class UxeGalleryStateService {
   private data = new BehaviorSubject('');
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(private store: Store<State>,
+              private router: Router,
+              private animationService: ItemAnimationsService,) {
   }
 
   public setSelectedItem(item: number): void {
@@ -78,6 +81,7 @@ export class UxeGalleryStateService {
   }
 
   public closeDetailView() {
+    this.router.navigate(['/demo'])
     this.setSelectedItem(null);
     this.setModalState(false);
     this.setDetailState(false);
@@ -85,6 +89,7 @@ export class UxeGalleryStateService {
     this.setToolBarStateByName('topbarTemplate', true);
     this.setToolBarStateByName('bottombarTemplate', false);
     this.setAnimationState('closed');
+    this.animationService.endAnimate();
   }
 
   public paginate(index: number) {
