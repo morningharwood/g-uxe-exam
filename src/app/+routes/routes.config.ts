@@ -53,6 +53,7 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
+        canActivate: [ CanActivatePassword ],
         children: [
           {
             path: AllRoutes.DETAIL,
