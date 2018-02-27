@@ -57,7 +57,7 @@ export const config: Routes = [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
-            canActivate: [CanActivateGallery],
+            canActivate: [CanActivateGallery, CanActivatePassword],
             resolve: {
               doggos: DoggoResolve
             },
