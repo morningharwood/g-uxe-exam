@@ -16,7 +16,7 @@ import {
   UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
-import { ItemAnimationsService } from '../components/item/item.animations';
+import { ItemAnimationsService } from '../containers/uxe-animation-portal/item.animations';
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import {
   Store,
 } from '@ngrx/store';
-import { ItemAnimationsService } from '../../components/item/item.animations';
+import { ItemAnimationsService } from '../uxe-animation-portal/item.animations';
 import { OverlayService } from '../../components/overlay/overlay-service';
 import { PositionalService } from '../../components/overlay/positional-service';
 import {

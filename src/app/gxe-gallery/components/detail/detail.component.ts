@@ -37,7 +37,7 @@ export class GalleryDetailComponent implements OnInit {
    */
   @Output() public endingIndex: EventEmitter<any> = new EventEmitter();
   /**
-   * When gallery item is tapped.  Used in the parent
+   * When gallery uxe-animation-portal is tapped.  Used in the parent
    * scope to toggle toolbars.
    */
   @Output() public tapped: EventEmitter<any> = new EventEmitter();
@@ -48,7 +48,7 @@ export class GalleryDetailComponent implements OnInit {
   @Input() public galleryItems: GalleryItem[];
 
   /**
-   * Each item width prefetch for IOS as it webAnimation API was adding
+   * Each uxe-animation-portal width prefetch for IOS as it webAnimation API was adding
    * Scale into an interim measurement... :(
    */
   @Input() public itemWidth: number;
@@ -59,7 +59,7 @@ export class GalleryDetailComponent implements OnInit {
   @Input() public isActive: boolean;
 
   /**
-   * Starting gallery item index before pagination occurs.
+   * Starting gallery uxe-animation-portal index before pagination occurs.
    */
   @Input() public startingIndex: number;
 

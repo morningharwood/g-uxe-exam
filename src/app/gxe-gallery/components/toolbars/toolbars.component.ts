@@ -116,17 +116,17 @@ export class ToolbarsComponent implements OnInit, OnChanges {
   @Input() public items: any;
 
   /**
-   * Current selected gallery-item
+   * Current selected gallery-uxe-animation-portal
    */
   @Input() public currentIndex: number;
 
   /**
-   * State of gallery-item being tapped.
+   * State of gallery-uxe-animation-portal being tapped.
    */
   @Input() public tapped: boolean;
 
   /**
-   * Current selected item name to put in top bar template.
+   * Current selected uxe-animation-portal name to put in top bar template.
    */
   public name: string;
 

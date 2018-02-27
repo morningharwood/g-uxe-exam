@@ -33,7 +33,7 @@ import { GalleryItemComponent } from './master-item.component';
 })
 export class GalleryMasterComponent implements OnInit {
   /**
-   * Query used to get the whereabouts of the currently selected Gallery item.
+   * Query used to get the whereabouts of the currently selected Gallery uxe-animation-portal.
    */
   @ViewChildren(GalleryItemComponent) public masterItems: QueryList<GalleryItemComponent>;
 
@@ -93,7 +93,7 @@ export class GalleryMasterComponent implements OnInit {
   private playerPaddingStart: AnimationPlayer;
 
   /**
-   * Gallery host item ClientRect State
+   * Gallery host uxe-animation-portal ClientRect State
    */
   private currentSelectedBounds: any;
 
@@ -124,7 +124,7 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   /**
-   * Sets current gallery item. Called via output event from children.
+   * Sets current gallery uxe-animation-portal. Called via output event from children.
    */
   public setCurrentItem($event: number): void {
     this.currentSelectedBounds = this.masterItems[ '_results' ][ $event ].hostEl.nativeElement.getBoundingClientRect();
@@ -145,7 +145,7 @@ export class GalleryMasterComponent implements OnInit {
   }
 
   /**
-   * Queues aniamtion when Gallery item is selected from master view.
+   * Queues aniamtion when Gallery uxe-animation-portal is selected from master view.
    */
   public selectedItem($event): void {
     this.to = {
@@ -268,7 +268,7 @@ export class GalleryMasterComponent implements OnInit {
 
   /**
    * Whether origin has been changed e.g. the detail gallery has been paginated,
-   * we will need to set the origin point of the new item's origin for smooth
+   * we will need to set the origin point of the new uxe-animation-portal's origin for smooth
    * animations.
    */
   private notEmpty() {

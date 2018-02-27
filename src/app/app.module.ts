@@ -23,7 +23,7 @@ import {
 } from './reducers';
 import * as fromUxeGallery from './uxe-gallery/reducers/uxe-gallery.reducer';
 import { UxeGalleryModule } from './uxe-gallery/uxe-gallery.module';
-import { ItemComponent } from './uxe-gallery/components/item/item.component';
+import { ItemComponent } from './uxe-gallery/containers/uxe-animation-portal/item.component';
 
 declare module '@ngrx/store' {
   interface Action {

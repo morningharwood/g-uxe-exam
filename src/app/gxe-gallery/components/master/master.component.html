@@ -3,8 +3,8 @@
 
   [isModalActive] = is the gallery-details open.
   [items]= galleryItems data.
-  [currentIndex] = current selected gallery-detail-item index.
-  [tapped]= state of the gallery-detail-item being tapped.
+  [currentIndex] = current selected gallery-detail-uxe-animation-portal index.
+  [tapped]= state of the gallery-detail-uxe-animation-portal being tapped.
 -->
 
 <gxe-toolbars
@@ -46,15 +46,15 @@
          (click)="toggleTap()">
     </div>
     <!--
-      [item]= galleryItems item.
+      [uxe-animation-portal]= galleryItems uxe-animation-portal.
       [galleryItems]= the original collection of galleryItems
       [index]= current iteration index
       [galleryOpen]= is gallery-detail open.
-      [isActive] is gallery-master-item currently active?
-      (childTap)= emit event when master-item is tapped.
+      [isActive] is gallery-master-uxe-animation-portal currently active?
+      (childTap)= emit event when master-uxe-animation-portal is tapped.
       (endingSelect)= emit when pagination is finished.
-      (close)= emit when master-item is swiped away
-      (selected)=emit when gallery-master-item starts.
+      (close)= emit when master-uxe-animation-portal is swiped away
+      (selected)=emit when gallery-master-uxe-animation-portal starts.
     -->
     <gxe-gallery-master-item
       *ngFor="let item of galleryItems; let i = index"

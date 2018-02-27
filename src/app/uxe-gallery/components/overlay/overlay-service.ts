@@ -7,7 +7,7 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
-import { ItemComponent } from '../item/item.component';
+import { ItemComponent } from '../../containers/uxe-animation-portal/item.component';
 import {
   ItemOverlayRef,
 } from './item-overlay-ref';

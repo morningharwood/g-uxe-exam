@@ -25,22 +25,22 @@ import { SwipeVerticalService } from '../../services/swipe-vertical.service';
 })
 export class GalleryItemComponent implements OnInit {
   /**
-   * Collection of gallery item data.
+   * Collection of gallery uxe-animation-portal data.
    */
   @Input() public galleryItems: GalleryItem[];
 
   /**
-   * The components primary item data.
+   * The components primary uxe-animation-portal data.
    */
   @Input() public item: GalleryItem;
 
   /**
-   * The item's iteration index.
+   * The uxe-animation-portal's iteration index.
    */
   @Input() public index: number;
 
   /**
-   * Whether this item is active.
+   * Whether this uxe-animation-portal is active.
    */
   @Input() public isActive: boolean;
 
@@ -65,7 +65,7 @@ export class GalleryItemComponent implements OnInit {
   @Output() public selected: EventEmitter<CurrentItem> = new EventEmitter();
 
   /**
-   * Emits a tap on master-item.
+   * Emits a tap on master-uxe-animation-portal.
    */
   @Output() public childTap: EventEmitter<any> = new EventEmitter<any>();
 

@@ -1,30 +1,15 @@
 import {
-  animate,
-  keyframes,
-  style,
   AnimationBuilder,
-  AnimationPlayer,
 } from '@angular/animations';
 import {
   Component,
   ElementRef,
-  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  select,
-  Store,
-} from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import {
-  STANDARD_EASE,
-  STANDARD_LEAVE,
-} from '../../../gxe-gallery/animations/ease.animations';
+import { PositionalService } from '../../components/overlay/positional-service';
 import { UxeGalleryStateService } from '../../services/gallery-service';
-import { PositionalService } from '../overlay/positional-service';
 import { ItemAnimationsService } from './item.animations';
 
 

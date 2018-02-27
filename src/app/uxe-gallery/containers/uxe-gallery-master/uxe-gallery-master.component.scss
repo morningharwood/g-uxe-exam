@@ -2,42 +2,39 @@
 @import '../../../../assets/css/variables';
 
 :host {
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
 }
 
 .container {
-  // Sets the outer borders for edges
   border: 3px solid $white;
   width: 100%;
 }
 
 .outer-mask {
-  // Aspect Ratio boxs: https://css-tricks.com/aspect-ratio-boxes/
-  overflow: hidden;
+  border: 3px solid $white;
   height: 100px;
 
-  position: relative;
+  overflow: hidden;
 
   // Sets the inner borders for edges
-  border: 3px solid $white;
+  position: relative;
   perspective: 1000px;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
 
 .inner-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  border: 0;
   bottom: 0;
   cursor: pointer;
-  border: 0;
-  padding: 0;
+  left: 0;
   margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-
 
 .close-btn {
   background-color: transparent;
@@ -48,14 +45,13 @@
   z-index: 99999;
 }
 
-
 img {
-  object-fit: cover;
-  width: 100%;
-  position: absolute;
   left: 50%;
+  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  object-fit: cover;
 }
 
 .spacer {

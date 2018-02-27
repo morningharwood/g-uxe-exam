@@ -1,5 +1,5 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ItemComponent } from '../item/item.component';
+import { ItemComponent } from '../../containers/uxe-animation-portal/item.component';
 
 export class ItemOverlayRef {
   public componentInstance: ItemComponent;
