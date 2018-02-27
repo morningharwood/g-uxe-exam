@@ -50,6 +50,7 @@ export class UxeGalleryMasterComponent implements OnInit {
 
   ngOnInit() {
     this.setHostElement();
+    this.resize();
   }
 
 
@@ -76,7 +77,7 @@ export class UxeGalleryMasterComponent implements OnInit {
       .map(i => {
         return {
           center: PositionalService.getCenterY(this.hostEl, i.nativeElement),
-          height: i.nativeElement.offsetHeight,
+          height: i.nativeElement.getBoundingClientRect().height,
           imgSrc: i.nativeElement.src,
           width: i.nativeElement.width,
         };
@@ -84,5 +85,11 @@ export class UxeGalleryMasterComponent implements OnInit {
 
     this.posService.queryParent = this.outerQuery._results
       .map(i => i.nativeElement.getBoundingClientRect());
+  }
+
+  private resize() {
+    window.addEventListener('resize', (e) => {
+      this.cacheGallerySizes();
+    });
   }
 }

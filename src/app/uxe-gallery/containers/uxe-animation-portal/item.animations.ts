@@ -51,21 +51,28 @@ export class ItemAnimationsService {
 
     this.playerStart = this.builder.build([
       style({
+        transformOrigin: `50% 50%`,
         transform: `translate(${move.from.x}px, ${move.from.y}px)`,
         width: this.posService.outerMask.width,
         height: this.posService.outerMask.height,
       }),
       animate(
         STANDARD_EASE,
-        style({
-          transform:
-            `translate(
-              ${(this.posService.outerMask.width / 2) + SUB_PIXELING}px,
-              ${move.to.y - ((this.posService.borderSize * 2) - SUB_PIXELING)}px) scale(2)
+        keyframes([
+          style({
+            transformOrigin: `50% 50%`,
+            transform:
+
+              `translate(
+              ${((window.innerWidth) - this.posService.imgEl.width - Math.pow(this.posService.borderSize, 2)) / 2}px,
+              ${((window.innerHeight) - this.posService.imgEl.height - Math.round(this.posService.imgEl.height / 12)) / 2}px) scale(2)
             `,
-          height: this.posService.imgEl.height,
-          width: this.posService.outerMask.width + 3,
-        }),
+            height: this.posService.imgEl.height + 3,
+            width: this.posService.outerMask.width + 3,
+            opacity: 1,
+            offset: 1
+          }),
+        ])
       ),
     ]).create(el);
 
