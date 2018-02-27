@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { UxeGalleryStateService } from '../../services/gallery-service';
 
 @Component({
   selector: 'uxe-bottombar',
@@ -19,7 +20,7 @@ import {
   animations: [
     trigger('enterBar', [
       state('0', style({
-        bottom: '-80px',
+        bottom: '-160px',
       })),
       state('1', style({
         bottom: '0',
@@ -31,7 +32,29 @@ import {
       ]),
       transition('1 => 0', [
         animate(STANDARD_EASE, style({
-          bottom: '-80px',
+          bottom: '-160px',
+        })),
+      ]),
+    ]),
+    trigger('brushBar', [
+      state('0', style({
+        height: 0,
+        background: 'transparent',
+      })),
+      state('1', style({
+        height: '100px',
+        background: '#f7f7f7',
+      })),
+      transition('0 => 1', [
+        animate(STANDARD_EASE, style({
+          height: '100px',
+          background: '#f7f7f7',
+        })),
+      ]),
+      transition('1 => 0', [
+        animate(STANDARD_EASE, style({
+          height: 0,
+          background: 'transparent',
         })),
       ]),
     ]),
@@ -39,9 +62,15 @@ import {
 })
 export class BottombarComponent implements OnInit {
   @Input() animationState: any;
-  constructor() { }
+  private brushBar: boolean;
+  constructor(private galleryService: UxeGalleryStateService) { }
 
   ngOnInit() {
+  }
+
+  public toggleBrushBar() {
+    this.animationState.brushbarTemplate = !this.animationState.brushbarTemplate;
+    this.galleryService.toggleBrush(this.animationState.brushbarTemplate);
   }
 
 }

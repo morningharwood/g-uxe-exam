@@ -72,6 +72,10 @@ export class UxeGalleryStateService {
     this.store.dispatch(new SetAnimationState({type: type}));
   }
 
+  public toggleBrush(toggler: boolean): void {
+    this.setToolBarStateByName('brushbarTemplate', toggler);
+  }
+
   public openDetailView(item: number) {
     this.setSelectedItem(item);
     this.setModalState(true);
@@ -79,6 +83,7 @@ export class UxeGalleryStateService {
     this.setTopbarType('black');
     this.setToolBarStateByName('topbarTemplate', true);
     this.setToolBarStateByName('bottombarTemplate', true);
+    this.setToolBarStateByName('brushbarTemplate', false);
     this.setAnimationState('open');
   }
 
@@ -90,6 +95,8 @@ export class UxeGalleryStateService {
     this.setTopbarType('white');
     this.setToolBarStateByName('topbarTemplate', true);
     this.setToolBarStateByName('bottombarTemplate', false);
+    this.setToolBarStateByName('brushbarTemplate', false);
+    console.log('closinggg')
     this.setAnimationState('closed');
     this.animationService.endAnimate();
   }
