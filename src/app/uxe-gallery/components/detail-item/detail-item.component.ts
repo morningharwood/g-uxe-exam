@@ -17,6 +17,5 @@ export class DetailItemComponent implements OnInit {
   private lastPosition: any;
 
   ngOnInit() {
-    console.log(this.galleryItem, 'image');
   }
 }

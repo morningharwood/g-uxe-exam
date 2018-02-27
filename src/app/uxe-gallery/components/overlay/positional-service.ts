@@ -2,9 +2,11 @@ import {
   Injectable,
 } from '@angular/core';
 import { isNull } from 'lodash';
-import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
 
+
+export type Message = [string, number];
 
 @Injectable()
 export class PositionalService {
@@ -17,8 +19,9 @@ export class PositionalService {
   public ref: any;
   public queryParent: any;
   public queryImgs: any;
-  private messageSource = new BehaviorSubject<string>('');
+  private messageSource = new BehaviorSubject<Message>(['', null]);
   public currentMessage = this.messageSource.asObservable();
+  public index: number;
 
   public static getCenterY({ offsetHeight: parentHeight }, { offsetHeight: childHeight }): Vector2 {
     return {
@@ -50,10 +53,10 @@ export class PositionalService {
     if (isNull(index)) return;
     this.outerMask = this.queryParent[ index ];
     this.imgEl = this.queryImgs[ index ];
-    this.changeMessage(this.imgEl.imgSrc)
+    this.changeMessage([this.imgEl.imgSrc, index]);
   }
 
-  public changeMessage(message: string) {
+  public changeMessage(message: Message) {
     this.messageSource.next(message);
   }
 }

@@ -20,7 +20,9 @@
   </div>
 </div>
 
-<uxe-topbar [animationState]="this.state">
+<uxe-topbar
+  [animationState]="this.state"
+  [galleryItems]="galleryItems">
   <button mat-icon-button
           (click)="closeDetails()"
           class="close-btn"
