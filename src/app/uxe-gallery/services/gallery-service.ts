@@ -92,6 +92,11 @@ export class UxeGalleryStateService {
     this.animationService.endAnimate();
   }
 
+  public tappedBars(toggler) {
+    this.setToolBarStateByName('topbarTemplate', toggler);
+    this.setToolBarStateByName('bottombarTemplate', toggler);
+  }
+
   public paginate(index: number) {
     this.router.navigate([`demo/detail`]);
   }

@@ -43,6 +43,7 @@ export class UxeGalleryDetailComponent implements OnInit {
   private lastPosition: number;
   private obs: any;
   private query: any;
+  private tapped = true;
 
 
   constructor(private builder: AnimationBuilder,
@@ -71,8 +72,10 @@ export class UxeGalleryDetailComponent implements OnInit {
   }
 
   @HostListener(EventType.CLICK, [ '$event' ])
-  public taptap($event) {
-    // this.tapped.emit($event);
+  public taptap() {
+    this.tapped = !this.tapped;
+    console.log(this.tapped);
+    this.galleryService.tappedBars(this.tapped);
   }
 
   /**
