@@ -49,8 +49,10 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     this.setNativeElement();
-    this.imgSrc = this.posService.imgEl.imgSrc;
     this.animationService.itemAnimate(this.posService.move, this.hostEl, this.imgEl);
+    this.posService.currentMessage.subscribe(message => {
+      this.imgSrc = message;
+    });
   }
 
   private setNativeElement() {
