@@ -56,11 +56,11 @@ export class ItemAnimationsService {
         style({
           transform:
             `translate(
-              ${(this.posService.outerMask.width / 2)}px,
-              ${move.to.y - Math.pow(this.posService.borderSize, 2)}px) scale(2)
+              ${(this.posService.outerMask.width / 2) + SUB_PIXELING}px,
+              ${move.to.y - ((this.posService.borderSize * 2) - SUB_PIXELING)}px) scale(2)
             `,
           height: this.posService.imgEl.height,
-          width: this.posService.outerMask.width,
+          width: this.posService.outerMask.width + 3,
         }),
       ),
     ]).create(el);
