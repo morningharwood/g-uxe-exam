@@ -4,6 +4,7 @@
  */
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
+import { DoggoResolve } from './doggo-guard.service';
 import { DoggoService } from './doggo.service';
 
 
@@ -15,7 +16,7 @@ export class DoggoModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: DoggoModule,
-      providers: [ DoggoService ]
+      providers: [ DoggoService, DoggoResolve ]
     };
   }
 }

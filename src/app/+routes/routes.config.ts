@@ -10,6 +10,7 @@ import { GxeDocumentationComponent } from './documentation/documentation.compone
 import { IntroComponent } from './intro/intro.component';
 import { GxeProcessComponent } from './process/process.component';
 import { UxeGalleryCanvasComponent } from '../uxe-gallery/containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
+import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
 
 
 export const AllRoutes = {
@@ -54,6 +55,9 @@ export const config: Routes = [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
+            resolve: {
+              doggos: DoggoResolve
+            },
             // canActivate: [ AdminGuard ],
             children: [
               {

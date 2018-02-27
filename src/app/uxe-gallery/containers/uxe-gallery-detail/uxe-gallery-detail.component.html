@@ -4,14 +4,14 @@
   <div class="inner-gallery group"
        #containerEl
        [ngStyle]="{
-       'width': (data.length * this.hostEl.offsetWidth) + 'px',
+       'width': (galleryItems.length * this.hostEl.offsetWidth) + 'px',
        'transform': 'translateX(' + currentPosition + 'px)'
      }">
 
     <uxe-detail-item
       class="center"
-      *ngFor="let d of data"
-      [galleryItem]="d">
+      *ngFor="let galleryItem of galleryItems"
+      [galleryItem]="galleryItem">
     </uxe-detail-item>
   </div>
 </div>

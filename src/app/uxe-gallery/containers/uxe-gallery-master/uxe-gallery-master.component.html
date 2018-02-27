@@ -10,11 +10,11 @@
            fxFlex="50%"
            fxFlexAlign="center"
            #outerMask
-           *ngFor="let item of collection; let i = index"
+           *ngFor="let item of galleryItems; let i = index"
            (click)="selectedItem(i, outerMask, innerMask, imgEl)">
         <div class="inner-mask"
              #innerMask>
-          <img #imgEl [src]="item.imgSrc" [hidden]="false" alt="">
+          <img #imgEl [src]="item[1].value.url" [hidden]="false" alt="">
         </div>
       </div>
   </div>

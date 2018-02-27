@@ -18,13 +18,12 @@ import {
 } from '@ngrx/store';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { EventType } from '../../../gxe-gallery/enums/event-types';
+import { SwipeVerticalService } from '../../../gxe-gallery/services/swipe-vertical.service';
+import { PositionalService } from '../../components/overlay/positional-service';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
-import { DATA } from '../uxe-gallery-master/uxe-gallery-master.component';
-import { PositionalService } from '../../components/overlay/positional-service';
-import { SwipeVerticalService } from '../../../gxe-gallery/services/swipe-vertical.service';
-import { ItemAnimationsService } from '../../components/item/item.animations';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 const TOUCH_THRESHOLD = .75;
@@ -35,7 +34,7 @@ const TOUCH_THRESHOLD = .75;
   styleUrls: [ './uxe-gallery-detail.component.scss' ],
 })
 export class UxeGalleryDetailComponent implements OnInit {
-  public data = DATA;
+  public data: any;
   public hostEl: any;
   @ViewChild('containerEl') private container: any;
   private player: AnimationPlayer;
@@ -44,6 +43,7 @@ export class UxeGalleryDetailComponent implements OnInit {
   private obs: any;
   private query: any;
   private tapped = true;
+  private galleryItems: any;
 
 
   constructor(private builder: AnimationBuilder,
@@ -52,10 +52,14 @@ export class UxeGalleryDetailComponent implements OnInit {
               private renderer: Renderer2,
               private galleryService: UxeGalleryStateService,
               private posService: PositionalService,
-              private swipeService: SwipeVerticalService) {
+              private swipeService: SwipeVerticalService,
+              private route: ActivatedRoute) {
+
   }
 
   ngOnInit() {
+    this.galleryItems = this.route.snapshot.data['doggos'];
+    console.log(this.galleryItems);
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.lastPosition = 0;
     this.currentPosition = 0;
@@ -74,7 +78,6 @@ export class UxeGalleryDetailComponent implements OnInit {
   @HostListener(EventType.CLICK, [ '$event' ])
   public taptap() {
     this.tapped = !this.tapped;
-    console.log(this.tapped);
     this.galleryService.tappedBars(this.tapped);
   }
 
@@ -120,7 +123,7 @@ export class UxeGalleryDetailComponent implements OnInit {
     if (previous) {
       index = Math.max(0, Math.floor(offset));
     } else if (next) {
-      index = Math.min(Math.ceil(offset), this.data.length - 1);
+      index = Math.min(Math.ceil(offset), this.galleryItems.length - 1);
     }
 
     this.paginationAnimate(index);

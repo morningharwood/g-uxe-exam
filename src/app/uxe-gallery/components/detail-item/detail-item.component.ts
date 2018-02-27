@@ -11,9 +11,12 @@ import { EventType } from '../../../gxe-gallery/enums/event-types';
   templateUrl: './detail-item.component.html',
   styleUrls: ['./detail-item.component.scss']
 })
-export class DetailItemComponent {
+export class DetailItemComponent implements OnInit {
   @Input() public galleryItem: any;
   private currentPosition: any;
   private lastPosition: any;
 
+  ngOnInit() {
+    console.log(this.galleryItem, 'image');
+  }
 }

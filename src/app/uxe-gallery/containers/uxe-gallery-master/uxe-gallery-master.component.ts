@@ -54,13 +54,12 @@ export enum AnimationState {
   styleUrls: [ './uxe-gallery-master.component.scss' ],
 })
 export class UxeGalleryMasterComponent implements OnInit {
-
   private hostEl: any;
   @Input() state: any;
+  @Input() galleryItems: any;
   @ViewChildren('outerMask') private outerQuery: any;
   @ViewChildren('imgEl') private imgQuery: any;
 
-  public collection = DATA;
 
   constructor(private store: Store<State>,
               private galleryStateService: UxeGalleryStateService,
