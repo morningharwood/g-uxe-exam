@@ -9,6 +9,7 @@ import {
   Injectable,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { isNil } from 'lodash';
 import {
   STANDARD_EASE,
   STANDARD_LEAVE,
@@ -16,7 +17,9 @@ import {
 } from '../../../gxe-gallery/animations/ease.animations';
 import { PositionalService } from '../overlay/positional-service';
 
+
 const SUB_PIXELING = 1;
+
 @Injectable()
 export class ItemAnimationsService {
   public playerStart: AnimationPlayer;
@@ -32,6 +35,7 @@ export class ItemAnimationsService {
   }
 
   public endAnimate() {
+    if (isNil(this.posService.outerMask)) return;
     const offset = (this.posService.outerMask.height - this.posService.imgEl.height) / 2;
     this.itemAnimateItemEnd(offset, this.imgEl);
     this.itemAnimateEnd(this.posService.move, this.hostEl);
@@ -67,7 +71,7 @@ export class ItemAnimationsService {
 
     this.playerStart.play();
     this.playerStart.onDone(() => {
-      this.router.navigate([`/demo/detail/`]);
+      this.router.navigate([ `/demo/detail/` ]);
     });
   }
 
@@ -98,8 +102,8 @@ export class ItemAnimationsService {
           }),
           style({
             opacity: 0,
-            offset: 1
-          })
+            offset: 1,
+          }),
         ]),
       ),
     ]).create(el);

@@ -11,6 +11,7 @@ import { IntroComponent } from './intro/intro.component';
 import { GxeProcessComponent } from './process/process.component';
 import { UxeGalleryCanvasComponent } from '../uxe-gallery/containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
 import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
+import { CanActivateGallery } from './route.guard';
 
 
 export const AllRoutes = {
@@ -55,6 +56,7 @@ export const config: Routes = [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
+            canActivate: [CanActivateGallery],
             resolve: {
               doggos: DoggoResolve
             },

@@ -64,6 +64,10 @@ export class UxeGalleryDetailComponent implements OnInit {
     this.currentPosition = 0;
     this.galleryService.setModalState(true);
     this.galleryService.setDetailState(true);
+    this.galleryService.setTopbarType('black');
+    this.galleryService.setToolBarStateByName('topbarTemplate', true);
+    this.galleryService.setToolBarStateByName('bottombarTemplate', true);
+    this.galleryService.setAnimationState('open');
     this.query = this.posService.queryParent;
     this.obs = this.store.pipe(select(selectFeatureExtended));
     this.obs.subscribe((data) => {

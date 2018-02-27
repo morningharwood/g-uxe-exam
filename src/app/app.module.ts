@@ -37,7 +37,7 @@ declare module '@ngrx/store' {
     AngularFireAuthModule,
     MhFirestoreClientModule.forRoot(),
     BrowserModule,
-    GxeRouterModule, // this yo boi.
+    GxeRouterModule.forRoot(), // this yo boi.
     DoggoModule.forRoot(), // Backend service to fetch data
     RouterModule,
     StoreModule.forRoot(reducers, { metaReducers }),

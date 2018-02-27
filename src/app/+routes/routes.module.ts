@@ -1,4 +1,5 @@
 import {
+  ModuleWithProviders,
   NgModule,
 } from '@angular/core';
 import { GxeDemoModule } from './demo/demo.module';
@@ -9,7 +10,9 @@ import {
   GxeProcessModule,
 } from './process/process.module';
 import { ProfileModule } from './profile/module';
+import { CanActivateGallery } from './route.guard';
 import { routes } from './routes.config';
+
 
 
 
@@ -24,4 +27,11 @@ import { routes } from './routes.config';
     ProfileModule,
   ],
 })
-export class GxeRouterModule { }
+export class GxeRouterModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: GxeRouterModule,
+      providers: [ CanActivateGallery ]
+    };
+  }
+}

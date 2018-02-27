@@ -1,12 +1,12 @@
 import {
   Injectable,
 } from '@angular/core';
-import { isNull } from 'lodash';
+import { isNil } from 'lodash';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
 
 
-export type Message = [string, number];
+export type Message = [ string, number ];
 
 @Injectable()
 export class PositionalService {
@@ -19,7 +19,10 @@ export class PositionalService {
   public ref: any;
   public queryParent: any;
   public queryImgs: any;
-  private messageSource = new BehaviorSubject<Message>(['', null]);
+  private messageSource = new BehaviorSubject<Message>([
+    '',
+    null,
+  ]);
   public currentMessage = this.messageSource.asObservable();
   public index: number;
 
@@ -39,7 +42,7 @@ export class PositionalService {
 
   public setMove(index) {
     this.cacheValues(index);
-
+    if (isNil(this.outerMask) || isNil(this.imgEl)) return;
     this.move = {
       from: this.outerMask,
       to: {
@@ -50,10 +53,13 @@ export class PositionalService {
   }
 
   private cacheValues(index) {
-    if (isNull(index)) return;
+    if (isNil(index)) return;
     this.outerMask = this.queryParent[ index ];
     this.imgEl = this.queryImgs[ index ];
-    this.changeMessage([this.imgEl.imgSrc, index]);
+    this.changeMessage([
+      this.imgEl.imgSrc,
+      index,
+    ]);
   }
 
   public changeMessage(message: Message) {
