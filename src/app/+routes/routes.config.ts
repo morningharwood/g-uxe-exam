@@ -12,6 +12,7 @@ import { GxeProcessComponent } from './process/process.component';
 import { UxeGalleryCanvasComponent } from '../uxe-gallery/containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
 import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
 import { CanActivateGallery } from './route.guard';
+import { CanActivatePassword } from './password.guard';
 
 
 export const AllRoutes = {
@@ -37,11 +38,12 @@ export const config: Routes = [
   },
   {
     path: AllRoutes.INTRO,
+    canActivate: [ CanActivatePassword ],
     children: [
       {
         path: AllRoutes.ROOT,
         component: IntroComponent,
-        // canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   },
@@ -51,41 +53,40 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
-        // canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
         children: [
           {
             path: AllRoutes.DETAIL,
             component: UxeGalleryDetailComponent,
-            canActivate: [CanActivateGallery],
+            canActivate: [CanActivateGallery, CanActivateGallery],
             resolve: {
               doggos: DoggoResolve
             },
-            // canActivate: [ AdminGuard ],
             children: [
               {
                 path: AllRoutes.CANVAS_BRUSH,
                 component: UxeGalleryCanvasComponent,
-                // canActivate: [ AdminGuard ],
+                canActivate: [ CanActivatePassword ],
               },
               {
                 path: AllRoutes.CANVAS_TEXT,
                 component: UxeGalleryCanvasComponent,
-                // canActivate: [ AdminGuard ],
+                canActivate: [ CanActivatePassword ],
               },
               {
                 path: AllRoutes.CANVAS_MORE,
                 component: UxeGalleryCanvasComponent,
-                // canActivate: [ AdminGuard ],
+                canActivate: [ CanActivatePassword ],
               },
               {
                 path: AllRoutes.CANVAS_STICKERS,
                 component: UxeGalleryCanvasComponent,
-                // canActivate: [ AdminGuard ],
+                canActivate: [ CanActivatePassword ],
               },
               {
                 path: AllRoutes.CANVAS_SHARE,
                 component: UxeGalleryCanvasComponent,
-                // canActivate: [ AdminGuard ],
+                canActivate: [ CanActivatePassword ],
               },
             ]
           },
@@ -99,7 +100,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeDocumentationComponent,
-        // canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   },
@@ -109,7 +110,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeProcessComponent,
-        // canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   }

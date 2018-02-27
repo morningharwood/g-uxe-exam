@@ -6,6 +6,7 @@ import { GxeDemoModule } from './demo/demo.module';
 import { GxeDocumentationModule } from './documentation/documentation.module';
 import { GxeIntroModule } from './intro/intro.module';
 import { LoginRouteModule } from './login/login.module';
+import { CanActivatePassword } from './password.guard';
 import {
   GxeProcessModule,
 } from './process/process.module';
@@ -26,12 +27,15 @@ import { routes } from './routes.config';
     routes,
     ProfileModule,
   ],
+  providers: [
+    CanActivateGallery
+  ]
 })
 export class GxeRouterModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: GxeRouterModule,
-      providers: [ CanActivateGallery ]
+      providers: [ CanActivatePassword ]
     };
   }
 }

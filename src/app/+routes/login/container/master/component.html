@@ -1,6 +1,16 @@
 <mat-card>
   <div>
     <h1>Login</h1>
-    <mh-user-card [user]="auth.user$ | async"></mh-user-card>
+
+
+    <input type="text" placeholder="enter password" #val>
+    <button mat-button
+            (click)="onSubmit(val)"
+            color="primary"
+            type="submit" class="btn btn-primary">
+      Submit
+    </button>
+
+
   </div>
 </mat-card>
