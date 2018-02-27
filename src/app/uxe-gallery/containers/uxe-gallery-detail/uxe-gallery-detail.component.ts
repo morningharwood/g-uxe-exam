@@ -59,7 +59,6 @@ export class UxeGalleryDetailComponent implements OnInit {
 
   ngOnInit() {
     this.galleryItems = this.route.snapshot.data['doggos'];
-    console.log(this.galleryItems);
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
     this.lastPosition = 0;
     this.currentPosition = 0;
