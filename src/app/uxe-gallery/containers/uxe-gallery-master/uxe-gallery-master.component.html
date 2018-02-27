@@ -14,7 +14,7 @@
            (click)="selectedItem(i, outerMask, innerMask, imgEl)">
         <div class="inner-mask"
              #innerMask>
-          <img #imgEl [src]="item.imgSrc" alt="">
+          <img #imgEl [src]="item.imgSrc" [hidden]="false" alt="">
         </div>
       </div>
   </div>
@@ -23,7 +23,8 @@
 <uxe-topbar [animationState]="this.state">
   <button mat-icon-button
           (click)="closeDetails()"
-          class="close-btn">
+          class="close-btn"
+          *ngIf="this.state.topbarTemplateType === 'black'">
     <mat-icon aria-label="close">close</mat-icon>
   </button>
 </uxe-topbar>

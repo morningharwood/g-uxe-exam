@@ -98,18 +98,6 @@ export class UxeGalleryMasterComponent implements OnInit {
     this.posService.set(index, innerMask, ref, this.hostEl);
   }
 
-  public setSelectedItem(item: number): void {
-    this.galleryStateService.setSelectedItem(item);
-  }
-  //
-  public hiddenItem(id: string): void {
-    this.galleryStateService.setHiddenItem(id);
-  }
-
-  public setModalState(isActive: boolean): void {
-    this.galleryStateService.setModalState(isActive);
-  }
-
   private cacheGallerySizes() {
     this.posService.queryImgs = this.imgQuery._results
       .map(i => {
