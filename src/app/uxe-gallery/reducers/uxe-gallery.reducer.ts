@@ -1,6 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import {
-  SetCanvasSource,
   UxeGalleryActions,
   UxeGalleryActionTypes,
 } from '../actions/uxe-gallery.actions';
@@ -13,7 +12,10 @@ import { TopbarType } from '../components/topbar/topbar.interface';
 import { UxeGallery } from '../uxe-gallery.model';
 
 
-
+/**
+ * State of each galleryItem.
+ * Extended to add user state of selection to the mix.
+ */
 export interface State extends EntityState<UxeGallery> {
   animationState: string;
   selectedItem: number | null;
@@ -29,9 +31,15 @@ export interface State extends EntityState<UxeGallery> {
   canvasImg: string | null;
 }
 
+/**
+ * Creates ngrx/entity adaptor.
+ * @type {EntityAdapter<UxeGallery>}
+ */
 export const adapter: EntityAdapter<UxeGallery> = createEntityAdapter<UxeGallery>();
 
-
+/**
+ * Sets the inital state of the application.
+ */
 export const initialState: State = adapter.getInitialState({
   ids: ['0'],
   entities: {
@@ -56,6 +64,9 @@ export const initialState: State = adapter.getInitialState({
 });
 
 
+/**
+ * Reducer to manage all the actions that can occur on application.
+ */
 export function reducer(
   state = initialState,
   action: UxeGalleryActions
@@ -163,8 +174,15 @@ export function reducer(
   }
 }
 
+/**
+ * Crates a feature selector for gallery.
+ * @type {MemoizedSelector<object, any>}
+ */
 export const getState = createFeatureSelector<any>('uxeGallery');
 
+/**
+ * Common selectors for ngrx/entity
+ */
 export const {
   selectIds,
   selectEntities,
@@ -172,7 +190,11 @@ export const {
   selectTotal,
 } = adapter.getSelectors(getState);
 
-
+/**
+ * !! Used to manage all state in the UI !!
+ * The public api selector for state.
+ * @return {State}
+ */
 export const selectFeatureExtended = createSelector(getState, (state: State) => {
   return  {
     animationState: state.animationState,

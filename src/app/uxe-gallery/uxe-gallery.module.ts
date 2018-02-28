@@ -32,6 +32,11 @@ const DECLARATIONS_EXPORTS = [
   UxeGalleryMasterComponent,
   UxeGalleryDetailComponent,
   OverlayComponent,
+  TopbarComponent,
+  ItemComponent,
+  OverlayComponent,
+  BottombarComponent,
+  DetailItemComponent,
 ];
 
 @NgModule({
@@ -49,14 +54,7 @@ const DECLARATIONS_EXPORTS = [
     MatIconModule,
     MatSliderModule,
   ],
-  declarations: [
-    ...DECLARATIONS_EXPORTS,
-    TopbarComponent,
-    ItemComponent,
-    OverlayComponent,
-    BottombarComponent,
-    DetailItemComponent,
-  ],
+  declarations: [ ...DECLARATIONS_EXPORTS ],
   exports: [ ...DECLARATIONS_EXPORTS ],
   providers: [
     OverlayService,

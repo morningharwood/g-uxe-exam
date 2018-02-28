@@ -1,3 +1,6 @@
+/**
+ * NGRX UxeGallery Model.
+ */
 export interface UxeGallery {
   id: string;
   imgSrc: string;

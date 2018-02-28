@@ -33,7 +33,6 @@ export class CanActivateGallery implements CanActivate {
     return this.store.pipe(
       select(selectFeatureExtended),
       tap((data: any) => {
-        console.log('wtff', data.selectedItem);
         if (isNil(data.selectedItem)) {
           this.router.navigate([ 'demo' ]);
         }

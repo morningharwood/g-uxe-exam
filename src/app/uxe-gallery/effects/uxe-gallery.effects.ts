@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
-import { UxeGalleryActions, UxeGalleryActionTypes } from '../actions/uxe-gallery.actions';
+import { Actions } from '@ngrx/effects';
 
 @Injectable()
 export class UxeGalleryEffects {

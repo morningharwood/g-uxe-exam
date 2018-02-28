@@ -2,11 +2,11 @@
 @import '../../../../assets/css/mixins';
 
 mat-toolbar {
+  background-color: $black-dark;
+  color: #fff;
   position: fixed;
   width: 100%;
   z-index: $z-layer-highest;
-  background-color: $black-dark;
-  color: #fff;
 }
 
 mat-toolbar-row {

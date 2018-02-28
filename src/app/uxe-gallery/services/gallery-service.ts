@@ -93,9 +93,12 @@ export class UxeGalleryStateService {
   }
 
 
-
-  public openDetailView(item: number) {
-    this.setSelectedItem(item);
+  /**
+   * Helper to when opening up gallery detailView.
+   * @param {number} index Currently selected Item index.
+   */
+  public openDetailView(index: number) {
+    this.setSelectedItem(index);
     this.setModalState(true);
     this.setDetailState(true);
     this.setTopbarType('black');
@@ -105,6 +108,9 @@ export class UxeGalleryStateService {
     this.setAnimationState('open');
   }
 
+  /**
+   * Helper when closing up gallery detailView.
+   */
   public closeDetailView() {
     this.router.navigate(['/demo'])
     this.setSelectedItem(null);
@@ -114,16 +120,22 @@ export class UxeGalleryStateService {
     this.setToolBarStateByName('topbarTemplate', true);
     this.setToolBarStateByName('bottombarTemplate', false);
     this.setToolBarStateByName('brushbarTemplate', false);
-    console.log('closinggg')
     this.setAnimationState('closed');
     this.animationService.endAnimate();
   }
 
+  /**
+   * Helper to turn off toolbars.
+   * @param toggler
+   */
   public tappedBars(toggler) {
     this.setToolBarStateByName('topbarTemplate', toggler);
     this.setToolBarStateByName('bottombarTemplate', toggler);
   }
 
+  /**
+   * Helper to go back to demo route.
+   */
   public home() {
     this.router.navigate([`demo`]);
   }

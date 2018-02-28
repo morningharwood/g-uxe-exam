@@ -1,16 +1,16 @@
 import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
-import {
   animate,
   state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 
 @Component({
@@ -61,13 +61,18 @@ import { UxeGalleryStateService } from '../../services/gallery-service';
   ],
 })
 export class BottombarComponent implements OnInit {
+  /**
+   * Input from ngrx/store of animation State.
+   */
   @Input() animationState: any;
-  private brushBar: boolean;
   constructor(private galleryService: UxeGalleryStateService) { }
 
   ngOnInit() {
   }
 
+  /**
+   * Toggles the animation state and sends it back up to store via toggleBrush method.
+   */
   public toggleBrushBar() {
     this.animationState.brushbarTemplate = !this.animationState.brushbarTemplate;
     this.galleryService.toggleBrush(this.animationState.brushbarTemplate);

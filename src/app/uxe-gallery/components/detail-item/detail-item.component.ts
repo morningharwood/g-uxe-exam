@@ -1,6 +1,5 @@
 import {
   Component,
-  HostListener,
   Input,
   OnInit,
 } from '@angular/core';
