@@ -1,0 +1,27 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+mat-toolbar {
+  background: transparent;
+  color: $black-dark;
+  position: fixed;
+  width: 100%;
+  z-index: $z-layer-highest;
+
+  &.white {
+    background-color: $white-off;
+    color: $black-dark
+  }
+
+  &.black {
+    background-color: $black-dark;
+    color: #fff;
+  }
+}
+
+mat-toolbar-row {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}

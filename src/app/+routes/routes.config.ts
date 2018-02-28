@@ -3,17 +3,21 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
+import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
+import { UxeGalleryDetailComponent } from '../uxe-gallery/containers/uxe-gallery-detail/uxe-gallery-detail.component';
 import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
+import { CanActivatePassword } from './password.guard';
 import { GxeProcessComponent } from './process/process.component';
-import { AdminGuard } from '../_other/core';
+import { CanActivateGallery } from './route.guard';
 
 
 export const AllRoutes = {
   ROOT: '',
   INTRO: 'intro',
   DEMO: 'demo',
+  DETAIL: 'detail',
   DOCUMENTATION: 'documentation',
   PROCESS: 'process',
 };
@@ -27,11 +31,12 @@ export const config: Routes = [
   },
   {
     path: AllRoutes.INTRO,
+    canActivate: [ CanActivatePassword ],
     children: [
       {
         path: AllRoutes.ROOT,
         component: IntroComponent,
-        canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   },
@@ -41,7 +46,17 @@ export const config: Routes = [
       {
         path: AllRoutes.ROOT,
         component: GxeDemoComponent,
-        canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
+        children: [
+          {
+            path: AllRoutes.DETAIL,
+            component: UxeGalleryDetailComponent,
+            canActivate: [CanActivateGallery, CanActivatePassword],
+            resolve: {
+              data: DoggoResolve
+            },
+          },
+        ]
       },
     ],
   },
@@ -51,7 +66,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeDocumentationComponent,
-        canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   },
@@ -61,7 +76,7 @@ export const config: Routes = [
       {
         path:  AllRoutes.ROOT,
         component: GxeProcessComponent,
-        canActivate: [ AdminGuard ],
+        canActivate: [ CanActivatePassword ],
       },
     ],
   }

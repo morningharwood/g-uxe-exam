@@ -1,0 +1,17 @@
+<div class="overflow-hidden" >
+  <div class="inner-gallery"
+       #containerEl
+       [ngStyle]="{
+       'width': (galleryItems.length * this.hostEl.offsetWidth) + 'px',
+       'transform': 'translate(' + currentPosition + 'px)'
+     }">
+
+    <uxe-detail-item
+      class="center"
+      *ngFor="let galleryItem of galleryItems"
+      [galleryItem]="galleryItem">
+    </uxe-detail-item>
+  </div>
+</div>
+<uxe-overlay></uxe-overlay>
+<router-outlet></router-outlet>

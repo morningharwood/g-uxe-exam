@@ -41,8 +41,19 @@ body {
   font-size: percentage(1/1);
 }
 
+gxe-root {
+  @include size(percentage(1/1), percentage(1/1));
+  display: flex;
+}
+
 .router-wrap {
   min-height: percentage(1/1);
   position: relative;
   width: percentage(1/1);
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }

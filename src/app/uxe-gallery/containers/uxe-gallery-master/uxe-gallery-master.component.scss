@@ -1,0 +1,63 @@
+@import '../../../../assets/css/mixins';
+@import '../../../../assets/css/variables';
+
+:host {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container {
+  // Sets the inner borders for edges
+  border: 3px solid $white;
+  width: 100%;
+}
+
+.outer-mask {
+  // Sets the inner borders for edges
+  border: 3px solid $white;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  perspective: 1000px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.inner-mask {
+  border: 0;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.close-btn {
+  background-color: transparent;
+  color: $white-off;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  z-index: 99999;
+}
+
+img {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  object-fit: cover;
+}
+
+.spacer {
+  padding: 56px 0 0;
+  width: 100%;
+
+  @include bpM(1) {
+    padding-top: 64px;
+  }
+}

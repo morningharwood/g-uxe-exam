@@ -9,7 +9,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { GalleryItem } from '../../gxe-gallery/interfaces/gallery-items.interface';
+import { GalleryItem } from '../../uxe-gallery/interfaces/gallery-items.interface';
+
 
 
 @Injectable()

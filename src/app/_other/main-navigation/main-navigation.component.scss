@@ -9,9 +9,10 @@ mat-toolbar {
 
 }
 .mat-toolbar-row {
-  height: 64px;
-  padding-top: 20px;
+  height: 50px;
+  padding-top: 12px;
 }
+
 .fill-space{
   flex: 1 1 auto;
 }
@@ -35,7 +36,7 @@ button {
 
   &::after {
     position: absolute;
-    bottom: -14px;
+    bottom: -11px;
     content: '';
     width: 100%;
     left: 0;

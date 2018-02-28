@@ -1,0 +1,21 @@
+<mat-toolbar
+  class="bottom-bar"
+  [@enterBar]="animationState.bottombarTemplate">
+  <mat-toolbar-row [@brushBar]="animationState.brushbarTemplate" class="aux-bar">
+    <mat-slider *ngIf="animationState.brushbarTemplate"></mat-slider>
+  </mat-toolbar-row>
+  <mat-toolbar-row >
+    <button mat-icon-button (click)="toggleBrushBar()">
+      <mat-icon>brush</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>text_fields</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

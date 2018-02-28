@@ -1,6 +1,13 @@
 @import '../../../assets/css/mixins';
 @import '../../../assets/css/variables';
 
+:host {
+  width: 100%;
+  display: block;
+}
+p {
+  text-align: center;
+}
 .doggo-demo {
   position: relative;
   overflow-x: hidden;
@@ -15,7 +22,7 @@
   flex: 1 1 auto;
 }
 .spacer-72 {
-  margin-top: 72px;
+  margin-top: 44px;
 }
 
 article {

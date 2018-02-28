@@ -28,3 +28,29 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+.cdk-overlay-pane {
+  width: 0 !important;
+}
+
+//.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+//  &.dark-backdrop {
+//    background: #000;
+//    opacity: .9;
+//  }
+//}
+
+//.cdk-overlay-backdrop {
+//  background: transparent;
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+//
+//  z-index: $cdk-z-index-overlay-backdrop;
+//  pointer-events: auto;
+//  -webkit-tap-highlight-color: transparent;
+//  transition: opacity 195ms cubic-bezier(.35, 0, .25, 1), background 195ms cubic-bezier(.35, 0, .25, 1);
+//  opacity: 0;
+//}
