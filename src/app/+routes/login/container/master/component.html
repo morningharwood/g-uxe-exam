@@ -1,16 +1,23 @@
-<mat-card>
-  <div>
+
+<mat-card class="example-card">
+
+
+  <mat-card-content>
     <h1>Login</h1>
-
-
-    <input type="text" placeholder="enter password" #val>
-    <button mat-button
-            (click)="onSubmit(val)"
-            color="primary"
+    <mat-form-field class="example-full-width">
+      <input matInput
+             #val
+             placeholder="Favorite Animal?">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      (click)="onSubmit(val)"
+            mat-raised-button color="accent"
             type="submit" class="btn btn-primary">
       Submit
     </button>
 
-
-  </div>
+  </mat-card-actions>
 </mat-card>
+

@@ -159,7 +159,7 @@
       <br>
 
       <h3>State Management: Redux/NGRX</h3>
-      <p>Redux or Angular’s implementation @ngrx Is a robust library for managing state of an application. There are 3
+      <p>Redux or Angular’s implementation @ngrx is a robust library for managing state of an application. There are 3
         principles to redux:</p>
       <ul class="detail-list">
         <li><p>Single source of truth</p></li>
@@ -260,10 +260,20 @@
       <br><br>
       <p><b>For a full breakdown:</b></p> <br><br>
       <button mat-raised-button color="accent" [routerLink]="['/demo']">GO TO LIVE DEMO</button>
-      <button href="https://gxe-gallery-docs.firebaseapp.com/" mat-button color="primary">VIEW THE DOCS</button>
-      <button href="https://drive.google.com/file/d/1IxkE2OeZUHvHTU4CP2hZ4cyFWKCHbSPy/view?usp=sharing" mat-button
-              color="primary">DOWNLOAD THE CODE
-      </button>
+      <a
+        href="https://gxe-gallery-docs.firebaseapp.com/"
+        mat-button
+        target="_blank"
+        color="primary">
+        VIEW THE DOCS
+      </a>
+      <a
+        href="https://drive.google.com/file/d/1hvT5NOcvKu4DPZh3At4Ku7KySRLZwTYK/view?usp=sharing"
+        mat-button
+        target="_blank"
+        color="primary">
+        DOWNLOAD THE CODE
+      </a>
     </section>
     <section>
       <h3>Reflections</h3>
@@ -300,218 +310,5 @@
 
   </article>
 </div>
-
-
-<!--<mat-accordion>-->
-<!--<mat-expansion-panel-->
-<!--[expanded]="engiOpen"-->
-<!--(opened)="engiOpen = true"-->
-<!--(closed)="engiOpen = false">-->
-<!--<mat-expansion-panel-header>-->
-<!--<mat-panel-title>-->
-<!--1. Engineering-->
-<!--</mat-panel-title>-->
-<!--</mat-expansion-panel-header>-->
-<!--<div class="tab-content">-->
-<!--<section>-->
-<!--<h3>Primary Goal:</h3>-->
-<!--<p>-->
-<!--Create an extensible mobile image gallery.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Personal Goal:</h3>-->
-<!--<p>-->
-<!--Offer an ergonomic implementation.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Extensible &amp; Ergonomic:</h3>-->
-<!--<p>-->
-<!--<code>gxe-gallery</code> is a Angular component-->
-<!--that can render the entire experience from a single html tag.-->
-<!--Any data that fits the interface can be <a href="https://angular.io/api/core/Input">Input()</a> into the gallery-->
-<!--through the <code>[galleryItems]="data"</code> binding.-->
-<!--The underlying services are extensible and the component itself is simple to get up and running.-->
-<!--</p>-->
-<!--<br>-->
-<!--<p>For a full breakdown: <br><br>-->
-<!--<a href="https://gxe-gallery-docs.firebaseapp.com/" mat-button color="primary" >VIEW THE DOCS</a>-->
-<!--<a href="https://drive.google.com/file/d/1IxkE2OeZUHvHTU4CP2hZ4cyFWKCHbSPy/view?usp=sharing" mat-button color="primary" >DOWNLOAD THE CODE</a>-->
-<!--</p>-->
-
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Process Diagram:</h3>-->
-<!--<figure>-->
-<!--<img src="assets/images/process.svg" alt="">-->
-<!--</figure>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Why Angular:</h3>-->
-<!--<p>-->
-<!--Angular is a batteries included mobile/web framework and-->
-<!--it's my personal weapon of choice! For me, Angular affords the-->
-<!--opportunity to work quickly and efficiently from its robust-->
-<!--features like:-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-
-<!--</section>-->
-
-
-<!--<section>-->
-
-<!--<h3>Reflections:</h3>-->
-<!--<p>-->
-<!--As a developer, I got too excited and jumped to coding too quickly.-->
-<!--In hindsight, I should have planned and outlined more of the nuance shown in the-->
-<!--design mocks. In particular, one of the big problems was in the-->
-<!--grid layout borders. My animations math wasn't great and adding border to the equation-->
-<!--made my animation code verbose.-->
-<!--</p>-->
-<!--</section>-->
-
-
-<!--<section>-->
-<!--<h3>If there was more time</h3>-->
-<!--<mat-list role="list">-->
-<!--<mat-list-item role="listitem">-->
-<!--Desktop support-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Better IOS support-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Tests-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Cleaner code-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Pan and flick interactions-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Tool bar functionality-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Accessibility-->
-<!--</mat-list-item>-->
-<!--</mat-list>-->
-<!--</section>-->
-
-<!--</div>-->
-<!--</mat-expansion-panel>-->
-<!--<mat-expansion-panel [expanded]="panelOpenState"-->
-<!--(opened)="open()"-->
-<!--(closed)="close()">-->
-<!--<mat-expansion-panel-header>-->
-<!--<mat-panel-title>-->
-<!--2. Design-->
-<!--</mat-panel-title>-->
-<!--</mat-expansion-panel-header>-->
-
-<!--<div class="tab-content">-->
-<!--<section>-->
-<!--<h3>Goal:</h3>-->
-<!--<p>Create an Image Gallery and enhanced with motion design </p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Problem:</h3>-->
-<!--<p>-->
-<!--Unclear mock up that lacked context and context.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Precedence:</h3>-->
-<!--<p>-->
-<!--The interaction and motion design were explicitly kept simple,-->
-<!--only using Material Design and Google Photos as the design precedence.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Why Material:</h3>-->
-<!--<p>-->
-<!--Material design's motion is meticulously-->
-<!--<a href="https://material.io/guidelines/motion/material-motion.html#material-motion-implications-of-motion">justified</a>-->
-<!--I tried to achieve motion in the UI that was:-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-
-<!--<mat-list role="list">-->
-<!--<mat-list-item role="listitem">-->
-<!--Responsive-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Natural-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Aware-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Intentional-->
-<!--</mat-list-item>-->
-<!--</mat-list>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Interaction:</h3>-->
-<!--<p>-->
-<!--Google Photo's Interaction Design is familiar to it's users.-->
-<!--And therefore, I leveraged many of the interaction from it.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Open and Close:</h3>-->
-<!--<div class="ar">-->
-<!--<iframe-->
-<!--src="https://www.youtube.com/embed/LZfy7jBWmyY?&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=2&showinfo=1&loop=1"-->
-<!--frameborder="0"-->
-<!--allow="autoplay; encrypted-media"-->
-<!--allowfullscreen>-->
-<!--</iframe>-->
-<!--</div>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Paginate, Tap, &amp; Swipe</h3>-->
-<!--<div class="ar">-->
-<!--<iframe-->
-<!--src="https://www.youtube.com/embed/KFRQfh9wQ7Y?&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=2&showinfo=1&loop=1"-->
-<!--frameborder="0"-->
-<!--allow="autoplay; encrypted-media"-->
-<!--allowfullscreen>-->
-<!--</iframe>-->
-<!--</div>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>Reflections:</h3>-->
-<!--<p>-->
-<!--In hindsight, I wish I would have explored motion and interaction more.-->
-<!--I was nervous to explore because the brief lacked context and time constraint.-->
-<!--</p>-->
-<!--</section>-->
-<!--<section>-->
-<!--<h3>If there was more time:</h3>-->
-<!--<mat-list role="list">-->
-<!--<mat-list-item role="listitem">-->
-<!--More iteration for the designer-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--An attempt at original Interaction & Motion Design-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Animated vertical swipe interaction when closing the gallery.-->
-<!--</mat-list-item>-->
-<!--<mat-list-item role="listitem">-->
-<!--Accessibility-->
-<!--</mat-list-item>-->
-<!--</mat-list>-->
-<!--</section>-->
-
-<!--</div>-->
-
-<!--</mat-expansion-panel>-->
-<!--</mat-accordion>-->
 
 
