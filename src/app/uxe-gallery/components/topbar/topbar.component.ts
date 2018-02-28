@@ -42,20 +42,38 @@ import { PositionalService } from '../../services/positional-service';
   ],
 })
 export class TopbarComponent implements OnInit {
+  /**
+   * Input of animationState from store.
+   */
   @Input() public animationState: any;
-  @Input() public galleryItems: GalleryItem[];
 
+  /**
+   * Input of gallery items from API.
+   */
+  @Input() public galleryItems: Array<Array<GalleryItem>>;
+
+  /**
+   * Name field to be shown on template.
+   */
   public name: string;
+
+  /**
+   * @param {PositionalService} posService Positional service.
+   */
   constructor(private posService: PositionalService) {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.posService.currentMessage.subscribe((message) => {
       this.setName(message[1]);
     });
   }
 
-  public setName(index): void  {
+  /**
+   * Sets the name for topbar from selected item of galleryItems.
+   * @param {number} index Current selected Index.
+   */
+  public setName(index: number): void  {
     if (isNil(index)) return;
     this.name = this.galleryItems[index][ 0 ].value;
   }

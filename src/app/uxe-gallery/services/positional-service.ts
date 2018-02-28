@@ -4,6 +4,7 @@ import {
 import { isNil } from 'lodash';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Vector2 } from '../interfaces/vector.interface';
+import { ItemOverlayRef } from '../components/overlay/item-overlay-ref';
 
 
 /**

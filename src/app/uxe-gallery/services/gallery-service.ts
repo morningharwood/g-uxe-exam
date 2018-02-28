@@ -3,17 +3,12 @@ import { Router } from '@angular/router';
 import {
   Store,
 } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {
-  ClearToolbars,
   SetAnimationState,
-  SetCanvasSource,
-  SetCanvasState,
   SetDetailState,
   SetModalState,
   SetToolbarState,
   SetTopbarType,
-  UpdateHiddenItem,
   UpdateSelectedItem,
 } from '../actions/uxe-gallery.actions';
 import { ItemAnimationsService } from '../containers/uxe-animation-portal/item.animations';

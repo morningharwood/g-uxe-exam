@@ -2,11 +2,11 @@
 @import '../../../../assets/css/mixins';
 
 mat-toolbar {
+  background: transparent;
+  color: $black-dark;
   position: fixed;
   width: 100%;
   z-index: $z-layer-highest;
-  background: transparent;
-  color: $black-dark;
 
   &.white {
     background-color: $white-off;
@@ -24,24 +24,4 @@ mat-toolbar-row {
   justify-content: center;
   position: relative;
   text-align: center;
-}
-
-.pos {
-  height: 100%;
-  position: absolute;
-  width: 100%;
-}
-
-
-.bottom-bar {
-  background-color: $black-dark;
-  bottom: -80px;
-
-  mat-toolbar-row {
-    justify-content: space-around;
-  }
-
-  mat-icon {
-    color: $white;
-  }
 }

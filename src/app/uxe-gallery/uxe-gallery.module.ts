@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { BottombarAuxComponent } from './components/bottombar-aux/bottombar-aux.component';
 import { BottombarComponent } from './components/bottombar/bottombar.component';
 import { DetailItemComponent } from './components/detail-item/detail-item.component';
 import { OverlayService } from './components/overlay/overlay-service';
@@ -56,7 +55,6 @@ const DECLARATIONS_EXPORTS = [
     ItemComponent,
     OverlayComponent,
     BottombarComponent,
-    BottombarAuxComponent,
     DetailItemComponent,
   ],
   exports: [ ...DECLARATIONS_EXPORTS ],
