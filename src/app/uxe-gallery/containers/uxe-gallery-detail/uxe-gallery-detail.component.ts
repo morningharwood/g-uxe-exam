@@ -106,7 +106,18 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
    */
   private galleryItems: GalleryItem[];
 
-
+  /**
+   *
+   * @param {AnimationBuilder} builder Angular programmatic animation
+   * @param {Store<any>} store @ngrx/store service for accessing state.
+   * @param {ElementRef} ngHostEl Host component selected by Angular.
+   * @param {Renderer2} renderer Angular renderer service.
+   * @param {UxeGalleryStateService} galleryService Helper service around
+   *    gallery feature of @ngrx/store.
+   * @param {PositionalService} posService Service managing positional states.
+   * @param {SwipeVerticalService} swipeService Service managing hammerJS swiping.
+   * @param {ActivatedRoute} route Angular ActivatedRoute Service.
+   */
   constructor(private builder: AnimationBuilder,
               private store: Store<any>,
               public ngHostEl: ElementRef,
