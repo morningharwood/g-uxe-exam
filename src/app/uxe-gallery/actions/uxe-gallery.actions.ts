@@ -1,8 +1,31 @@
-import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
 import { UxeGallery } from '../uxe-gallery.model';
 
+/**
+ * ENUM used for all actions that could change state of gallery.
+ */
 export enum UxeGalleryActionTypes {
+
+  /**
+   * Extend state Actions for UI and User Interactions !!
+   */
+
+  UpdateSelectedItem = '[UxeGallery] Update SelectedItem',
+  UpdateHiddenItem = '[UxeGallery] Update HiddenItem',
+  ClearToolbars = '[UxeGallery] Clear Toolbars',
+  SetToolbarState = '[UxeGallery] Set Toolbars State',
+  SetModalState = '[UxeGallery] Set Modal State',
+  SetDetailState = '[UxeGallery] Set Detail State',
+  SetCanvasState = '[UxeGallery] Set Canvas State',
+  SetCanvasSource = '[UxeGallery] Set Canvas Source',
+  SetTopbarType = '[UxeGallery] Set Topbar Type',
+  SetAnimationState = '[UxeGallery] Set Animation State',
+
+
+  /**
+   * BOILERPLATE
+   */
   LoadUxeGallerys = '[UxeGallery] Load UxeGallerys',
   AddUxeGallery = '[UxeGallery] Add UxeGallery',
   UpsertUxeGallery = '[UxeGallery] Upsert UxeGallery',
@@ -14,17 +37,94 @@ export enum UxeGalleryActionTypes {
   DeleteUxeGallerys = '[UxeGallery] Delete UxeGallerys',
   ClearUxeGallerys = '[UxeGallery] Clear UxeGallerys',
 
-  // Extend state Actions
-  UpdateSelectedItem = '[UxeGallery] Update SelectedItem',
-  UpdateHiddenItem = '[UxeGallery] Update HiddenItem',
-  ClearToolbars = '[UxeGallery] Clear Toolbars',
-  SetToolbarState = '[UxeGallery] Set Toolbars State',
-  SetModalState = '[UxeGallery] Set Modal State',
-  SetDetailState = '[UxeGallery] Set Detail State',
-  SetCanvasState = '[UxeGallery] Set Canvas State',
-  SetCanvasSource = '[UxeGallery] Set Canvas Source',
-  SetTopbarType = '[UxeGallery] Set Topbar Type',
-  SetAnimationState = '[UxeGallery] Set Animation State',
+
+}
+
+/**
+ * Action for managing state.
+ */
+
+/**
+ * Updates selected Item in gallery.
+ */
+export class UpdateSelectedItem implements Action {
+  readonly type = UxeGalleryActionTypes.UpdateSelectedItem;
+  constructor(public payload: { item: number }) {}
+}
+
+/**
+ * Hides Item in gallery.
+ */
+export class UpdateHiddenItem implements Action {
+  readonly type = UxeGalleryActionTypes.UpdateHiddenItem;
+  constructor(public payload: { id: string }) {}
+}
+
+/**
+ * Clears toolbars.
+ */
+export class ClearToolbars implements Action {
+  readonly type = UxeGalleryActionTypes.ClearToolbars;
+}
+
+/**
+ * Sets the toolbar state.
+ */
+export class SetToolbarState implements Action {
+  readonly type = UxeGalleryActionTypes.SetToolbarState;
+  constructor(public payload: { propName: string, isActive: boolean }) {}
+}
+
+/**
+ * Sets the modal state.
+ */
+export class SetModalState implements Action {
+  readonly type = UxeGalleryActionTypes.SetModalState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
+/**
+ * Sets the detail State
+ */
+export class SetDetailState implements Action {
+  readonly type = UxeGalleryActionTypes.SetDetailState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
+/**
+ * Set teh Top Tool bar state.
+ */
+export class SetTopbarType implements Action {
+  readonly type = UxeGalleryActionTypes.SetTopbarType;
+  constructor(public payload: { type: string }) {}
+}
+
+/**
+ * Sets the Animation State.
+ */
+export class SetAnimationState implements Action {
+  readonly type = UxeGalleryActionTypes.SetAnimationState;
+  constructor(public payload: { type: string }) {}
+}
+
+
+/**
+ * BOILERPLATE BELOW
+ */
+
+
+export class SetCanvasState implements Action {
+  readonly type = UxeGalleryActionTypes.SetCanvasState;
+  constructor(public payload: { isActive: boolean }) {}
+}
+
+export class SetCanvasSource implements Action {
+  readonly type = UxeGalleryActionTypes.SetCanvasSource;
+  constructor(public payload: { source: string }) {}
+}
+
+export class ClearUxeGallerys implements Action {
+  readonly type = UxeGalleryActionTypes.ClearUxeGallerys;
 }
 
 export class LoadUxeGallerys implements Action {
@@ -81,58 +181,6 @@ export class DeleteUxeGallerys implements Action {
   constructor(public payload: { ids: string[] }) {}
 }
 
-export class ClearUxeGallerys implements Action {
-  readonly type = UxeGalleryActionTypes.ClearUxeGallerys;
-}
-
-export class UpdateSelectedItem implements Action {
-  readonly type = UxeGalleryActionTypes.UpdateSelectedItem;
-  constructor(public payload: { item: number }) {}
-}
-
-export class UpdateHiddenItem implements Action {
-  readonly type = UxeGalleryActionTypes.UpdateHiddenItem;
-  constructor(public payload: { id: string }) {}
-}
-
-export class ClearToolbars implements Action {
-  readonly type = UxeGalleryActionTypes.ClearToolbars;
-}
-
-export class SetToolbarState implements Action {
-  readonly type = UxeGalleryActionTypes.SetToolbarState;
-  constructor(public payload: { propName: string, isActive: boolean }) {}
-}
-
-export class SetModalState implements Action {
-  readonly type = UxeGalleryActionTypes.SetModalState;
-  constructor(public payload: { isActive: boolean }) {}
-}
-
-export class SetDetailState implements Action {
-  readonly type = UxeGalleryActionTypes.SetDetailState;
-  constructor(public payload: { isActive: boolean }) {}
-}
-
-export class SetCanvasState implements Action {
-  readonly type = UxeGalleryActionTypes.SetCanvasState;
-  constructor(public payload: { isActive: boolean }) {}
-}
-
-export class SetCanvasSource implements Action {
-  readonly type = UxeGalleryActionTypes.SetCanvasSource;
-  constructor(public payload: { source: string }) {}
-}
-
-export class SetTopbarType implements Action {
-  readonly type = UxeGalleryActionTypes.SetTopbarType;
-  constructor(public payload: { type: string }) {}
-}
-
-export class SetAnimationState implements Action {
-  readonly type = UxeGalleryActionTypes.SetAnimationState;
-  constructor(public payload: { type: string }) {}
-}
 
 
 export type UxeGalleryActions =
