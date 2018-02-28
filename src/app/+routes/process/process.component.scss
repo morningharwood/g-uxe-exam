@@ -1,5 +1,22 @@
 @import '../../../assets/css/mixins';
 @import '../../../assets/css/variables';
+$red: #F44336;
+:host {
+  width: 100%;
+  display: block;
+
+}
+.wrapper {
+  width: 100%;
+  padding: 0 19px 320px;
+  margin: 0 auto;
+  max-width: 960px;
+
+  @include bp(4) {
+    width: 80%;
+  }
+}
+
 .spacer-72 {
   margin-top: 44px;
 }
@@ -17,6 +34,7 @@ section {
   p {
     padding: 0 16px;
     font-family: $sans-default-family;
+    line-height: 1.8;
   }
 }
 
@@ -43,17 +61,125 @@ mat-expansion-panel-header {
     font-weight: 700;
   }
 }
+blockquote {
+  font-family: $sans-default-family;
+  position: relative;
+  margin-left: 24px;
+  margin-top: ms(1);
+  line-height: 1.8;
+
+  b {
+    color: $red;
+  }
+
+  &::before {
+    position: absolute;
+    left: -24px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    content: '';
+    background: #F44336;
+  }
+}
+h2 {
+  font-family: $sans-default-family;
+  font-weight: 700;
+  font-size: ms(1);
+}
+
+h3 {
+  font-family: $sans-default-family;
+  color: #F44336;
+  font-weight: 700;
+  font-size: ms(0);
+}
+
 span {
   margin-right: 8px;
   mat-icon {
     transform: translateY(7px);
   }
 }
+.closing {
+  h3 {
+    margin: ms(1) auto;
+    text-align: center;
+  }
+}
+.goal-list {
+  p {
+    margin: ms(1) 0;
+  }
 
+  p:first-child  {
+    margin: 12px 0;
+  }
+}
+.goal-list-small {
+  p {
+    margin: ms(1) 0;
+    @include bp(4) {
 
+      font-size: 14px;
+    }
+  }
+
+  p:first-child  {
+    margin: 12px 0;
+    @include bp(4) {
+      font-size: 14px;
+    }
+  }
+}
+.detail-list {
+  list-style: none;
+  margin-left: 36px;
+
+  li {
+    list-style-type: circle;
+    margin: 12px 0;
+  }
+}
 
 figure {
+  margin: ms(1) 0;
   img {
     width: 100%;
+  }
+  figcaption {
+    font-family: $sans-default-family;
+    font-size: 14px;
+    text-align: center;
+    margin-top: ms(1)
+  }
+}
+.inline-image {
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+    width: 100%;
+
+    @include bp(4) {
+
+      padding: ms(0);
+      width: 50%;
+    }
+  }
+}
+.wrap-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+
+  figure {
+    padding: ms(0);
+    width: 50%;
+
+    @include bp(4) {
+      width: percentage(1/3);
+
+    }
   }
 }
