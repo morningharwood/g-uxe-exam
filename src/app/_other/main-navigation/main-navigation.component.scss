@@ -10,7 +10,7 @@ mat-toolbar {
 }
 .mat-toolbar-row {
   height: 50px;
-  padding-top: 0px;
+  padding-top: 12px;
 }
 
 .fill-space{
@@ -36,7 +36,7 @@ button {
 
   &::after {
     position: absolute;
-    bottom: -17px;
+    bottom: -11px;
     content: '';
     width: 100%;
     left: 0;

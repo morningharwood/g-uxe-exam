@@ -157,3 +157,19 @@ img {
   font-family: $sans-default-family;
   width: 100%;
 }
+
+mat-card {
+  padding: 16px;
+  padding-bottom: 42px;
+  h3 {
+    font-size: 1.4em;
+  }
+  span {
+    color: $gray;
+    font-size: .8em;
+  }
+}
+
+mat-card-actions {
+  padding-bottom: 24px;
+}
