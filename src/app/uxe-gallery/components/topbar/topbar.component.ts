@@ -13,7 +13,7 @@ import {
 import { isNil } from 'lodash';
 import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
 import { GalleryItem } from '../../../gxe-gallery/interfaces/gallery-items.interface';
-import { PositionalService } from '../overlay/positional-service';
+import { PositionalService } from '../../services/positional-service';
 
 
 @Component({

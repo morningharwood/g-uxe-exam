@@ -15,7 +15,7 @@ import {
   STANDARD_LEAVE,
 
 } from '../../../gxe-gallery/animations/ease.animations';
-import { PositionalService } from '../../components/overlay/positional-service';
+import { PositionalService } from '../../services/positional-service';
 
 
 const SUB_PIXELING = 1;

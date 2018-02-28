@@ -3,16 +3,14 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
-import { AdminGuard } from '../_other/core';
+import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
 import { UxeGalleryDetailComponent } from '../uxe-gallery/containers/uxe-gallery-detail/uxe-gallery-detail.component';
 import { GxeDemoComponent } from './demo/demo.component';
 import { GxeDocumentationComponent } from './documentation/documentation.component';
 import { IntroComponent } from './intro/intro.component';
-import { GxeProcessComponent } from './process/process.component';
-import { UxeGalleryCanvasComponent } from '../uxe-gallery/containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
-import { DoggoResolve } from '../backend-tipe/doggo/doggo-guard.service';
-import { CanActivateGallery } from './route.guard';
 import { CanActivatePassword } from './password.guard';
+import { GxeProcessComponent } from './process/process.component';
+import { CanActivateGallery } from './route.guard';
 
 
 export const AllRoutes = {
@@ -20,11 +18,6 @@ export const AllRoutes = {
   INTRO: 'intro',
   DEMO: 'demo',
   DETAIL: 'detail',
-  CANVAS_BRUSH: 'brush',
-  CANVAS_TEXT: 'text',
-  CANVAS_MORE: 'more',
-  CANVAS_STICKERS: 'stickers',
-  CANVAS_SHARE: 'share',
   DOCUMENTATION: 'documentation',
   PROCESS: 'process',
 };
@@ -62,33 +55,6 @@ export const config: Routes = [
             resolve: {
               data: DoggoResolve
             },
-            children: [
-              {
-                path: AllRoutes.CANVAS_BRUSH,
-                component: UxeGalleryCanvasComponent,
-                canActivate: [ CanActivatePassword ],
-              },
-              {
-                path: AllRoutes.CANVAS_TEXT,
-                component: UxeGalleryCanvasComponent,
-                canActivate: [ CanActivatePassword ],
-              },
-              {
-                path: AllRoutes.CANVAS_MORE,
-                component: UxeGalleryCanvasComponent,
-                canActivate: [ CanActivatePassword ],
-              },
-              {
-                path: AllRoutes.CANVAS_STICKERS,
-                component: UxeGalleryCanvasComponent,
-                canActivate: [ CanActivatePassword ],
-              },
-              {
-                path: AllRoutes.CANVAS_SHARE,
-                component: UxeGalleryCanvasComponent,
-                canActivate: [ CanActivatePassword ],
-              },
-            ]
           },
         ]
       },

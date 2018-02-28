@@ -10,7 +10,7 @@ import {
   Store,
 } from '@ngrx/store';
 import { OverlayService } from '../../components/overlay/overlay-service';
-import { PositionalService } from '../../components/overlay/positional-service';
+import { PositionalService } from '../../services/positional-service';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import {
   State,
@@ -102,7 +102,6 @@ export class UxeGalleryMasterComponent implements OnInit {
    * Closes gallery state used from top toolbar close button.
    */
   private setHostElement(): void {
-    // TODO (mharwood) call this again on window.resize.
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
   }
 

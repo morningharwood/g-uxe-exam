@@ -20,7 +20,7 @@ import { ItemAnimationsService } from '../containers/uxe-animation-portal/item.a
 import {
   State,
 } from '../reducers/uxe-gallery.reducer';
-import { PositionalService } from '../components/overlay/positional-service';
+import { PositionalService } from './positional-service';
 
 
 @Injectable()

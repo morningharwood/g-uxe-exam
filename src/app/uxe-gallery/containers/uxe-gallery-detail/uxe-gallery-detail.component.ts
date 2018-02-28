@@ -29,7 +29,7 @@ import {
   STANDARD_EASE,
 } from '../../../gxe-gallery/animations/ease.animations';
 import { SwipeVerticalService } from '../../../gxe-gallery/services/swipe-vertical.service';
-import { PositionalService } from '../../components/overlay/positional-service';
+import { PositionalService } from '../../services/positional-service';
 import { EventType } from '../../enums/event-types';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';

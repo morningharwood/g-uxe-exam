@@ -8,7 +8,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { PositionalService } from '../../components/overlay/positional-service';
+import { PositionalService } from '../../services/positional-service';
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { ItemAnimationsService } from './item.animations';
 

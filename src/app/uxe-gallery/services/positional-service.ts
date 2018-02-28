@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { isNil } from 'lodash';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Vector2 } from '../../../gxe-gallery/interfaces/vector.interface';
+import { Vector2 } from '../../gxe-gallery/interfaces/vector.interface';
 
 
 export type Message = [ string, number ];
