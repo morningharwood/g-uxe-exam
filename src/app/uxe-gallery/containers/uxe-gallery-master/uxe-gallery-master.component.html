@@ -1,4 +1,3 @@
-
 <uxe-overlay
   *ngIf="this.state.modalTemplate"
 ></uxe-overlay>
@@ -6,17 +5,19 @@
 <div class="container spacer" #container>
   <div fxLayout="row wrap"
        fxLayoutAlign="start center">
-      <div class="outer-mask"
-           fxFlex="50%"
-           fxFlexAlign="center"
-           #outerMask
-           *ngFor="let item of galleryItems; let i = index"
-           (click)="selectedItem(i, outerMask, innerMask, imgEl)">
-        <div class="inner-mask"
-             #innerMask>
-          <img #imgEl [src]="item[1].value.url + '?q=61.5&auto=format,compress&fit=crop&max-h=960&max-w=540&fp-debug=true'" [hidden]="false" alt="">
-        </div>
+    <div class="outer-mask"
+         fxFlex="50%"
+         fxFlexAlign="center"
+         #outerMask
+         *ngFor="let item of galleryItems; let i = index"
+         (click)="selectedItem(i, outerMask, innerMask, imgEl)">
+      <div class="inner-mask"
+           #innerMask>
+        <img #imgEl
+             [src]="item[1].value.url + '?q=61.5&auto=format,compress&fit=crop&max-h=960&max-w=540&fp-debug=true'"
+             [hidden]="false" alt="">
       </div>
+    </div>
   </div>
 </div>
 

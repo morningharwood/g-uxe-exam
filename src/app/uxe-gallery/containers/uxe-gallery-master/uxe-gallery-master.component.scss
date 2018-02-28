@@ -7,17 +7,16 @@
 }
 
 .container {
+  // Sets the inner borders for edges
   border: 3px solid $white;
   width: 100%;
 }
 
 .outer-mask {
+  // Sets the inner borders for edges
   border: 3px solid $white;
   height: 100px;
-
   overflow: hidden;
-
-  // Sets the inner borders for edges
   position: relative;
   perspective: 1000px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

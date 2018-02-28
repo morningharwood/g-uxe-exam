@@ -118,6 +118,9 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Init component state & interactions.
+   */
   public ngOnInit(): void {
     this.setGalleryData();
     this.setNativeElements();
@@ -126,11 +129,19 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
     this.turnOnVerticalSwipe();
   }
 
+  /**
+   * Tear down component state & interactions.
+   */
   public ngOnDestroy(): void {
     this.onPaginationSubscription.unsubscribe();
     this.onLoadSubscription.unsubscribe();
+    this.swipeService.swipeOff();
   }
 
+  /**
+   * On tap of gallery emit an event to store.
+   * Used to toggle toolbars on and off.
+   */
   @HostListener(EventType.CLICK, [ '$event' ])
   public taptap() {
     this.tapped = !this.tapped;
@@ -213,38 +224,55 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
     this.galleryService.setSelectedItem(index);
   }
 
+  /**
+   * DOM selection the angular way.
+   */
   private setNativeElements() {
     this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
   }
 
+  /**
+   * Set data from router snapshot.
+   */
   private setGalleryData() {
     this.galleryItems = this.route.snapshot.data[ 'data' ];
   }
 
+  /**
+   * Init local state of pagination and tapped state.
+   */
   private initLocalState() {
     this.currentPosition = 0;
     this.lastPosition = 0;
     this.tapped = true;
   }
 
+  /**
+   * Creates subscriptions for pagination on init and there after.
+   */
   private createSubscriptionForPagination() {
-    this.onPaginationSubscription = this.store.pipe(
-      select(selectFeatureExtended),
-      map((d) => d.selectedItem),
-      bufferCount(2, 1),
-    ).subscribe((selectedItem) => {
-      console.log(selectedItem);
-      if (selectedItem.length > 1) {
-        this.paginationAnimate(selectedItem[ 1 ], STANDARD_EASE);
-      }
-    });
-
+    /**
+     * Trigger for initial animation and never again.
+     */
     this.onLoadSubscription = this.store.pipe(
       select(selectFeatureExtended),
       map((d) => d.selectedItem),
       take(1),
     ).subscribe((selectedItem) => {
       this.paginationAnimate(selectedItem, SEAMLESS_EASE);
+    });
+
+    /**
+     * Trigger after initial animation and thereafter.
+     */
+    this.onPaginationSubscription = this.store.pipe(
+      select(selectFeatureExtended),
+      map((d) => d.selectedItem),
+      bufferCount(2, 1),
+    ).subscribe((selectedItem) => {
+      if (selectedItem.length > 1) {
+        this.paginationAnimate(selectedItem[ 1 ], STANDARD_EASE);
+      }
     });
   }
 }
