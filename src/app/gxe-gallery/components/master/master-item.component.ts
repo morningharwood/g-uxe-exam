@@ -15,7 +15,7 @@ import {
 import { EventType } from '../../enums/event-types';
 import { CurrentItem } from '../../interfaces/current-item.interface';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
-import { SwipeVerticalService } from '../../services/swipe-vertical.service';
+import { SwipeVerticalService } from '../../../uxe-gallery/services/swipe-vertical.service';
 
 
 @Component({

@@ -6,15 +6,11 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
-import {
-  Store,
-} from '@ngrx/store';
+
 import { OverlayService } from '../../components/overlay/overlay-service';
-import { PositionalService } from '../../services/positional-service';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
-import {
-  State,
-} from '../../reducers/uxe-gallery.reducer';
+import { PositionalService } from '../../services/positional-service';
+
 import { UxeGalleryStateService } from '../../services/gallery-service';
 import { EventType } from '../../enums/event-types';
 
@@ -114,7 +110,7 @@ export class UxeGalleryMasterComponent implements OnInit {
    */
   public selectedItem(index: number,
                       outerMask: HTMLElement,
-                      innerMask: HTMLElement) {
+                      innerMask: HTMLElement): void {
     this.cacheGallerySizes();
     this.galleryStateService.openDetailView(index);
     const ref = this.overlayService.open();
@@ -124,7 +120,7 @@ export class UxeGalleryMasterComponent implements OnInit {
   /**
    * For animations, computes and caches needed offset values of each element.
    */
-  private cacheGallerySizes() {
+  private cacheGallerySizes(): void {
     this.posService.queryImgs = this.imgQuery._results
       .map(i => {
         return {
@@ -142,7 +138,7 @@ export class UxeGalleryMasterComponent implements OnInit {
   /**
    * Scaffolds the resize listener to rerun caching of offsets.
    */
-  private resize() {
+  private resize(): void {
     window.addEventListener(EventType.RESIZE, (e) => {
       this.cacheGallerySizes();
     });

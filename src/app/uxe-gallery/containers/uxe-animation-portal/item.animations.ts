@@ -15,40 +15,78 @@ import {
   STANDARD_LEAVE,
 
 } from '../../../gxe-gallery/animations/ease.animations';
-import { PositionalService } from '../../services/positional-service';
+import {
+  ImgEl,
+  Move,
+  PositionalService,
+} from '../../services/positional-service';
 
 
 const SUB_PIXELING = 1;
 
 @Injectable()
 export class ItemAnimationsService {
+  /**
+   * Mask starting Animation player.
+   */
   public playerStart: AnimationPlayer;
-  public playerEnd: AnimationPlayer;
-  private playerInnerEnd: AnimationPlayer;
-  private hostEl: any = '';
-  private imgEl: any = '';
 
+  /**
+   * Mask ending Animation player.
+   */
+  public playerEnd: AnimationPlayer;
+
+  /**
+   * Inner image ending Animation player.
+   */
+  private playerInnerEnd: AnimationPlayer;
+
+  /**
+   * Host HTMLElement.
+   */
+  private hostEl: HTMLElement;
+
+  /**
+   * Inner image HTMLElement.
+   */
+  private imgEl: HTMLElement;
+
+  /**
+   * @param builder Angular animations programmatic builder.
+   * @param posService Service manager for positional state.
+   * @param router Angular Router service.
+   */
   constructor(private builder: AnimationBuilder,
               private posService: PositionalService,
               private router: Router) {
 
   }
 
+  /**
+   * Public animation handler for overlay being closed.
+   */
   public endAnimate() {
     if (isNil(this.posService.outerMask)) return;
     const offset = (this.posService.outerMask.height - this.posService.imgEl.height) / 2;
     this.itemAnimateItemEnd(offset, this.imgEl);
     this.itemAnimateEnd(this.posService.move, this.hostEl);
-    this.hostEl = '';
+    this.hostEl = null;
 
     this.playerEnd.onDone(() => {
       this.posService.ref.inner.close();
     });
   }
 
-  public itemAnimate(move, el, imgEl): void {
+  /**
+   * Animates a host element forward between two states.
+   * @param {Move} move Positional move data.
+   * @param {HTMLElement} el Element to animate.
+   * @param {ImgEl} imgEl Calculated state about inner Image element.
+   */
+  public itemAnimate(move: Move, el: HTMLElement, imgEl: ImgEl): void {
     this.cacheAnimateActors(el, imgEl);
-
+    const x = ((window.innerWidth) - this.posService.imgEl.width - Math.pow(this.posService.borderSize, 2)) / 2;
+    const y = ((window.innerHeight) - this.posService.imgEl.height - Math.round(this.posService.imgEl.height / 12)) / 2;
     this.playerStart = this.builder.build([
       style({
         transformOrigin: `50% 50%`,
@@ -61,12 +99,7 @@ export class ItemAnimationsService {
         keyframes([
           style({
             transformOrigin: `50% 50%`,
-            transform:
-
-              `translate(
-              ${((window.innerWidth) - this.posService.imgEl.width - Math.pow(this.posService.borderSize, 2)) / 2}px,
-              ${((window.innerHeight) - this.posService.imgEl.height - Math.round(this.posService.imgEl.height / 12)) / 2}px) scale(2)
-            `,
+            transform: `translate(${x}px,${y}px) scale(2)`,
             height: this.posService.imgEl.height + 3,
             width: this.posService.outerMask.width + 3,
             opacity: 1,
@@ -82,6 +115,11 @@ export class ItemAnimationsService {
     });
   }
 
+  /**
+   * Animates a host element backwards between two states.
+   * @param {Move} move Positional move data.
+   * @param {HTMLElement} el Element to animate.
+   */
   public itemAnimateEnd(move, el): void {
 
     this.playerEnd = this.builder.build([
@@ -117,6 +155,11 @@ export class ItemAnimationsService {
     this.playerEnd.play();
   }
 
+  /**
+   * Animates the inner image of back to default state.
+   * @param {Move} move Positional move data.
+   * @param {HTMLElement} el Element to animate.
+   */
   public itemAnimateItemEnd(move, el): void {
     this.playerInnerEnd = this.builder.build([
       animate(

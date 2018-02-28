@@ -14,7 +14,7 @@ import { GalleryDetailComponent } from './components/detail/detail.component';
 import { GalleryItemComponent } from './components/master/master-item.component';
 import { GalleryMasterComponent } from './components/master/master.component';
 import { ToolbarsComponent } from './components/toolbars/toolbars.component';
-import { SwipeVerticalService } from './services/swipe-vertical.service';
+import { SwipeVerticalService } from '../uxe-gallery/services/swipe-vertical.service';
 import { WindowScrolling } from './services/window-scroll.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 

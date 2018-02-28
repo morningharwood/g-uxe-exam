@@ -21,7 +21,7 @@ import {
 } from '../../animations/ease.animations';
 import { CurrentItem } from '../../interfaces/current-item.interface';
 import { Vector2 } from '../../interfaces/vector.interface';
-import { SwipeVerticalService } from '../../services/swipe-vertical.service';
+import { SwipeVerticalService } from '../../../uxe-gallery/services/swipe-vertical.service';
 import { WindowScrolling } from '../../services/window-scroll.service';
 import { GalleryItemComponent } from './master-item.component';
 
