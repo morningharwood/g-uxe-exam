@@ -22,7 +22,7 @@ export class ItemComponent implements OnInit {
   public hostEl: any;
   public imgEl: any;
   @ViewChild('innerImg') public innerImg: any;
-  private imgSrc: string;
+  public imgSrc: string;
 
   constructor(private builder: AnimationBuilder,
               private ngHostEl: ElementRef,

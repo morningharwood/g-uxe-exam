@@ -102,7 +102,7 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
   /**
    * Gallery Items passed in via router.
    */
-  private galleryItems: GalleryItem[];
+  public galleryItems: GalleryItem[];
 
   /**
    *

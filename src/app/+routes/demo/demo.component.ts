@@ -5,7 +5,7 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { DoggoService } from '../../backend-tipe/doggo/doggo.service';
-import { GalleryItem } from '../../gxe-gallery/interfaces/gallery-items.interface';
+import { GalleryItem } from '../../uxe-gallery/interfaces/gallery-items.interface';
 import { selectFeatureExtended } from '../../uxe-gallery/reducers/uxe-gallery.reducer';
 
 @Component({

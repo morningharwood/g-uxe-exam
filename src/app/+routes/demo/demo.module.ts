@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DoggoModule } from '../../backend-tipe/doggo/doggo.module';
-import { GxeGalleryModule } from '../../gxe-gallery/gxe-gallery.module';
+
+import { GxeGalleryModule } from '../../_deprecated_version/gxe-gallery.module';
 import { UxeGalleryModule } from '../../uxe-gallery/uxe-gallery.module';
 import { GxeDemoComponent } from './demo.component';
 
