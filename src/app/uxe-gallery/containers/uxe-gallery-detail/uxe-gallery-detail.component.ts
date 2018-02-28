@@ -34,24 +34,76 @@ import { EventType } from '../../enums/event-types';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
+import { CanActivateGallery } from '../../../+routes/route.guard';
+import { CanActivatePassword } from '../../../+routes/password.guard';
+import { AllRoutes } from '../../../+routes/routes.config';
+import { DoggoResolve } from '../../../backend-tipe/doggo/doggo-guard.service';
 
 
 const TOUCH_THRESHOLD = .75;
 
+/**
+ * @description A full bleed overlay that takes a
+ * dataset and can paginate over data.
+ *
+ * @howToUse <uxe-gallery-detail></uxe-gallery-detail>
+ * Data is passed in via routerguard under the name: 'data'
+ * @example
+ * Router config:
+ *
+ *  component: UxeGalleryDetailComponent,
+ *  resolve: {
+ *    data: DoggoResolve
+ *  },
+ */
 @Component({
   selector: 'uxe-gallery-detail',
   templateUrl: './uxe-gallery-detail.component.html',
   styleUrls: [ './uxe-gallery-detail.component.scss' ],
 })
 export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
+  /**
+   * Select the inner container to be panned in the template via ngStyle.
+   */
   @ViewChild('containerEl') public container: ElementRef;
+
+  /**
+   * Native host element.
+   */
   public hostEl: HTMLElement;
+  /**
+   * Current px position of the @ViewChild('containerEl')
+   */
   public currentPosition: number;
+
+  /**
+   * Opening animation player of pagination.
+   */
   private player: AnimationPlayer;
+
+  /**
+   * Cache of the last position when paginating.
+   */
   private lastPosition: number;
+
+  /**
+   * A subscription to pagination completion which will set off Animations.
+   */
   private onPaginationSubscription: Subscription;
+
+  /**
+   * A subscription onLoad to paginate deeply to any item with a seamless ease.
+   */
   private onLoadSubscription: Subscription;
+
+  /**
+   * Local state to keep track of user tap.
+   */
   private tapped: boolean;
+
+  /**
+   * Gallery Items passed in via router.
+   */
   private galleryItems: GalleryItem[];
 
 
@@ -166,7 +218,7 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
   }
 
   private setGalleryData() {
-    this.galleryItems = this.route.snapshot.data[ 'doggos' ];
+    this.galleryItems = this.route.snapshot.data[ 'data' ];
   }
 
   private initLocalState() {

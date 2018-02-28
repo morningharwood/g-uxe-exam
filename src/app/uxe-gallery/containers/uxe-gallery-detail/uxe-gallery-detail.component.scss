@@ -20,7 +20,6 @@
   width: 100%;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-
 }
 
 .inner-gallery {
@@ -31,7 +30,6 @@
   pointer-events: none;
   position: relative;
   z-index: $z-layer-high + 3;
-
 }
 
 .center {
@@ -50,10 +48,6 @@
   overflow-x: hidden;
   pointer-events: none;
   position: relative;
-}
-
-p {
-  color: #fff;
 }
 
 uxe-overlay {
