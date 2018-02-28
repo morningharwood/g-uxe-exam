@@ -7,6 +7,7 @@
   background: $white;
   flex-direction: column;
   height: auto;
+  font-family: $sans-default-family;
 
   @include bp(4) {
     height: 100%;
@@ -16,7 +17,7 @@
 }
 
 .spacer-72 {
-  margin-top: 62px;
+  margin-top: 44px;
 }
 
 
@@ -34,6 +35,7 @@ header {
   padding: ms(1) ms(1) 0 ms(1);
   width: 100%;
   order: 1;
+  font-family: $sans-default-family;
 
   @include bp(4) {
     height: 100%;
@@ -53,6 +55,7 @@ header {
   background-size: cover;
   order: 0;
   height: 50vh;
+  font-family: $sans-default-family;
 
   @include bp(4) {
     height: 100%;
@@ -63,18 +66,21 @@ header {
 
 p {
   @extend %standard-size;
-
+  font-family: $sans-default-family;
   @include bp(4) {
     font-size: ms(-1);
   }
 }
 
 h2 {
+  font-family: $sans-default-family;
+
   font-size: ms(2);
   font-weight: 400;
 }
 
 h3 {
+  font-family: $sans-default-family;
   color: $red-danger;
   font-family: $sans-default-family;
   font-size: ms(0);

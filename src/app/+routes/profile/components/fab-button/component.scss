@@ -6,6 +6,7 @@
 button {
   @extend %reset-space;
   @include hide();
+  font-family: $sans-default-family;
   @include bp(4) {
     $fab-size: 42;
     @include position(absolute, em(-$fab-size/2), null, null, em($fab-size));
@@ -19,6 +20,7 @@ button {
 }
 
 button span {
+  font-family: $sans-default-family;
   @include bp(4) {
     @include position(absolute, em(12), null, null, null, $tertiary);
     @include space(m, 0 0 0 em(-3));
