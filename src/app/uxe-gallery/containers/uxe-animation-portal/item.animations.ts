@@ -10,16 +10,16 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { isNil } from 'lodash';
-import {
-  STANDARD_EASE,
-  STANDARD_LEAVE,
 
-} from '../../../gxe-gallery/animations/ease.animations';
 import {
   ImgEl,
   Move,
   PositionalService,
 } from '../../services/positional-service';
+import {
+  STANDARD_EASE,
+  STANDARD_LEAVE,
+} from '../../animations/ease.animations';
 
 
 const SUB_PIXELING = 1;

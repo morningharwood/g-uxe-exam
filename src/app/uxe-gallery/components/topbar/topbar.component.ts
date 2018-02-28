@@ -11,9 +11,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { isNil } from 'lodash';
-import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
-import { GalleryItem } from '../../../gxe-gallery/interfaces/gallery-items.interface';
 import { PositionalService } from '../../services/positional-service';
+import {
+  STANDARD_EASE,
+  STANDARD_LEAVE,
+} from '../../animations/ease.animations';
+import { GalleryItem } from '../../interfaces/gallery-items.interface';
 
 
 @Component({
@@ -34,7 +37,7 @@ import { PositionalService } from '../../services/positional-service';
         })),
       ]),
       transition('1 => 0', [
-        animate(STANDARD_EASE, style({
+        animate(STANDARD_LEAVE, style({
           top: '-80px',
         })),
       ]),

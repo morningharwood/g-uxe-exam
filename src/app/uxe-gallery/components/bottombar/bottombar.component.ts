@@ -10,8 +10,12 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
+
 import { UxeGalleryStateService } from '../../services/gallery-service';
+import {
+  STANDARD_EASE,
+  STANDARD_LEAVE,
+} from '../../animations/ease.animations';
 
 @Component({
   selector: 'uxe-bottombar',
@@ -31,7 +35,7 @@ import { UxeGalleryStateService } from '../../services/gallery-service';
         })),
       ]),
       transition('1 => 0', [
-        animate(STANDARD_EASE, style({
+        animate(STANDARD_LEAVE, style({
           bottom: '-160px',
         })),
       ]),

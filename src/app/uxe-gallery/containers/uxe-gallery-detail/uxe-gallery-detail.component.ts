@@ -24,20 +24,18 @@ import {
   map,
   take,
 } from 'rxjs/operators';
-import {
-  SEAMLESS_EASE,
-  STANDARD_EASE,
-} from '../../../gxe-gallery/animations/ease.animations';
-import { SwipeVerticalService } from '../../services/swipe-vertical.service';
-import { PositionalService } from '../../services/positional-service';
+
 import { EventType } from '../../enums/event-types';
 import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
-import { CanActivateGallery } from '../../../+routes/route.guard';
-import { CanActivatePassword } from '../../../+routes/password.guard';
-import { AllRoutes } from '../../../+routes/routes.config';
-import { DoggoResolve } from '../../../backend-tipe/doggo/doggo-guard.service';
+import { PositionalService } from '../../services/positional-service';
+import { SwipeVerticalService } from '../../services/swipe-vertical.service';
+import {
+  SEAMLESS_EASE,
+  STANDARD_EASE,
+} from '../../animations/ease.animations';
+
 
 
 const TOUCH_THRESHOLD = .75;
