@@ -166,12 +166,14 @@
         <li><p>State is read-only</p></li>
         <li><p>Changes are made with pure functions</p></li>
       </ul>
-      <img src="https://angularfirebase.com/images/ngrx-redux-pattern-diagram.png">
+      <figure>
+        <img src="https://angularfirebase.com/images/ngrx-redux-pattern-diagram.png">
+      </figure>
       <h3>Inside the Project:</h3>
       <div class="inline-image">
-        <div>
+        <figure>
           <img src="assets/images/folders.png" alt="">
-        </div>
+        </figure>
         <div class="goal-list-small">
           <p><b>Actions:</b> Actions describe state changes</p>
           <p><b>Animations:</b> Animation easing and blending constants.</p>
@@ -180,12 +182,122 @@
           <p><b>Effects:</b> Isolate side effects from components to fetch data.</p>
           <p><b>Enums:</b> Set of enums I use throughout the application to manage events.</p>
           <p><b>Interfaces:</b> Set of generic interfaces I use across the application</p>
-          <p><b>Reducers:</b> Pure functions called reducers take the previous state and the next action to compute the new
+          <p><b>Reducers:</b> Pure functions called reducers take the previous state and the next action to compute the
+            new
             state</p>
           <p><b>Services:</b> Set of services used across the application.</p>
         </div>
       </div>
+      <h3>Services</h3>
+      <div class="inline-image">
+        <figure>
+          <img src="assets/images/folder1.png" alt="">
+        </figure>
+        <div class="goal-list-small">
+          <p><b>Gallery:</b> handles dispatching common actions to the store to manage state change</p>
+          <p><b>Positional</b> manages the positional data for choreographing animations.</p>
+          <p><b>Swipe-vertical</b> manages hammerjs for swipe interactions.</p>
+        </div>
+      </div>
+      <h3>Components</h3>
+      <div class="inline-image">
+        <figure>
+          <img src="assets/images/folder2.png" alt="">
+        </figure>
+        <div class="goal-list-small">
+          <p><b>The UI can be broken into 3 containers:</b></p>
+          <p><b>gxe-gallery-master</b> Handles the list/master view</p>
+          <p><b>gxe-gallery-detail</b> Handles the detail/show/single view</p>
+          <p><b>gxe-gallery-portal</b> Handles the animation state between Master/detail</p>
+        </div>
+      </div>
+
+      <figure>
+        <figcaption><b>You can visualize those containers like so:</b></figcaption>
+        <br><br>
+        <img src="assets/images/process-ui.svg" alt="">
+      </figure>
+      <div class="inline-image">
+        <figure>
+          <img src="assets/images/dumbcomponents.png" alt="">
+        </figure>
+        <div class="goal-list-small">
+          <p><b>There are 4 presentational components:</b></p>
+          <p><b>Bottombar </b>- bottom bar showin in detail view.</p>
+          <p><b>Detail-item </b>- Single image inside the detail container</p>
+          <p><b>Overlay </b>- Background overlay when detail view is open</p>
+          <p><b>Topbar </b>- topbar show on both master and detail view.</p>
+
+          <p><b>Gallery:</b> handles dispatching common actions to the store to manage state change</p>
+          <p><b>Positional</b> manages the positional data for choreographing animations.</p>
+          <p><b>Swipe-vertical</b> manages hammerjs for swipe interactions.</p>
+        </div>
+      </div>
+      <h3>Flow Control:</h3>
+      <p><b>The data flows unidirectionally downwards, in order from:</b></p>
+      <ul class="detail-list">
+
+        <li><p>Network: A 3rd party cms api : www.tipe.io</p></li>
+        <li><p>Angular router Service.</p></li>
+        <li><p>Into master view.</p></li>
+        <li><p>Data is rendered into items.</p></li>
+        <li><p>All Items are evaluated for position and cached.</p></li>
+        <li><p>On user click currently selected item is set in global store</p></li>
+        <li><p>Upon update to store a overlay is create and animations are triggered.</p></li>
+        <li><p>On finish of animation router triggers detail view.</p></li>
+        <li><p>Detail view overlaps transition detail-Item animation</p></li>
+        <li><p>The user interaction graphs out to close, swipe, bottom bar click</p></li>
+        <li><p>Each interaction fires and action to the global store</p></li>
+        <li><p>Each change in store will reactively trigger a ui state change.</p></li>
+
+      </ul>
+      <h3>Result:</h3>
+      <p><b> Extensible & Ergonomic component</b></p>
+      <p>
+        is a Angular component that can render the entire experience from a single html tag. Any data that
+        fits the interface can be Input() into the gallery through the [galleryItems]="data" binding. The underlying
+        services are extensible and the component itself is simple to get up and running.</p>
+      <br><br>
+      <p><b>For a full breakdown:</b></p> <br><br>
+      <button mat-raised-button color="accent" [routerLink]="['/demo']">GO TO LIVE DEMO</button>
+      <button href="https://gxe-gallery-docs.firebaseapp.com/" mat-button color="primary">VIEW THE DOCS</button>
+      <button href="https://drive.google.com/file/d/1IxkE2OeZUHvHTU4CP2hZ4cyFWKCHbSPy/view?usp=sharing" mat-button
+              color="primary">DOWNLOAD THE CODE
+      </button>
     </section>
+    <section>
+      <h3>Reflections</h3>
+      <p>
+        I built this gallery twice.. because the first time I didn't plan enough.
+        In the end, I liked where I ended up
+        but, I wish I would have had more time to implement my original vision
+        for interaction and motion design.
+      </p>
+    </section>
+    <section>
+      <h3>If there was more time:</h3>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          More iteration of motion design
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          Animated vertical swipe interaction when closing the gallery.
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          Accessibility
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          Bunch of Optimization in the code.
+        </mat-list-item>
+      </mat-list>
+      <br><br>
+    <p>
+      Thank you for your time,<br>
+      <i>Matthew Harwood</i> <br><br><br>
+      <button mat-raised-button color="accent" [routerLink]="['/profile']">About me</button>
+    </p>
+    </section>
+
   </article>
 </div>
 
