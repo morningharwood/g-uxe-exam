@@ -2,14 +2,14 @@
   class="bottom-bar"
   [@enterBar]="animationState.bottombarTemplate">
   <mat-toolbar-row [@brushBar]="animationState.brushbarTemplate" class="aux-bar">
-    <p *ngIf="animationState.brushbarTemplate">wow</p>
+    <mat-slider *ngIf="animationState.brushbarTemplate"></mat-slider>
   </mat-toolbar-row>
   <mat-toolbar-row >
     <button mat-icon-button (click)="toggleBrushBar()">
       <mat-icon>brush</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon>comment</mat-icon>
+    <button mat-icon-button (click)="toggleTextfields()">
+      <mat-icon>text_fields</mat-icon>
     </button>
     <button mat-icon-button>
       <mat-icon>add</mat-icon>

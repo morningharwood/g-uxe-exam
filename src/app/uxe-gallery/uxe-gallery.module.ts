@@ -5,7 +5,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
   MatIconModule,
+  MatSliderModule,
 } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -15,12 +17,13 @@ import { CanActivateGallery } from '../+routes/route.guard';
 import { BottombarAuxComponent } from './components/bottombar-aux/bottombar-aux.component';
 import { BottombarComponent } from './components/bottombar/bottombar.component';
 import { DetailItemComponent } from './components/detail-item/detail-item.component';
-import { ItemAnimationsService } from './containers/uxe-animation-portal/item.animations';
-import { ItemComponent } from './containers/uxe-animation-portal/item.component';
 import { OverlayService } from './components/overlay/overlay-service';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { PositionalService } from './components/overlay/positional-service';
+import { TextfieldsComponent } from './components/textfields/textfields.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
+import { ItemAnimationsService } from './containers/uxe-animation-portal/item.animations';
+import { ItemComponent } from './containers/uxe-animation-portal/item.component';
 import { UxeGalleryCanvasComponent } from './containers/uxe-gallery-canvas/uxe-gallery-canvas.component';
 import { UxeGalleryDetailComponent } from './containers/uxe-gallery-detail/uxe-gallery-detail.component';
 import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-gallery-master.component';
@@ -45,8 +48,10 @@ const DECLARATIONS_EXPORTS = [
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
+    MatInputModule,
     MatToolbarModule,
     MatIconModule,
+    MatSliderModule,
   ],
   declarations: [
     ...DECLARATIONS_EXPORTS,
@@ -57,6 +62,7 @@ const DECLARATIONS_EXPORTS = [
     BottombarAuxComponent,
     UxeGalleryCanvasComponent,
     DetailItemComponent,
+    TextfieldsComponent,
   ],
   exports: [ ...DECLARATIONS_EXPORTS ],
   providers: [
@@ -65,7 +71,7 @@ const DECLARATIONS_EXPORTS = [
     PositionalService,
     ItemAnimationsService,
   ],
-  entryComponents: [ItemComponent],
+  entryComponents: [ ItemComponent ],
 })
 export class UxeGalleryModule {
 }

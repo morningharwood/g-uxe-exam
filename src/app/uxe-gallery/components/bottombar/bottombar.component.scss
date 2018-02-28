@@ -40,7 +40,11 @@ span {
     color: $white;
   }
   .aux-bar {
-    background-color: #fff;
+    background-color: $gray;
+  }
+
+  mat-slider {
+    width: 90%;
   }
 }
 

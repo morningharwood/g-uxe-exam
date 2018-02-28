@@ -8,24 +8,33 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   select,
   Store,
 } from '@ngrx/store';
-import { STANDARD_EASE } from '../../../gxe-gallery/animations/ease.animations';
-import { EventType } from '../../../gxe-gallery/enums/event-types';
+import { Subscription } from 'rxjs/Subscription';
+import {
+  bufferCount,
+  map,
+  take,
+} from 'rxjs/operators';
+import {
+  SEAMLESS_EASE,
+  STANDARD_EASE,
+} from '../../../gxe-gallery/animations/ease.animations';
 import { SwipeVerticalService } from '../../../gxe-gallery/services/swipe-vertical.service';
 import { PositionalService } from '../../components/overlay/positional-service';
+import { EventType } from '../../enums/event-types';
+import { GalleryItem } from '../../interfaces/gallery-items.interface';
 import { selectFeatureExtended } from '../../reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from '../../services/gallery-service';
-import { ActivatedRoute } from '@angular/router';
 
-
-import {isNil} from 'lodash';
 
 const TOUCH_THRESHOLD = .75;
 
@@ -34,17 +43,16 @@ const TOUCH_THRESHOLD = .75;
   templateUrl: './uxe-gallery-detail.component.html',
   styleUrls: [ './uxe-gallery-detail.component.scss' ],
 })
-export class UxeGalleryDetailComponent implements OnInit {
-  public data: any;
-  public hostEl: any;
-  @ViewChild('containerEl') private container: any;
-  private player: AnimationPlayer;
+export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
+  @ViewChild('containerEl') public container: ElementRef;
+  public hostEl: HTMLElement;
   public currentPosition: number;
+  private player: AnimationPlayer;
   private lastPosition: number;
-  private obs: any;
-  private query: any;
-  private tapped = true;
-  private galleryItems: any;
+  private onPaginationSubscription: Subscription;
+  private onLoadSubscription: Subscription;
+  private tapped: boolean;
+  private galleryItems: GalleryItem[];
 
 
   constructor(private builder: AnimationBuilder,
@@ -58,19 +66,17 @@ export class UxeGalleryDetailComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.galleryItems = this.route.snapshot.data['doggos'];
-    this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
-    this.lastPosition = 0;
-    this.currentPosition = 0;
-    this.query = this.posService.queryParent;
-    this.obs = this.store.pipe(select(selectFeatureExtended));
-    this.obs.subscribe((data) => {
-      if ( data.selectedItem !== 0 ) {
-        this.paginationAnimate(data.selectedItem, '0ms');
-      }
-    });
+  public ngOnInit(): void {
+    this.setGalleryData();
+    this.setNativeElements();
+    this.initLocalState();
+    this.createSubscriptionForPagination();
     this.turnOnVerticalSwipe();
+  }
+
+  public ngOnDestroy(): void {
+    this.onPaginationSubscription.unsubscribe();
+    this.onLoadSubscription.unsubscribe();
   }
 
   @HostListener(EventType.CLICK, [ '$event' ])
@@ -124,13 +130,13 @@ export class UxeGalleryDetailComponent implements OnInit {
       index = Math.min(Math.ceil(offset), this.galleryItems.length - 1);
     }
 
-    this.paginationAnimate(index);
+    this.galleryService.setSelectedItem(index);
   }
 
   /**
    * Animates the Pagination of the gallery.
    */
-  public paginationAnimate(index: number, timing = STANDARD_EASE) {
+  public paginationAnimate(index: number, timing = STANDARD_EASE): void {
     const futurePosition = -(index * this.hostEl.offsetWidth);
     this.player = this.builder.build([
       style({
@@ -152,6 +158,41 @@ export class UxeGalleryDetailComponent implements OnInit {
       }
       this.lastPosition = this.currentPosition = futurePosition;
       this.posService.setMove(index);
+    });
+  }
+
+  private setNativeElements() {
+    this.hostEl = this.renderer.selectRootElement(this.ngHostEl).nativeElement;
+  }
+
+  private setGalleryData() {
+    this.galleryItems = this.route.snapshot.data[ 'doggos' ];
+  }
+
+  private initLocalState() {
+    this.currentPosition = 0;
+    this.lastPosition = 0;
+    this.tapped = true;
+  }
+
+  private createSubscriptionForPagination() {
+    this.onPaginationSubscription = this.store.pipe(
+      select(selectFeatureExtended),
+      map((d) => d.selectedItem),
+      bufferCount(2, 1),
+    ).subscribe((selectedItem) => {
+      console.log(selectedItem);
+      if (selectedItem.length > 1) {
+        this.paginationAnimate(selectedItem[ 1 ], STANDARD_EASE);
+      }
+    });
+
+    this.onLoadSubscription = this.store.pipe(
+      select(selectFeatureExtended),
+      map((d) => d.selectedItem),
+      take(1),
+    ).subscribe((selectedItem) => {
+      this.paginationAnimate(selectedItem, SEAMLESS_EASE);
     });
   }
 }

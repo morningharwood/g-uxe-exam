@@ -1,0 +1,34 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+:host {
+  position: absolute;
+  z-index: $z-layer-highest;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.wrapper {
+  position: relative;
+  z-index: $z-layer-highest;
+  background-color: $white-off;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.centered {
+
+}

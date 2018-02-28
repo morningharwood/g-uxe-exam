@@ -21,7 +21,8 @@ export interface State extends EntityState<UxeGallery> {
   bottombarTemplate: boolean;
   topbarTemplate: boolean;
   topbarTemplateType: string;
-  brushbarTemplate: boolean,
+  brushbarTemplate: boolean;
+  textfieldTemplate: boolean;
   modalTemplate: boolean;
   detailTemplate: boolean;
   canvasTemplate: boolean;
@@ -46,6 +47,7 @@ export const initialState: State = adapter.getInitialState({
   brushbarTemplate: false,
   topbarTemplateType: TopbarType.WHITE,
   topbarTemplate: true,
+  textfieldTemplate: false,
   bottombarTemplate: false,
   detailTemplate: false,
   modalTemplate: false,
@@ -178,6 +180,7 @@ export const selectFeatureExtended = createSelector(getState, (state: State) => 
     hiddenItem: state.hiddenItem,
     bottombarTemplate: state.bottombarTemplate,
     brushbarTemplate: state.brushbarTemplate,
+    textfieldTemplate: state.textfieldTemplate,
     topbarTemplate: state.topbarTemplate,
     topbarTemplateType: state.topbarTemplateType,
     modalTemplate: state.modalTemplate,

@@ -73,4 +73,9 @@ export class BottombarComponent implements OnInit {
     this.galleryService.toggleBrush(this.animationState.brushbarTemplate);
   }
 
+  public toggleTextfields() {
+    this.animationState.textfieldTemplate = !this.animationState.textfieldTemplate;
+    this.galleryService.toggleTextfield(this.animationState.textfieldTemplate);
+  }
+
 }

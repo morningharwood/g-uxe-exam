@@ -76,6 +76,10 @@ export class UxeGalleryStateService {
     this.setToolBarStateByName('brushbarTemplate', toggler);
   }
 
+  public toggleTextfield(toggler: boolean): void {
+    this.setToolBarStateByName('textfieldTemplate', toggler);
+  }
+
   public openDetailView(item: number) {
     this.setSelectedItem(item);
     this.setModalState(true);
