@@ -103,6 +103,34 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Animates the Pagination of the gallery.
+   */
+  public paginationAnimate(index: number, timing = STANDARD_EASE): void {
+    const futurePosition = -(index * this.hostEl.offsetWidth);
+    this.player = this.builder.build([
+      style({
+        transform: `translateX(${this.currentPosition}px)`,
+      }),
+      animate(
+        timing,
+        style({
+          transform: `translateX(${futurePosition}px)`,
+        }),
+      ),
+    ]).create(this.container.nativeElement);
+
+    this.player.play();
+    this.player.onDone(() => {
+      if (this.player) {
+        this.player.destroy();
+        this.player = null;
+      }
+      this.lastPosition = this.currentPosition = futurePosition;
+      this.posService.setMove(index);
+    });
+  }
+
+  /**
    * Turn on vertical swipe
    */
   private turnOnVerticalSwipe() {
@@ -131,34 +159,6 @@ export class UxeGalleryDetailComponent implements OnInit, OnDestroy {
     }
 
     this.galleryService.setSelectedItem(index);
-  }
-
-  /**
-   * Animates the Pagination of the gallery.
-   */
-  public paginationAnimate(index: number, timing = STANDARD_EASE): void {
-    const futurePosition = -(index * this.hostEl.offsetWidth);
-    this.player = this.builder.build([
-      style({
-        transform: `translateX(${this.currentPosition}px)`,
-      }),
-      animate(
-        timing,
-        style({
-          transform: `translateX(${futurePosition}px)`,
-        }),
-      ),
-    ]).create(this.container.nativeElement);
-
-    this.player.play();
-    this.player.onDone(() => {
-      if (this.player) {
-        this.player.destroy();
-        this.player = null;
-      }
-      this.lastPosition = this.currentPosition = futurePosition;
-      this.posService.setMove(index);
-    });
   }
 
   private setNativeElements() {

@@ -1,5 +1,4 @@
 @import '../../../../assets/css/mixins';
-
 @import '../../../../assets/css/variables';
 
 :host {
@@ -14,13 +13,11 @@
 
 .overflow-hidden {
   display: block;
-
   height: 100%;
   max-width: 100%;
   pointer-events: none;
   position: relative;
   width: 100%;
-  // Easter egg wheee!
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
@@ -54,7 +51,6 @@
   pointer-events: none;
   position: relative;
 }
-
 
 p {
   color: #fff;
