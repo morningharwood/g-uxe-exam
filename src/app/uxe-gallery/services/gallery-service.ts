@@ -23,62 +23,81 @@ import {
 import { PositionalService } from './positional-service';
 
 
+/**
+ * @description A helper Injectable for managing scenarios of state change.
+ */
 @Injectable()
 export class UxeGalleryStateService {
-  private data = new BehaviorSubject('');
+  /**
+   * @param {Store<State>} store Ngrx store Service.
+   * @param {Router} router Angular Router Service.
+   * @param {ItemAnimationsService} animationService ItemAniamtion Service.
+   * @param {PositionalService} posService UxeGallery positional service.
+   */
   constructor(private store: Store<State>,
               private router: Router,
               private animationService: ItemAnimationsService,
               private posService: PositionalService) {
   }
 
+  /**
+   * Will change state of selected Item.
+   * @param {number} item
+   */
   public setSelectedItem(item: number): void {
     this.store.dispatch(new UpdateSelectedItem({item}));
   }
 
-  public setHiddenItem(id: string): void {
-    this.store.dispatch(new UpdateHiddenItem({id}));
-  }
-
-  public clearToolbars(): void {
-    this.store.dispatch(new ClearToolbars());
-  }
-
+  /**
+   * Select and set a Toolbar property of Store.
+   * @param {string} propName Toolbar propername to select from state.
+   * @param {boolean} isActive Use to set the value of of state selected.
+   */
   public setToolBarStateByName(propName: string, isActive: boolean): void {
     this.store.dispatch(new SetToolbarState({propName: propName, isActive: isActive}));
   }
 
+  /**
+   * Selects and sets Overlay/modalState.
+   * @param {boolean} isActive
+   */
   public setModalState(isActive: boolean): void {
     this.store.dispatch(new SetModalState({isActive: isActive}));
   }
 
+  /**
+   * Selects and sets Detailview state.
+   * @param {boolean} isActive
+   */
   public setDetailState(isActive: boolean): void {
     this.store.dispatch(new SetDetailState({isActive: isActive}));
   }
 
-  public setCanvasState(isActive: boolean): void {
-    this.store.dispatch(new SetCanvasState({isActive: isActive}));
-  }
-
-  public setCanvasSource(source: string): void {
-    this.store.dispatch(new SetCanvasSource({source: source}));
-  }
-
+  /**
+   * Sets tempalate type of topbar.
+   * @param {string} type
+   */
   public setTopbarType(type: string): void {
     this.store.dispatch(new SetTopbarType({type: type}));
   }
 
+  /**
+   * Sets Animation state.
+   * @param {string} type
+   */
   public setAnimationState(type: string): void {
     this.store.dispatch(new SetAnimationState({type: type}));
   }
 
+  /**
+   * Sets Brush toolbar state state.
+   * @param {string} type Type of white or black.
+   */
   public toggleBrush(toggler: boolean): void {
     this.setToolBarStateByName('brushbarTemplate', toggler);
   }
 
-  public toggleTextfield(toggler: boolean): void {
-    this.setToolBarStateByName('textfieldTemplate', toggler);
-  }
+
 
   public openDetailView(item: number) {
     this.setSelectedItem(item);

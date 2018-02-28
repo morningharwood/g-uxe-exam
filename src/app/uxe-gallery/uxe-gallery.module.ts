@@ -18,8 +18,6 @@ import { BottombarComponent } from './components/bottombar/bottombar.component';
 import { DetailItemComponent } from './components/detail-item/detail-item.component';
 import { OverlayService } from './components/overlay/overlay-service';
 import { OverlayComponent } from './components/overlay/overlay.component';
-import { PositionalService } from './services/positional-service';
-import { TextfieldsComponent } from './components/textfields/textfields.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { ItemAnimationsService } from './containers/uxe-animation-portal/item.animations';
 import { ItemComponent } from './containers/uxe-animation-portal/item.component';
@@ -28,6 +26,7 @@ import { UxeGalleryMasterComponent } from './containers/uxe-gallery-master/uxe-g
 import { UxeGalleryEffects } from './effects/uxe-gallery.effects';
 import * as fromUxeGallery from './reducers/uxe-gallery.reducer';
 import { UxeGalleryStateService } from './services/gallery-service';
+import { PositionalService } from './services/positional-service';
 
 
 const DECLARATIONS_EXPORTS = [
@@ -59,7 +58,6 @@ const DECLARATIONS_EXPORTS = [
     BottombarComponent,
     BottombarAuxComponent,
     DetailItemComponent,
-    TextfieldsComponent,
   ],
   exports: [ ...DECLARATIONS_EXPORTS ],
   providers: [
